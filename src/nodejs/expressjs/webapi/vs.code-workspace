@@ -1,0 +1,12 @@
+{
+  "folders": [
+    {
+      "name": "Node Express Web API",
+      "path": "./"
+    }
+  ],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
+}
