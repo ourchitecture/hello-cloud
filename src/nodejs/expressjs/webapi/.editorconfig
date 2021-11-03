@@ -1,0 +1,5 @@
+root = false
+
+[{*.js,*.ts}]
+# quotes: some types of projects may have specific settings
+quote_type = single
