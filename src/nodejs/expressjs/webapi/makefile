@@ -10,8 +10,11 @@ image_tag:=our-hello-nodejs-expressjs-webapi:latest
 
 .DEFAULT_GOAL:=install
 
+all: install
+
 .PHONY: install
 install:
+ifneq '$(container_tool)' 'docker-compose'
 	@set -eu \
 	&& $(container_tool) pull \
 		$(base_image_tag) \
@@ -19,9 +22,17 @@ install:
 		$(base_image_tag) \
 		$(image_tag) \
 	&& echo 'Successfully built: $(image_tag)'
+endif
 
 .PHONY: up
 up: install
+ifeq '$(container_tool)' 'docker-compose'
+	@set -eu \
+	&& IMAGE_TAG=$(base_image_tag) \
+	APP_PORT=$(app_port) \
+	HOST_PORT=$(host_port) \
+	docker-compose up -d
+else
 	@set -eu \
 	&& $(container_tool) run \
 		--name $(container_name) \
@@ -30,58 +41,49 @@ up: install
 		-w /app \
 		-p $(app_port):$(host_port) \
 		$(image_tag) \
-		npm start \
-	&& echo 'Successfully started: http://localhost:$(host_port)'
+		npm start
+endif
+	@echo 'Successfully started: http://localhost:$(host_port)'
 
-.PHONY: docker-compose-up
-docker-compose-up:
-	@set -eu \
-	&& IMAGE_TAG=$(base_image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	docker-compose up -d \
-	&& echo 'Successfully started: http://localhost:$(host_port)'
-
-.PHONY: docker-compose-down
-docker-compose-down:
+.PHONY: down
+down:
+ifeq '$(container_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
 	docker-compose down
+else
+	@set -eu \
+	&& $(container_tool) rm -f $(container_name)
+endif
+	@echo 'Successfully removed container: $(container_name)'
 
-.PHONY: docker-compose-clean
-docker-compose-clean:
+.PHONY: clean
+clean:
+ifeq '$(container_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
 	docker-compose rm -s -f
-
-.PHONY: down
-down:
+else
 	@set -eu \
-	&& $(container_tool) rm -f $(container_name) \
-	&& echo 'Successfully removed container: $(container_name)'
-
-.PHONY: clean
-clean:
-	@set -eu \
-	&& $(container_tool) rmi -f $(image_tag) \
-	&& echo 'Successfully removed image: $(image_tag)'
+	&& $(container_tool) rmi -f $(image_tag)
+endif
+	@echo 'Successfully removed image: $(image_tag)'
 
 # convenient alias
 .PHONY: uninstall
 uninstall: clean
 
 .PHONY: start
-start:
-	@yarn start
+start: up
 
 # convenient alias
 .PHONY: run
-run: start
+run: up
 
 # convenient alias
 .PHONY: serve
-serve: start
+serve: up
