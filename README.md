@@ -1,2 +1,3 @@
-# hello-cloud
-hello-cloud
+# Welcome to the Hello Cloud project
+
+Saying hello to some of the biggest cloud providers...
