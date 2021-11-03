@@ -23,7 +23,8 @@
   "extensions": [
     "dbaeumer.vscode-eslint",
     "EditorConfig.EditorConfig",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "ms-azuretools.vscode-docker"
   ],
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
