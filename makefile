@@ -38,3 +38,7 @@ run: up
 # convenient alias
 .PHONY: serve
 serve: up
+
+.PHONY: sync
+sync:
+	@git-town sync
