@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  web:
+    image: ${IMAGE_TAG}
+    ports:
+      - "${APP_PORT}:${HOST_PORT}"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: ["npm", "start"]
