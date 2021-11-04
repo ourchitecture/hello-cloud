@@ -9,13 +9,13 @@ install:
 	@cd $(project_dir) \
 	&& make $@
 
-.PHONY: up
-up:
+.PHONY: start
+start:
 	@cd $(project_dir) \
 	&& make $@
 
-.PHONY: down
-down:
+.PHONY: stop
+stop:
 	@cd $(project_dir) \
 	&& make $@
 
@@ -24,20 +24,13 @@ clean:
 	@cd $(project_dir) \
 	&& make $@
 
-# convenient alias
-.PHONY: uninstall
+# convenience aliases
+build: install
+up: start
+run: start
+serve: start
+down: stop
 uninstall: clean
-
-.PHONY: start
-start: up
-
-# convenient alias
-.PHONY: run
-run: up
-
-# convenient alias
-.PHONY: serve
-serve: up
 
 .PHONY: sync
 sync:
