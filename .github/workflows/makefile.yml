@@ -2,17 +2,20 @@ name: ci
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: build
-      run: make
+      - name: build
+        run: make
+
+      - name: commit
+        run: |
+          git commit -m 'docs: auto-generate documentation [skip ci]'
