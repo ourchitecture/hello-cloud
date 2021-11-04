@@ -9,6 +9,8 @@ theme:
     - "header.autohide"
 nav:
   - "Home": "index.md"
+  - "Web Services":
+      - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
   - "Contribute": "contribute.md"
   - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
 extra:
