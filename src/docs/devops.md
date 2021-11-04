@@ -12,4 +12,4 @@ The production pipeline uses [GitHub Actions](https://github.com/ericis/hello-cl
 
 ### Documentation
 
-Documentation is auto-generated using `make ci-docs` with [MkDocs](https://www.mkdocs.org/), [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/), and the ["mkdocs-material"](https://hub.docker.com/r/squidfunk/mkdocs-material/) dockerized task runtime. The result generates the source output of everything contained in "./docs".
+Documentation is auto-generated using `make ci-docs` with [MkDocs](https://www.mkdocs.org/) 🔗, [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) 🔗, and the ["mkdocs-material"](https://hub.docker.com/r/squidfunk/mkdocs-material/) 🔗 dockerized task runtime. The result generates the source output of everything contained in "./docs".

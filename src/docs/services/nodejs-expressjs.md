@@ -1,8 +1,9 @@
 # Service: NodeJS with ExpressJS
 
-- **Runtime:** [NodeJS](https://nodejs.org/)
-- **Language:** [JavaScript](https://javascript.info/)
-- **Framework:** [ExpressJS](https://expressjs.com/)
+- **Path:** [./src/nodejs/expressjs/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/nodejs/expressjs/webapi)
+- **Runtime:** [NodeJS](https://nodejs.org/) 🔗
+- **Language:** [JavaScript](https://javascript.info/) 🔗
+- **Framework:** [ExpressJS](https://expressjs.com/) 🔗
 
 ## Getting started
 
