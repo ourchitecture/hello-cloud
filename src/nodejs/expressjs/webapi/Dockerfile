@@ -4,7 +4,8 @@ FROM base as dependencies
 
 WORKDIR /app
 
-COPY package.json yarn.lock /app/
+COPY package.json yarn.lock .yarnrc /app/
+COPY .yarn/ /app/.yarn/
 
 RUN yarn --frozen-lockfile
 
