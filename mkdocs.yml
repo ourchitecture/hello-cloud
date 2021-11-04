@@ -9,7 +9,6 @@ theme:
     - "header.autohide"
 nav:
   - "Home": "index.md"
-  - "DevOps": "devops.md"
   - "Contribute": "contribute.md"
   - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
 extra:

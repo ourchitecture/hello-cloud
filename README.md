@@ -2,4 +2,4 @@
 
 Saying hello to some of the biggest cloud providers...
 
-💯 Check out the [official documentation](https://ericis.github.io/hello-cloud/). 👀
+- Learn [how to contribute](./.github/CONTRIBUTING.md)

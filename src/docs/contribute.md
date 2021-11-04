@@ -30,8 +30,6 @@ If you do not wish to use `make` (e.g. `yarn && yarn start`), review the command
 
 ### Running tasks
 
-**NOTE:** when generating documentation, the "./docs" directory is built inside of a container using different user permissions than the local account. As a result, `sudo` is used to remove the directory before recreating the documentation and you may be prompted to enter your password. You can review this under the "install-docs" target in the "./makefile".
-
 1. Clone the repository with the command `git clone --depth=1 https://github.com/ericis/hello-cloud`
 2. Navigate to the project in a terminal or open your favorite editor
 3. Build the project with the command `make` or `make install` (`make build` will also work if your forget)

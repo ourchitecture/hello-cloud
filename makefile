@@ -15,17 +15,14 @@ init:
 	&& $(dev_tool) pull $(docker_image_mkdocs_material_tag) \
 	&& $(dev_tool) tag $(docker_image_mkdocs_material_tag) mkdocs
 
-# NOTE: `sudo` is required because "./docs" is generated
-# by a different user within the container
 .PHONY: install-docs
 install-docs: init
 	@set -eu \
-	&& sudo rm -rf ./docs \
 	&& $(dev_tool) run \
 		--rm \
-		--interactive \
-		--volume $(shell pwd):/app \
-		--workdir /app \
+		-i \
+		-v $(shell pwd):/app \
+		-w /app \
 		mkdocs \
 		build \
 			--clean \
@@ -85,12 +82,3 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
-
-# run by continuous integration
-.PHONY: ci-docs
-ci-docs: install-docs
-	git config user.name our-github-actions
-	git config user.email ericis@users.noreply.github.com
-	git add .
-	git commit -m 'docs: auto-generate documentation [skip ci]'
-	git push
