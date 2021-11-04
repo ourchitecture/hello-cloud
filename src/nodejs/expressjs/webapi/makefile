@@ -16,11 +16,10 @@ all: install
 install:
 ifneq '$(container_tool)' 'docker-compose'
 	@set -eu \
-	&& $(container_tool) pull \
-		$(base_image_tag) \
-	&& $(container_tool) tag \
-		$(base_image_tag) \
-		$(image_tag) \
+	&& $(container_tool) build \
+		-t $(image_tag) \
+		-f ./Dockerfile \
+		. \
 	&& echo 'Successfully built: $(image_tag)'
 endif
 
