@@ -13,6 +13,7 @@ This project attempts to support a variety of developer tooling choices while ma
 **Tools:**
 
 - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for source control.
+- [`git-town`](https://www.git-town.com/install.html) may be used for improved developer workflow.
 - [`yarn`](https://yarnpkg.com/) or [`node`](https://nodejs.org/) are required to run the project _\*`yarn` is recommended_. The version of `yarn` is "pinned" in ".yarnrc" and will be automatically selected and used by the `yarn` command.
 - [`nvm`](https://github.com/nvm-sh/nvm) can make switching between specific versions of `node`, `npm`, and `npx` easier across projects for a more consistent project experience across machines. The version of `node` is "pinned" in ".nvmrc" and will be automatically selected and used by the `nvm use` command.
 - [`podman`](https://podman.io/getting-started/), [`docker`](https://www.docker.com/get-started), or `docker` with [`docker-compose`](https://docs.docker.com/compose/gettingstarted/) are required to build the production container image.
