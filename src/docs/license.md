@@ -8,4 +8,4 @@ Everything in the project except "./src/media/" falls under "Creative Commons Ze
 
 Media contained in this directory may have strict licensing restrictions beyond the project.
 
-- "./icons/logo/logo.svg" may not be redistributed and is licensed to Eric Swanson from https://thenounproject.com/search/?q=touch+cloud&i=3936766
+- "./icons/logo/logo.svg" may not be redistributed and is licensed to Eric Swanson from [thenounproject.com](https://thenounproject.com/search/?q=touch+cloud&i=3936766)
