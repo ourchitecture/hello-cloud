@@ -5,6 +5,8 @@ site_author: "Ourchitecture"
 copyright: "Creative Commons Zero v1.0 Universal"
 theme:
   name: "material"
+  logo: "img/logo.png"
+  favicon: "img/favicon.png"
   features:
     - "header.autohide"
 nav:
@@ -12,6 +14,7 @@ nav:
   - "Web Services":
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
   - "Contribute": "contribute.md"
+  - "License": "license.md"
   - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
 extra:
   social:
