@@ -280,4 +280,8 @@ dist
 # custom rules below...
 ################################################################################
 
+# share code workspaces
 !*.code-workspace
+
+# prefer to use yarn, not npm
+package-lock.json

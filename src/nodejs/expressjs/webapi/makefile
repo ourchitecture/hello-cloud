@@ -1,4 +1,4 @@
-container_tool:=podman
+dev_tool:=docker
 
 app_port=3000
 host_port:=3000
@@ -14,18 +14,31 @@ all: install
 
 .PHONY: install
 install:
-ifneq '$(container_tool)' 'docker-compose'
+# nothing to do for "docker-compose"
+ifeq '$(dev_tool)' 'yarn'
 	@set -eu \
-	&& $(container_tool) build \
+	&& yarn
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","node" "npm"))
+	@set -eu \
+	&& npm install
+else ifneq '$(dev_tool)' 'docker-compose'
+	@set -eu \
+	&& $(dev_tool) build \
 		-t $(image_tag) \
 		-f ./Dockerfile \
 		. \
 	&& echo 'Successfully built: $(image_tag)'
 endif
 
-.PHONY: up
-up: install
-ifeq '$(container_tool)' 'docker-compose'
+.PHONY: start
+start: install
+ifeq '$(dev_tool)' 'yarn'
+	@set -eu \
+	&& yarn start
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","node" "npm"))
+	@set -eu \
+	&& npm start
+else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
 	APP_PORT=$(app_port) \
@@ -33,59 +46,60 @@ ifeq '$(container_tool)' 'docker-compose'
 	docker-compose up -d
 else
 	@set -eu \
-	&& $(container_tool) run \
+	&& $(dev_tool) run \
 		--name $(container_name) \
 		-d \
 		-v $(shell pwd):/app \
 		-w /app \
 		-p $(app_port):$(host_port) \
 		$(image_tag) \
-		npm start
+		node ./index.js
 endif
 	@echo 'Successfully started: http://localhost:$(host_port)'
 
-.PHONY: down
-down:
-ifeq '$(container_tool)' 'docker-compose'
+.PHONY: stop
+stop:
+# nothing to do for "yarn" or "node" / "npm"
+ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
-	docker-compose down
-else
+	docker-compose down \
+	&& echo 'Successfully removed container: $(container_name)'
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	@set -eu \
-	&& $(container_tool) rm -f $(container_name)
+	&& $(dev_tool) rm -f $(container_name) \
+	&& echo 'Successfully removed container: $(container_name)'
 endif
-	@echo 'Successfully removed container: $(container_name)'
 
 .PHONY: clean
 clean:
-ifeq '$(container_tool)' 'docker-compose'
+# removing "package-lock.json" for local dev "node" / "npm" use,
+# but not "yarn.lock" used by the project
+ifeq ("$(dev_tool)",$(filter "$(dev_tool)","yarn" "node" "npm"))
+	@set -eu \
+	&& rm -rf node_modules/ package-lock.json
+else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
-	docker-compose rm -s -f
+	docker-compose rm -s -f \
+	&& echo 'Successfully removed image: $(image_tag)'
 else
 	@set -eu \
-	&& $(container_tool) rmi -f $(image_tag)
+	&& $(dev_tool) rmi -f $(image_tag) \
+	&& echo 'Successfully removed image: $(image_tag)'
 endif
-	@echo 'Successfully removed image: $(image_tag)'
 
-# convenient alias
-.PHONY: uninstall
+# convenience aliases
+build: install
+up: start
+run: start
+serve: start
+down: stop
 uninstall: clean
-
-.PHONY: start
-start: up
-
-# convenient alias
-.PHONY: run
-run: up
-
-# convenient alias
-.PHONY: serve
-serve: up
 
 .PHONY: sync
 sync:
