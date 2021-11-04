@@ -8,4 +8,4 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: ["npm", "start"]
+    command: ["node", "./index.js"]
