@@ -8,6 +8,8 @@ base_image_tag:=docker.io/library/node:17.0.1-alpine3.12
 container_name:=our-hello-nodejs-expressjs-webapi
 image_tag:=our-hello-nodejs-expressjs-webapi:latest
 
+heroku_app_name:=our-hellonodejsexpressjswebapi
+
 .DEFAULT_GOAL:=install
 
 all: install
@@ -104,3 +106,33 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
+
+.PHONY: heroku-init
+heroku-init:
+	@set -eu \
+	&& heroku create \
+		$(heroku_app_name) \
+		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
+	&& heroku buildpacks:add \
+		-a $(heroku_app_name) \
+		heroku/nodejs \
+	&& heroku config:set \
+		-a $(heroku_app_name) \
+		APP_BASE=src/nodejs/expressjs/webapi/
+
+.PHONY: heroku-install
+heroku-install:
+	@set -eu \
+	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
+
+.PHONY: heroku-logs
+heroku-logs:
+	@set -eu \
+	&& heroku logs -a $(heroku_app_name)
+
+.PHONY: heroku-uninstall
+heroku-uninstall:
+	@set -eu \
+	&& heroku apps:destroy \
+		-a $(heroku_app_name) \
+		--confirm $(heroku_app_name)
