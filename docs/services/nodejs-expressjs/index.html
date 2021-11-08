@@ -273,11 +273,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#microsoft-azure" class="md-nav__link">
-    Microsoft Azure
+  <a href="#amazon-web-services-aws" class="md-nav__link">
+    Amazon Web Services (AWS)
   </a>
   
-    <nav class="md-nav" aria-label="Microsoft Azure">
+    <nav class="md-nav" aria-label="Amazon Web Services (AWS)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -300,11 +300,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#salesforce-heroku" class="md-nav__link">
-    SalesForce Heroku
+  <a href="#microsoft-azure" class="md-nav__link">
+    Microsoft Azure
   </a>
   
-    <nav class="md-nav" aria-label="SalesForce Heroku">
+    <nav class="md-nav" aria-label="Microsoft Azure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -316,6 +316,60 @@
         
           <li class="md-nav__item">
   <a href="#steps-to-deploy_1" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    Google Cloud
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_2" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salesforce-heroku" class="md-nav__link">
+    SalesForce Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="SalesForce Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_3" class="md-nav__link">
     Steps to deploy
   </a>
   
@@ -439,11 +493,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#microsoft-azure" class="md-nav__link">
-    Microsoft Azure
+  <a href="#amazon-web-services-aws" class="md-nav__link">
+    Amazon Web Services (AWS)
   </a>
   
-    <nav class="md-nav" aria-label="Microsoft Azure">
+    <nav class="md-nav" aria-label="Amazon Web Services (AWS)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -466,11 +520,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#salesforce-heroku" class="md-nav__link">
-    SalesForce Heroku
+  <a href="#microsoft-azure" class="md-nav__link">
+    Microsoft Azure
   </a>
   
-    <nav class="md-nav" aria-label="SalesForce Heroku">
+    <nav class="md-nav" aria-label="Microsoft Azure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -482,6 +536,60 @@
         
           <li class="md-nav__item">
   <a href="#steps-to-deploy_1" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    Google Cloud
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_2" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#salesforce-heroku" class="md-nav__link">
+    SalesForce Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="SalesForce Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_3" class="md-nav__link">
     Steps to deploy
   </a>
   
@@ -527,13 +635,27 @@
 <h2 id="getting-started">Getting started</h2>
 <p>The <a href="../../contribute/">contributor guide</a> has the steps necessary to run this project locally.</p>
 <h2 id="deployments">Deployments</h2>
-<h3 id="microsoft-azure">Microsoft Azure</h3>
+<h3 id="amazon-web-services-aws">Amazon Web Services (AWS)</h3>
 <h4 id="prerequisites">Prerequisites</h4>
+<ul>
+<li>An <a href="https://aws.amazon.com/free/">AWS account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
+<li><a href="https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html"><code>eb</code> CLI</a></li>
+</ul>
+<h4 id="steps-to-deploy">Steps to deploy</h4>
+<ol>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
+<li>Run the command <code>make aws-init</code> to create the AWS Elastic Beanstalk Environment. This command may take a few minutes. The <code>eb</code> CLI will prompt you for access credentials. Create a new access key by visiting <a href="https://console.aws.amazon.com/iam/home#/security_credentials">"Your Security Credentials"</a>, expanding "Access keys" and creating a new key.</li>
+<li>Install the application with the command <code>make aws-install</code>. This command may take several seconds.</li>
+<li>Check the application logs with the command <code>make aws-logs</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make aws-uninstall</code>. This command may take several seconds.</li>
+</ol>
+<h3 id="microsoft-azure">Microsoft Azure</h3>
+<h4 id="prerequisites_1">Prerequisites</h4>
 <ul>
 <li>An <a href="https://azure.microsoft.com/en-us/free/">Azure account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
 <li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"><code>az</code> CLI</a></li>
 </ul>
-<h4 id="steps-to-deploy">Steps to deploy</h4>
+<h4 id="steps-to-deploy_1">Steps to deploy</h4>
 <ol>
 <li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
 <li>Login to your Azure account with the CLI using the command <code>az login</code></li>
@@ -543,13 +665,31 @@
 <li>Check the application logs with the command <code>make azure-logs</code></li>
 <li>Uninstall and clean up the application deployment with the command <code>make azure-uninstall</code></li>
 </ol>
+<h3 id="google-cloud">Google Cloud</h3>
+<h4 id="prerequisites_2">Prerequisites</h4>
+<ul>
+<li>An <a href="https://cloud.google.com/free">Google Cloud account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
+<li><a href="https://cloud.google.com/sdk/docs/quickstart">Google Cloud SDK</a></li>
+<li>Google Cloud <a href="https://console.cloud.google.com/billing">Billing Account</a></li>
+<li>Enable <a href="https://cloud.google.com/build">Google Cloud Build</a> with the command <code>gcloud services enable cloudbuild.googleapis.com</code></li>
+</ul>
+<h4 id="steps-to-deploy_2">Steps to deploy</h4>
+<ol>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
+<li>Login to your Google Cloud account with the CLI using the command <code>gcloud auth login</code></li>
+<li>Run the command <code>make gcloud-init gcloud_project_name_suffix=001</code> to create the Google Cloud project</li>
+<li>Install the application with the command <code>make gcloud-install</code></li>
+<li>Check the application logs with the command <code>make gcloud-logs</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make gcloud-uninstall gcloud_project_name_suffix=001</code></li>
+</ol>
+<p><em>*Update the "gcloud_project_name_suffix" argument value for <code>gcloud-init</code> and <code>gcloud-uninstall</code> by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future <a href="../../contribute/">contribution to this project</a> could simply restore a deleted project if it was recently deleted and use the same name.</em></p>
 <h3 id="salesforce-heroku">SalesForce Heroku</h3>
-<h4 id="prerequisites_1">Prerequisites</h4>
+<h4 id="prerequisites_3">Prerequisites</h4>
 <ul>
 <li>A <a href="https://signup.heroku.com/">Heroku account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
 <li><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli"><code>heroku</code> CLI</a></li>
 </ul>
-<h4 id="steps-to-deploy_1">Steps to deploy</h4>
+<h4 id="steps-to-deploy_3">Steps to deploy</h4>
 <ol>
 <li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
 <li>Login to your Heroku account with the CLI using the command <code>heroku login</code></li>
