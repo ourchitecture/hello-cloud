@@ -16,6 +16,11 @@
   "scripts": {
     "start": "node ./index.js"
   },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=14",
+    "npm": ">=7"
+  },
   "dependencies": {
     "express": "^4.17.1"
   }

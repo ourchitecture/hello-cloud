@@ -11,6 +11,21 @@ The [contributor guide](../contribute.md) has the steps necessary to run this pr
 
 ## Deployments
 
+### Amazon Web Services (AWS)
+
+#### Prerequisites
+
+- An [AWS account](https://aws.amazon.com/free/) _\*this project worked with free infrastructure at the time of its creation_
+- [`eb` CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html)
+
+#### Steps to deploy
+
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+2. Run the command `make aws-init` to create the AWS Elastic Beanstalk Environment. This command may take a few minutes. The `eb` CLI will prompt you for access credentials. Create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials), expanding "Access keys" and creating a new key.
+3. Install the application with the command `make aws-install`. This command may take several seconds.
+4. Check the application logs with the command `make aws-logs`
+5. Uninstall and clean up the application deployment with the command `make aws-uninstall`. This command may take several seconds.
+
 ### Microsoft Azure
 
 #### Prerequisites

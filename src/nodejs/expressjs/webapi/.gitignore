@@ -285,3 +285,11 @@ dist
 
 # prefer to use yarn, not npm
 package-lock.json
+
+# az cli config directory
+.azure/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

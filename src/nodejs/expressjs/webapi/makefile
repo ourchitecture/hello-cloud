@@ -8,8 +8,13 @@ base_image_tag:=docker.io/library/node:17.0.1-alpine3.12
 container_name:=our-hello-nodejs-expressjs-webapi
 image_tag:=our-hello-nodejs-expressjs-webapi:latest
 
+aws_app_name:=app-our-hello-nodejs-expressjs-webapi
+aws_env_name:=env-our-hello-nodejs-expressjs
+aws_platform:=node.js-14
+aws_region:=us-east-1
 azure_app_name:=app-our-hello-nodejs-expressjs-webapi
-
+azure_rg:=rg-our-hello-cloud
+azure_region:=centralus
 heroku_app_name:=our-hellonodejsexpressjswebapi
 
 .DEFAULT_GOAL:=install
@@ -113,8 +118,31 @@ uninstall: clean
 sync:
 	@git-town sync
 
-azure_rg:=rg-our-hello-cloud
-azure_region:=centralus
+.PHONY: aws-init
+aws-init:
+	@set -eu \
+	&& eb init $(aws_app_name) \
+		--platform $(aws_platform) \
+		--region $(aws_region) \
+	&& eb create \
+		--sample $(aws_env_name)
+
+.PHONY: aws-install
+aws-install:
+	@set -eu \
+	&& eb deploy
+
+.PHONY: aws-logs
+aws-logs:
+	@set -eu \
+	&& eb logs
+
+.PHONY: aws-uninstall
+aws-uninstall:
+	@set -eu \
+	&& eb terminate \
+		--force \
+		--all
 
 .PHONY: azure-init
 azure-init:
