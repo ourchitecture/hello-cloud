@@ -1,6 +1,8 @@
 # Hello Cloud
 
-👋🏼 Hello and welcome! Several examples of "hello world" are provided and deployed to multiple cloud providers.
+👋🏼 Hello and welcome! This project contains examples of "hello world" automation deployed to major cloud providers.
+
+While each major cloud provider offers similar tutorials, they tend to focus almost entirely on manual website interactions to setup and execute each tutorial. Most engineers will need to figure out how to automate these tasks for consistent execution by a team of engineers as well as by their DevOps pipeline continuous integration and deployment workflows. Automation and consistency is a goal of this project while leveraging the unique capabilities each cloud has to offer.
 
 - ✍🏼 [Make a contribution](./contribute.md)
 - ♾️ Learn about the [DevOps pipeline](./devops.md)
