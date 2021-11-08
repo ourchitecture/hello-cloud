@@ -8,6 +8,8 @@ base_image_tag:=docker.io/library/node:17.0.1-alpine3.12
 container_name:=our-hello-nodejs-expressjs-webapi
 image_tag:=our-hello-nodejs-expressjs-webapi:latest
 
+azure_app_name:=app-our-hello-nodejs-expressjs-webapi
+
 heroku_app_name:=our-hellonodejsexpressjswebapi
 
 .DEFAULT_GOAL:=install
@@ -110,6 +112,41 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
+
+azure_rg:=rg-our-hello-cloud
+azure_region:=centralus
+
+.PHONY: azure-init
+azure-init:
+	@set -eu \
+	&& az group create \
+		--name $(azure_rg) \
+		--location $(azure_region) \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region)
+
+.PHONY: azure-install
+azure-install:
+	@set -eu \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region) \
+	&& az webapp up \
+		--name $(azure_app_name)
+
+.PHONY: azure-logs
+azure-logs:
+	@set -eu \
+	&& az webapp log tail \
+		--name $(azure_app_name)
+
+.PHONY: azure-uninstall
+azure-uninstall:
+	@set -eu \
+	&& az group delete \
+		--name $(azure_rg) \
+		--yes
 
 .PHONY: heroku-init
 heroku-init:
