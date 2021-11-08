@@ -265,6 +265,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deployments" class="md-nav__link">
+    Deployments
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#roadmap" class="md-nav__link">
     Roadmap
   </a>
@@ -364,6 +404,46 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deployments" class="md-nav__link">
+    Deployments
+  </a>
+  
+    <nav class="md-nav" aria-label="Deployments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#heroku" class="md-nav__link">
+    Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#roadmap" class="md-nav__link">
     Roadmap
   </a>
@@ -392,6 +472,22 @@
 </ul>
 <h2 id="getting-started">Getting started</h2>
 <p>The <a href="../../contribute/">contributor guide</a> has the steps necessary to run this project locally.</p>
+<h2 id="deployments">Deployments</h2>
+<h3 id="heroku">Heroku</h3>
+<h4 id="prerequisites">Prerequisites</h4>
+<ul>
+<li>A <a href="https://signup.heroku.com/">Heroku account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli"><code>heroku</code> CLI</a></li>
+</ul>
+<h4 id="steps-to-deploy">Steps to deploy</h4>
+<ol>
+<li>Login to your Heroku account with the CLI using the command <code>heroku login</code></li>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
+<li>Run the command <code>make heroku-init</code> to create and configure the cloud app including assigning the <a href="https://github.com/lstoll/heroku-buildpack-monorepo#readme">community monorepo buildpack</a> as well as the <a href="https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-nodejs">node.js buildpack</a></li>
+<li>Install the application with the command <code>make heroku-install</code></li>
+<li>Check the application logs with the command <code>make heroku-logs</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make heroku-uninstall</code></li>
+</ol>
 <h2 id="roadmap">Roadmap</h2>
 <p>Future updates will deploy this service to multiple clouds using various backend infrastructure options.</p>
                 
