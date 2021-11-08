@@ -5,9 +5,12 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  paths:
+    - "mkdocs.yml"
+    - "src/docs/**"
 
 jobs:
-  build:
+  generate:
     runs-on: ubuntu-20.04
 
     steps:
