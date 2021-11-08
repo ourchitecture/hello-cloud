@@ -43,6 +43,26 @@ The [contributor guide](../contribute.md) has the steps necessary to run this pr
 6. Check the application logs with the command `make azure-logs`
 7. Uninstall and clean up the application deployment with the command `make azure-uninstall`
 
+### Google Cloud
+
+#### Prerequisites
+
+- An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
+- Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+- Enable [Google Cloud Build](https://cloud.google.com/build) with the command `gcloud services enable cloudbuild.googleapis.com`
+
+#### Steps to deploy
+
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
+3. Run the command `make gcloud-init gcloud_project_name_suffix=001` to create the Google Cloud project
+4. Install the application with the command `make gcloud-install`
+5. Check the application logs with the command `make gcloud-logs`
+6. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`
+
+_\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
+
 ### SalesForce Heroku
 
 #### Prerequisites

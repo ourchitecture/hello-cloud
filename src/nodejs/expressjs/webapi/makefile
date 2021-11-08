@@ -15,6 +15,10 @@ aws_region:=us-east-1
 azure_app_name:=app-our-hello-nodejs-expressjs-webapi
 azure_rg:=rg-our-hello-cloud
 azure_region:=centralus
+gcloud_project_name:=ourhelloexpress
+gcloud_project_name_suffix:=001
+gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
+gcloud_region:=us-east1
 heroku_app_name:=our-hellonodejsexpressjswebapi
 
 .DEFAULT_GOAL:=install
@@ -175,6 +179,40 @@ azure-uninstall:
 	&& az group delete \
 		--name $(azure_rg) \
 		--yes
+
+.PHONY: gcloud-init
+gcloud-init:
+	@set -eu \
+	&& gcloud projects create \
+		"$(gcloud_project_unique_name)" \
+		--quiet \
+	&& gcloud config set project \
+		"$(gcloud_project_unique_name)" \
+		--quiet \
+	&& gcloud app create \
+		--region=$(gcloud_region) \
+		--quiet
+
+.PHONY: gcloud-install
+gcloud-install:
+	@set -eu \
+	&& gcloud app deploy \
+		./app.yaml \
+		--stop-previous-version \
+		--promote \
+		--quiet
+
+.PHONY: gcloud-logs
+gcloud-logs:
+	@set -eu \
+	&& gcloud app logs tail -s default
+
+.PHONY: gcloud-uninstall
+gcloud-uninstall:
+	@set -eu \
+	&& gcloud projects delete \
+		"$(gcloud_project_unique_name)" \
+		--quiet
 
 .PHONY: heroku-init
 heroku-init:
