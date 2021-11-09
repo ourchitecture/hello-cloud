@@ -9,11 +9,21 @@
 
 The [contributor guide](../contribute.md) has the steps necessary to run this project locally.
 
+Run this service with any Open Container Initiative (OCI) compatible runtime, like `docker` or `podman` (e.g.
+`docker run --name=our-hello-nodejs-expressjs-webapi --detach --publish=3000:3000 ghcr.io/ericis/hello-world/our-hello-nodejs-expressjs-webapi:latest` and then browse to http://localhost:3000/).
+
+## DevOps
+
+- **Tasks:** [`make`](../contribute.md)
+- **Pipeline:** ["./.github/workflows/nodejs_expressjs_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/nodejs_expressjs_webapi.yml)
+- **Source:** ["./src/nodejs/expressjs/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/nodejs/expressjs/webapi/)
+- **Deployment(s):** ["hello-world/our-hello-nodejs-expressjs-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-world%2Four-hello-nodejs-expressjs-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
+
 ## Deployments
 
 ### Docker
 
-The "hello-world/our-hello-nodejs-expressjs-webapi" docker image is simply the packaged and runnable version of the web service.
+The ["hello-world/our-hello-nodejs-expressjs-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-world%2Four-hello-nodejs-expressjs-webapi) docker image is simply the packaged and runnable version of the web service.
 
 Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/nodejs_expressjs_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-world/our-hello-nodejs-expressjs-webapi" image](https://github.com/ericis/hello-cloud/pkgs/container/hello-world%2Four-hello-nodejs-expressjs-webapi).
 
