@@ -20,4 +20,4 @@ Documentation is auto-generated using `make install-docs` with [MkDocs](https://
 
 ### Projects
 
-- [NodeJS with ExpressJS](./services/nodejs-expressjs/#devops)
+- [NodeJS with ExpressJS](./services/nodejs-expressjs.md)
