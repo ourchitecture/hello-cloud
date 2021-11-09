@@ -19,7 +19,8 @@ RUN yarn --frozen-lockfile
 
 FROM dependencies as production
 
-ARG PUBLISHED_SOURCE
+ARG PUBLISHED_DOCUMENTATION_URL
+ARG PUBLISHED_SOURCE_URL
 
 LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
 LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
