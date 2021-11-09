@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
 
+env:
+  DOCKER_USERNAME: ${{ github.actor }}
+  DOCKER_PASSWORD_FILE_PATH: ./GITHUB_TOKEN
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -13,5 +17,15 @@ jobs:
 
       - name: build
         working-directory: ./src/nodejs/expressjs/webapi/
+        # write the github actions secret to a file
+        # the file allows us to use `docker login --password-stdin`
+        # while it would be possible to:
+        # `echo ${DOCKER_PASSWORD} | docker login --password-stdin`
+        # using a file encourages console logging and history best practices
         run: |
-          make install
+          printf "${{ secrets.GITHUB_TOKEN }}" >> ${DOCKER_PASSWORD_FILE_PATH}
+          make deploy
+
+      - name: cleanup
+        if: ${{ always() }}
+        run: rm ${DOCKER_PASSWORD_FILE_PATH}

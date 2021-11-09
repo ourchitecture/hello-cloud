@@ -110,6 +110,27 @@ else
 	&& echo 'Successfully removed image: $(image_tag)'
 endif
 
+docker_push_registry:=ghcr.io
+docker_push_organization_or_user:=ericis
+docker_push_repository:=hello-world
+docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
+
+.PHONY: deploy
+deploy: install
+ifeq ("${DOCKER_USERNAME}", "")
+	$(error Missing environment variable "DOCKER_USERNAME")
+endif
+ifeq ("${DOCKER_PASSWORD_FILE_PATH}", "")
+	$(error Missing environment variable "DOCKER_PASSWORD_FILE_PATH")
+endif
+	@set -eu \
+	&& docker tag $(image_tag) $(docker_push_image_tag) \
+	&& cat "${DOCKER_PASSWORD_FILE_PATH}" \
+		| docker login $(docker_push_registry) \
+			--username "${DOCKER_USERNAME}" \
+			--password-stdin \
+	&& docker push $(docker_push_image_tag)
+
 # convenience aliases
 build: install
 up: start
