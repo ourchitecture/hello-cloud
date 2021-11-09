@@ -555,7 +555,7 @@
 </ul>
 <h5 id="avoid">Avoid</h5>
 <ul>
-<li>Use of a global installation of <code>gradle</code> is not recommended. This project uses the <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">Gradle wrapper</a> and a pinned, project-specific version.</li>
+<li>Use of a global installations of <code>gradle</code> and/or <code>maven</code> are not needed or recommended. This project uses <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">Gradle wrapper</a> and <a href="https://github.com/takari/maven-wrapper">Maven wrapper</a> with a pinned, project-specific version to ensure version consistency across machines.</li>
 </ul>
 <h3 id="executing-tasks">Executing tasks</h3>
 <p>Task execution consistency can be critical when developing and triaging code. While many tools are supported, "there is only one way" for production, including the DevOps pipeline automation tasks. Local development machines and even DevOps pipeline machines have different Operating Systems, middleware tools, and configurations; they cannot be trusted to be reliable. Therefore, the "one way" is through containers and the default tool of choice is <code>docker</code> 🐳; while this project would prefer to use a completely free and open source ecosystem like <code>podman</code> 🥰💖, <code>docker</code> is well established, virtually ubiquitous on most local and DevOps machines, and <a href="https://www.docker.com/blog/updating-product-subscriptions/">mostly free</a> 🔗 💸.</p>
@@ -566,6 +566,7 @@
 <li>Clone the repository with the command <code>git clone --depth=1 https://github.com/ericis/hello-cloud</code></li>
 <li>Navigate to the project in a terminal or open your favorite editor</li>
 <li>Build the project with the command <code>make</code> or <code>make install</code> (<code>make build</code> will also work if your forget)</li>
+<li>Test the system with the command <code>make check</code> (<code>make test</code> will also work if your forget)</li>
 <li>Start the system with the command <code>make start</code> (<code>make run</code> , <code>make up</code> and <code>make serve</code> will also work if your forget)</li>
 <li>Stop the system with the default command <code>make stop</code> (<code>make down</code> will also work if your forget). If you use an alternative tool running as a foreground process (e.g. <code>yarn start</code>), simply kill the process (e.g. <kbd>Command</kbd> + <kbd>.</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>C</kbd> on Windows).</li>
 <li>Clean up temporary task artifacts with the command <code>make clean</code> (<code>make uninstall</code> will also work if your forget)</li>

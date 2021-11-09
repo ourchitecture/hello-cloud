@@ -475,7 +475,7 @@
 <p>Using the standard developer <code>make</code> tasks, the service can be containerized and executed with <code>docker</code>, <code>docker-compose</code> or <code>podman</code>. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the <code>make deploy</code> task to build and deploy the service as a container (<em><code>make deploy</code> only supports "dev_tool=docker" or "dev_tool=podman"</em>). The GitHub Actions workflow "./.github/workflows/java_springboot_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) <a href="https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi">the "hello-cloud/our-hello-java-springboot-webapi" image</a>.</p>
 <h2 id="roadmap">Roadmap</h2>
 <ul>
-<li>✅ Local "hello-cloud" service (<code>yarn</code> or <code>npm</code>)</li>
+<li>✅ Local "hello-cloud" service (<code>./gradlew</code> or <code>./mvnw</code>)</li>
 <li>✅ Build and run as container (<code>docker</code>, <code>docker-compose</code>, or <code>podman</code>)</li>
 <li>✅ Deploy container to GitHub Container Registry as GitHub Package</li>
 <li>✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package</li>
