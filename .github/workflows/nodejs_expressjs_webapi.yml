@@ -3,6 +3,9 @@ name: nodejs_expressjs_webapi
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/nodejs_expressjs_webapi.yml"
+      - "src/nodejs/expressjs/webapi/**"
 
 env:
   DOCKER_USERNAME: ${{ github.actor }}
