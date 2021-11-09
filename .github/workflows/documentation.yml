@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - "makefile"
       - "mkdocs.yml"
       - ".github/workflows/documentation.yml"
       - "src/docs/**"
