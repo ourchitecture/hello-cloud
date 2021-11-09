@@ -117,6 +117,9 @@ docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_use
 
 .PHONY: deploy
 deploy: install
+ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
+	$(error The "$@" command target only supports "dev_tool=docker" or "dev_tool=podman")
+endif
 ifeq ("${DOCKER_USERNAME}", "")
 	$(error Missing environment variable "DOCKER_USERNAME")
 endif
@@ -124,12 +127,12 @@ ifeq ("${DOCKER_PASSWORD_FILE_PATH}", "")
 	$(error Missing environment variable "DOCKER_PASSWORD_FILE_PATH")
 endif
 	@set -eu \
-	&& docker tag $(image_tag) $(docker_push_image_tag) \
+	&& $(dev_tool) tag $(image_tag) $(docker_push_image_tag) \
 	&& cat "${DOCKER_PASSWORD_FILE_PATH}" \
-		| docker login $(docker_push_registry) \
+		| $(dev_tool) login $(docker_push_registry) \
 			--username "${DOCKER_USERNAME}" \
 			--password-stdin \
-	&& docker push $(docker_push_image_tag)
+	&& $(dev_tool) push $(docker_push_image_tag)
 
 # convenience aliases
 build: install
