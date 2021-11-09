@@ -37,16 +37,16 @@ This project attempts to support a variety of developer tooling choices while ma
 
 Task execution consistency can be critical when developing and triaging code. While many tools are supported, "there is only one way" for production, including the DevOps pipeline automation tasks. Local development machines and even DevOps pipeline machines have different Operating Systems, middleware tools, and configurations; they cannot be trusted to be reliable. Therefore, the "one way" is through containers and the default tool of choice is `docker` 🐳; while this project would prefer to use a completely free and open source ecosystem like `podman` 🥰💖, `docker` is well established, virtually ubiquitous on most local and DevOps machines, and [mostly free](https://www.docker.com/blog/updating-product-subscriptions/) 🔗 💸.
 
-All automation tasks are abstracted behind `make` ⚙️ command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` (for Java projects), `yarn` or `node` / `npm` (for Node projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn` or `make start dev_tool=podman`). However, `docker` is recommended as the default tool used by DevOps pipeline tasks for production build, test, and deploy.
+All automation tasks are abstracted behind `make` ⚙️ command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` or `maven` (for Java projects), `yarn` or `node` / `npm` (for Node projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn` or `make start dev_tool=podman`). However, `docker` is recommended as the default tool used by DevOps pipeline tasks for production build, test, and deploy.
 
-If you do not wish to use `make` (e.g. `yarn && yarn start` or `./gradlew bootRun`), review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.
+If you do not wish to use `make` (e.g. `npm install && npm start` or `yarn && yarn start`; `./gradlew bootRun` or `./mvnw spring-boot:run`), review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.
 
 ### Running tasks
 
 1. Clone the repository with the command `git clone --depth=1 https://github.com/ericis/hello-cloud`
 2. Navigate to the project in a terminal or open your favorite editor
-3. Build the project with the command `make` or `make install` (`make build` will also work if your forget)
-4. Test the system with the command `make check` (`make test` will also work if your forget)
-5. Start the system with the command `make start` (`make run` , `make up` and `make serve` will also work if your forget)
-6. Stop the system with the default command `make stop` (`make down` will also work if your forget). If you use an alternative tool running as a foreground process (e.g. `yarn start`), simply kill the process (e.g. <kbd>Command</kbd> + <kbd>.</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>C</kbd> on Windows).
-7. Clean up temporary task artifacts with the command `make clean` (`make uninstall` will also work if your forget)
+3. Build the project with the command `make` or `make install` (`make build` will also work)
+4. Test the system with the command `make check` (`make test` will also work)
+5. Start the system with the command `make start` (`make run` , `make up` and `make serve` will also work)
+6. Stop the system with the default command `make stop` (`make down` will also work). If you use an alternative tool running as a foreground process (e.g. `yarn start`), simply kill the process (e.g. <kbd>Command</kbd> + <kbd>.</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>C</kbd> on Windows).
+7. Clean up temporary task artifacts with the command `make clean` (`make uninstall` will also work)
