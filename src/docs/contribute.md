@@ -31,7 +31,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
 ##### Avoid
 
-- Use of a global installation of `gradle` is not recommended. This project uses the [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) and a pinned, project-specific version.
+- Use of a global installations of `gradle` and/or `maven` are not needed or recommended. This project uses [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) and [Maven wrapper](https://github.com/takari/maven-wrapper) with a pinned, project-specific version to ensure version consistency across machines.
 
 ### Executing tasks
 
@@ -46,6 +46,7 @@ If you do not wish to use `make` (e.g. `yarn && yarn start` or `./gradlew bootRu
 1. Clone the repository with the command `git clone --depth=1 https://github.com/ericis/hello-cloud`
 2. Navigate to the project in a terminal or open your favorite editor
 3. Build the project with the command `make` or `make install` (`make build` will also work if your forget)
-4. Start the system with the command `make start` (`make run` , `make up` and `make serve` will also work if your forget)
-5. Stop the system with the default command `make stop` (`make down` will also work if your forget). If you use an alternative tool running as a foreground process (e.g. `yarn start`), simply kill the process (e.g. <kbd>Command</kbd> + <kbd>.</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>C</kbd> on Windows).
-6. Clean up temporary task artifacts with the command `make clean` (`make uninstall` will also work if your forget)
+4. Test the system with the command `make check` (`make test` will also work if your forget)
+5. Start the system with the command `make start` (`make run` , `make up` and `make serve` will also work if your forget)
+6. Stop the system with the default command `make stop` (`make down` will also work if your forget). If you use an alternative tool running as a foreground process (e.g. `yarn start`), simply kill the process (e.g. <kbd>Command</kbd> + <kbd>.</kbd> on macOS or <kbd>Ctrl</kbd> + <kbd>C</kbd> on Windows).
+7. Clean up temporary task artifacts with the command `make clean` (`make uninstall` will also work if your forget)

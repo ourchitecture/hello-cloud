@@ -56,6 +56,9 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	&& echo 'Successfully built: $(image_tag)'
 endif
 
+.PHONY: check
+check: install
+
 .PHONY: start
 start: install
 ifeq '$(dev_tool)' 'yarn'
@@ -137,6 +140,7 @@ endif
 
 # convenience aliases
 build: install
+test: check
 up: start
 run: start
 serve: start

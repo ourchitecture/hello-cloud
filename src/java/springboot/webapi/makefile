@@ -31,9 +31,12 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	HOST_PORT=$(host_port) \
 	$(dev_tool) build \
 	&& echo 'Successfully built: $(image_tag)'
-else ifeq '$(dev_tool)' 'gradle'
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	@set -eu \
 	&& ./gradlew build
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
+	@set -eu \
+	&& ./mvnw install
 endif
 
 .PHONY: check
@@ -45,9 +48,12 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 		-f ./Dockerfile \
 		. \
 	&& echo 'Successfully built: $(image_tag)'
-else ifeq '$(dev_tool)' 'gradle'
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	@set -eu \
 	&& ./gradlew test
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
+	@set -eu \
+	&& ./mvnw test
 endif
 
 .PHONY: start
@@ -65,9 +71,12 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
 	$(dev_tool) up -d
-else ifeq '$(dev_tool)' 'gradle'
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	@set -eu \
 	&& ./gradlew bootRun
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
+	@set -eu \
+	&& ./mvnw spring-boot:run
 endif
 
 .PHONY: stop
@@ -98,12 +107,16 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	HOST_PORT=$(host_port) \
 	$(dev_tool) rm -s -f \
 	&& echo 'Successfully removed image: $(image_tag)'
-else ifeq '$(dev_tool)' 'gradle'
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	@set -eu \
 	&& rm -rf \
 		./.gradle/ \
 		./bin/ \
 		./build/
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
+	@set -eu \
+	&& rm -rf \
+		./target/
 endif
 
 .PHONY: deploy
@@ -127,6 +140,7 @@ endif
 
 # convenience aliases
 build: install
+test: check
 up: start
 run: start
 serve: start

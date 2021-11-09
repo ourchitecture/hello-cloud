@@ -29,7 +29,7 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 ## Roadmap
 
-- ✅ Local "hello-cloud" service (`yarn` or `npm`)
+- ✅ Local "hello-cloud" service (`./gradlew` or `./mvnw`)
 - ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
 - ✅ Deploy container to GitHub Container Registry as GitHub Package
 - ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
