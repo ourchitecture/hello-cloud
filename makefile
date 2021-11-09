@@ -3,7 +3,12 @@ dev_tool:=docker
 docker_image_mkdocs_material_version:=7.3.4
 docker_image_mkdocs_material_tag:=docker.io/squidfunk/mkdocs-material:$(docker_image_mkdocs_material_version)
 
-project_dir=./src/nodejs/expressjs/webapi
+project_dirs=./src/java/springboot/webapi ./src/nodejs/expressjs/webapi
+
+docs_app_port=8000
+docs_host_port:=8000
+
+docs_container_name:=our-hello-docs
 
 .DEFAULT_GOAL:=install
 
@@ -19,6 +24,7 @@ init:
 install-docs: init
 	@set -eu \
 	&& $(dev_tool) run \
+		--name $(docs_container_name)-$@ \
 		--rm \
 		-i \
 		-v $(shell pwd):/app \
@@ -33,14 +39,14 @@ install-docs: init
 start-docs: init
 	@set -eu \
 	&& $(dev_tool) run \
-		--name our-hello-docs \
+		--name $(docs_container_name) \
 		-d \
 		-v $(shell pwd):/app \
 		-w /app \
-		-p 8000:8000 \
+		-p $(docs_app_port):$(docs_host_port) \
 		mkdocs \
 		serve \
-			-a 0.0.0.0:8000 \
+			-a 0.0.0.0:$(docs_app_port) \
 			--livereload \
 			--watch-theme \
 			--config-file ./mkdocs.yml
@@ -52,23 +58,39 @@ stop-docs:
 
 .PHONY: install
 install: install-docs
-	@cd $(project_dir) \
-	&& make $@
+	@set -eu; \
+	for project_dir in $(project_dirs); do \
+		prev_dir=$(shell pwd); \
+		cd $$project_dir && make $@; \
+		cd $$prev_dir; \
+	done
 
 .PHONY: start
-start:
-	@cd $(project_dir) \
-	&& make $@
+start: start-docs
+	@set -eu; \
+	for project_dir in $(project_dirs); do \
+		prev_dir=$(shell pwd); \
+		cd $$project_dir && make $@; \
+		cd $$prev_dir; \
+	done
 
 .PHONY: stop
-stop:
-	@cd $(project_dir) \
-	&& make $@
+stop: stop-docs
+	@set -eu; \
+	for project_dir in $(project_dirs); do \
+		prev_dir=$(shell pwd); \
+		cd $$project_dir && make $@; \
+		cd $$prev_dir; \
+	done
 
 .PHONY: clean
 clean:
-	@cd $(project_dir) \
-	&& make $@
+	@set -eu; \
+	for project_dir in $(project_dirs); do \
+		prev_dir=$(shell pwd); \
+		cd $$project_dir && make $@; \
+		cd $$prev_dir; \
+	done
 
 # convenience aliases
 build: install

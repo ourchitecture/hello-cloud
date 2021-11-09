@@ -9,6 +9,11 @@ base_image_tag:=docker.io/library/node:17.0.1-alpine3.12
 container_name:=our-hello-nodejs-expressjs-webapi
 image_tag:=our-hello-nodejs-expressjs-webapi:latest
 
+docker_push_registry:=ghcr.io
+docker_push_organization_or_user:=ericis
+docker_push_repository:=hello-world
+docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
+
 aws_app_name:=app-our-hello-nodejs-expressjs-webapi
 aws_env_name:=env-our-hello-nodejs-expressjs
 aws_platform:=node.js-14
@@ -42,7 +47,7 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	HOST_PORT=$(host_port) \
 	$(dev_tool) build \
 	&& echo 'Successfully built: $(image_tag)'
-else
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) build \
 		-t $(image_tag) \
@@ -65,7 +70,7 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	APP_PORT=$(app_port) \
 	HOST_PORT=$(host_port) \
 	$(dev_tool) up -d
-else
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) run \
 		--name $(container_name) \
@@ -105,16 +110,11 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	HOST_PORT=$(host_port) \
 	$(dev_tool) rm -s -f \
 	&& echo 'Successfully removed image: $(image_tag)'
-else
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) rmi -f $(image_tag) \
 	&& echo 'Successfully removed image: $(image_tag)'
 endif
-
-docker_push_registry:=ghcr.io
-docker_push_organization_or_user:=ericis
-docker_push_repository:=hello-world
-docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
 .PHONY: deploy
 deploy: install

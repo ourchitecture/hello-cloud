@@ -17,7 +17,8 @@
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "telemetry.enableTelemetry": false
   },
   // Add the IDs of extensions you want installed when the container is created.
   "extensions": [

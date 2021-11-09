@@ -223,6 +223,20 @@
   
   
     <li class="md-nav__item">
+      <a href="../services/java-springboot/" class="md-nav__link">
+        Java with SpringBoot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../services/nodejs-expressjs/" class="md-nav__link">
         NodeJS with ExpressJS
       </a>
@@ -271,7 +285,21 @@
   
   
     <li class="md-nav__item">
-      <a href="../services/nodejs-expressjs/#docker" class="md-nav__link">
+      <a href="../services/java-springboot/" class="md-nav__link">
+        hello-world/our-hello-java-springboot-webapi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services/nodejs-expressjs/" class="md-nav__link">
         hello-world/our-hello-nodejs-expressjs-webapi
       </a>
     </li>
@@ -337,6 +365,53 @@
   <a href="#prerequisites" class="md-nav__link">
     Prerequisites
   </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended" class="md-nav__link">
+    Recommended
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid" class="md-nav__link">
+    Avoid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -435,6 +510,53 @@
     Prerequisites
   </a>
   
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tools" class="md-nav__link">
+    Tools
+  </a>
+  
+    <nav class="md-nav" aria-label="Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required" class="md-nav__link">
+    Required
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recommended" class="md-nav__link">
+    Recommended
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optional" class="md-nav__link">
+    Optional
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid" class="md-nav__link">
+    Avoid
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -475,20 +597,32 @@
 <p>This project attempts to support a variety of developer tooling choices while maintaining a standard that everyone can test against.</p>
 <h3 id="prerequisites">Prerequisites</h3>
 <p><strong>⚠️ Windows users: 👉🏼</strong> <em>task automation assumes a POSIX-compatible shell with Linux commands that work across most distributions and macOS. As a result, using <a href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux (WSL2)</a> 🔗 is recommended with a Linux distribution like Debian, Ubuntu, or Kali Linux. You may also use <a href="https://gitforwindows.org/">Git BASH</a> 🔗 with <a href="https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058#make"><code>make</code> for Git BASH</a> 🔗 installed or <a href="https://cygwin.com/">cygwin</a> 🔗 with <a href="https://cygwin.com/cgi-bin2/package-cat.cgi?file=x86_64%2Fmake%2Fmake-4.3-1&amp;grep=make"><code>make</code> for cygwin</a> 🔗 installed. You could also use a Linux virtual machine running on <a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v">Windows Hyper-V</a> 🔗, <a href="https://www.virtualbox.org/">Oracle VirtualBox</a> 🔗, or even using a <a href="https://code.visualstudio.com/docs/remote/containers">VS Code "devcontainer"</a> 🔗.</em></p>
-<p><strong>Tools:</strong></p>
+<h4 id="tools">Tools</h4>
+<h5 id="required">Required</h5>
 <ul>
 <li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"><code>git</code></a> 🔗 for source control.</li>
-<li><a href="https://www.git-town.com/install.html"><code>git-town</code></a> 🔗 may be used for improved developer workflow.</li>
-<li><a href="https://yarnpkg.com/"><code>yarn</code></a> 🔗 or <a href="https://nodejs.org/"><code>node</code></a> 🔗 are required to run the project <em>*<code>yarn</code> is recommended</em>. The version of <code>yarn</code> is "pinned" in ".yarnrc" and will be automatically selected and used by the <code>yarn</code> command.</li>
-<li><a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> 🔗 can make switching between specific versions of <code>node</code>, <code>npm</code>, and <code>npx</code> easier across projects for a more consistent project experience across machines. The version of <code>node</code> is "pinned" in ".nvmrc" and will be automatically selected and used by the <code>nvm use</code> command.</li>
-<li><a href="https://podman.io/getting-started/"><code>podman</code></a> 🔗, <a href="https://www.docker.com/get-started"><code>docker</code></a> 🔗, or <code>docker</code> with <a href="https://docs.docker.com/compose/gettingstarted/"><code>docker-compose</code></a> 🔗 are required to build the documentation and production container images.</li>
-<li><a href="https://www.gnu.org/software/make/">GNU <code>make</code></a> 🔗 is used by DevOps pipelines Continuous Integration (CI) and Deployment (CD) to execute tasks. For consistency, you may choose to use this as well.</li>
+<li><a href="https://www.docker.com/get-started"><code>docker</code></a> 🔗, <a href="https://docs.docker.com/compose/gettingstarted/"><code>docker-compose</code></a> 🔗, or <a href="https://podman.io/getting-started/"><code>podman</code></a> 🔗 are required to build the documentation and production container images.</li>
+</ul>
+<h5 id="recommended">Recommended</h5>
+<ul>
+<li><a href="https://www.gnu.org/software/make/">GNU <code>make</code></a> 🔗 is required for DevOps pipelines Continuous Integration (CI) and Deployment (CD) tasks. For consistency, this install is recommended. (<em>Windows users: see note above</em>)</li>
+</ul>
+<h5 id="optional">Optional</h5>
+<ul>
+<li><a href="https://yarnpkg.com/"><code>yarn</code></a> 🔗 or <a href="https://nodejs.org/"><code>node</code></a> 🔗 are required to run NodeJS projects (<em><code>yarn</code> is recommended</em>). The version of <code>yarn</code> is "pinned" in ".yarnrc" and will be automatically selected and used by the <code>yarn</code> command. However, container runtimes make this installation optional.</li>
+<li><a href="https://github.com/nvm-sh/nvm"><code>nvm</code></a> 🔗 can make switching between specific versions of <code>node</code>, <code>npm</code>, and <code>npx</code> easier across projects for a more consistent project experience across machines. The version of <code>node</code> is "pinned" in ".nvmrc" and will be automatically selected and used by the <code>nvm use</code> command. However, container runtimes make this installation optional.</li>
+<li><a href="https://openjdk.java.net/install/"><code>java</code> OpenJDK</a> 🔗 is required to run Java projects. However, container runtimes make this installation optional.</li>
 <li><a href="https://code.visualstudio.com/">VS <code>code</code></a> 🔗 may be used for an improved developer experience with support for project-specific settings, extensions, and tasks.</li>
+<li><a href="https://www.git-town.com/install.html"><code>git-town</code></a> 🔗 may be used for improved developer workflow.</li>
+</ul>
+<h5 id="avoid">Avoid</h5>
+<ul>
+<li>Use of a global installation of <code>gradle</code> is not recommended. This project uses the <a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">Gradle wrapper</a> and a pinned, project-specific version.</li>
 </ul>
 <h3 id="executing-tasks">Executing tasks</h3>
 <p>Task execution consistency can be critical when developing and triaging code. While many tools are supported, "there is only one way" for production, including the DevOps pipeline automation tasks. Local development machines and even DevOps pipeline machines have different Operating Systems, middleware tools, and configurations; they cannot be trusted to be reliable. Therefore, the "one way" is through containers and the default tool of choice is <code>docker</code> 🐳; while this project would prefer to use a completely free and open source ecosystem like <code>podman</code> 🥰💖, <code>docker</code> is well established, virtually ubiquitous on most local and DevOps machines, and <a href="https://www.docker.com/blog/updating-product-subscriptions/">mostly free</a> 🔗 💸.</p>
-<p>All automation tasks are abstracted behind <code>make</code> ⚙️ command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of <code>podman</code>, <code>docker</code>, <code>docker-compose</code>, <code>yarn</code>, or <code>node</code> / <code>npm</code> by adding a "dev_tool" parameter to the <code>make</code> command, where the value of the parameter matches your preferred tool (e.g. <code>make install dev_tool=yarn</code> or <code>make start dev_tool=podman</code>). However, <code>docker</code> is recommended as the default tool used by DevOps pipeline tasks for production build, test, and deploy.</p>
-<p>If you do not wish to use <code>make</code> (e.g. <code>yarn &amp;&amp; yarn start</code>), review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.</p>
+<p>All automation tasks are abstracted behind <code>make</code> ⚙️ command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of <code>podman</code>, <code>docker</code>, <code>docker-compose</code>, <code>gradle</code> (for Java projects), <code>yarn</code> or <code>node</code> / <code>npm</code> (for Node projects) by adding a "dev_tool" parameter to the <code>make</code> command, where the value of the parameter matches your preferred tool (e.g. <code>make install dev_tool=yarn</code> or <code>make start dev_tool=podman</code>). However, <code>docker</code> is recommended as the default tool used by DevOps pipeline tasks for production build, test, and deploy.</p>
+<p>If you do not wish to use <code>make</code> (e.g. <code>yarn &amp;&amp; yarn start</code> or <code>./gradlew bootRun</code>), review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.</p>
 <h3 id="running-tasks">Running tasks</h3>
 <ol>
 <li>Clone the repository with the command <code>git clone --depth=1 https://github.com/ericis/hello-cloud</code></li>
@@ -517,7 +651,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../services/nodejs-expressjs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: NodeJS with ExpressJS" rel="prev">
+        <a href="../services/nodejs-expressjs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: hello-world/our-hello-nodejs-expressjs-webapi" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -526,7 +660,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              NodeJS with ExpressJS
+              hello-world/our-hello-nodejs-expressjs-webapi
             </div>
           </div>
         </a>

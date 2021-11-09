@@ -2,9 +2,11 @@
 .vscode/
 node_modules/
 
+*.code-workspace
+*.md
+
 .editorconfig
 .gitignore
 docker-compose.yml
 Dockerfile
 makefile
-*.code-workspace

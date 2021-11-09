@@ -18,7 +18,7 @@
     
     
       
-        <title>NodeJS with ExpressJS - Hello Cloud</title>
+        <title>hello-world/our-hello-nodejs-expressjs-webapi - Hello Cloud</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              NodeJS with ExpressJS
+              hello-world/our-hello-nodejs-expressjs-webapi
             
           </span>
         </div>
@@ -195,14 +195,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
       
       
       
@@ -223,6 +221,84 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../java-springboot/" class="md-nav__link">
+        Java with SpringBoot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./" class="md-nav__link">
+        NodeJS with ExpressJS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Docker
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Docker" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Docker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java-springboot/" class="md-nav__link">
+        hello-world/our-hello-java-springboot-webapi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -235,12 +311,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          NodeJS with ExpressJS
+          hello-world/our-hello-nodejs-expressjs-webapi
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        NodeJS with ExpressJS
+        hello-world/our-hello-nodejs-expressjs-webapi
       </a>
       
         
@@ -417,54 +493,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-      
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
-      
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3">
-          Docker
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" aria-label="Docker" data-md-level="1">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Docker
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="#docker" class="md-nav__link">
-        hello-world/our-hello-nodejs-expressjs-webapi
-      </a>
     </li>
   
 
@@ -809,7 +837,17 @@
 <li>Uninstall and clean up the application deployment with the command <code>make heroku-uninstall</code></li>
 </ol>
 <h2 id="roadmap">Roadmap</h2>
-<p>Future updates will deploy this service to multiple clouds using various backend infrastructure options.</p>
+<ul>
+<li>✅ Local "hello-world" service (<code>yarn</code> or <code>npm</code>)</li>
+<li>✅ Build and run as container (<code>docker</code>, <code>docker-compose</code>, or <code>podman</code>)</li>
+<li>✅ Deploy container to GitHub Container Registry as GitHub Package</li>
+<li>✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package</li>
+<li>✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud", "heroku")</li>
+<li>⬜ Deploy to cloud Managed Containers ("aws", "azure", "gcloud", "heroku") <em>*prefer "run as container" deployment over full-blown Managed Kubernetes deployment</em></li>
+<li>⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)</li>
+<li>⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site</li>
+<li>⬜ Ping / Health endpoint</li>
+</ul>
                 
               
               
@@ -829,7 +867,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+        <a href="../java-springboot/" class="md-footer__link md-footer__link--prev" aria-label="Previous: hello-world/our-hello-java-springboot-webapi" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -838,7 +876,7 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Home
+              hello-world/our-hello-java-springboot-webapi
             </div>
           </div>
         </a>
