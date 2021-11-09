@@ -26,7 +26,6 @@ install-docs: init
 		mkdocs \
 		build \
 			--clean \
-			--strict \
 			--site-dir ./docs \
 			--config-file ./mkdocs.yml
 
