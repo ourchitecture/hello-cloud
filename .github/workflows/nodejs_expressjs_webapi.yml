@@ -23,9 +23,9 @@ jobs:
         # `echo ${DOCKER_PASSWORD} | docker login --password-stdin`
         # using a file encourages console logging and history best practices
         run: |
-          printf "${{ secrets.GITHUB_TOKEN }}" >> ${DOCKER_PASSWORD_FILE_PATH}
+          printf "${{ secrets.GH_TOKEN_PACKAGES }}" >> ${DOCKER_PASSWORD_FILE_PATH}
           make deploy
 
       - name: cleanup
         if: ${{ always() }}
-        run: rm ${DOCKER_PASSWORD_FILE_PATH}
+        run: [ -f "${DOCKER_PASSWORD_FILE_PATH}" ] && rm "${DOCKER_PASSWORD_FILE_PATH}"
