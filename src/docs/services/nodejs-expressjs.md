@@ -17,6 +17,15 @@ The "hello-world/our-hello-nodejs-expressjs-webapi" docker image is simply the p
 
 Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/nodejs_expressjs_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-world/our-hello-nodejs-expressjs-webapi" image](https://github.com/ericis/hello-cloud/pkgs/container/hello-world%2Four-hello-nodejs-expressjs-webapi).
 
+### Multi-cloud
+
+While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider has been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
+
+- Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku]`
+- Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
+- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
+- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
+
 ### Amazon Web Services (AWS)
 
 #### Prerequisites

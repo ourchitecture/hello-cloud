@@ -1,4 +1,5 @@
 dev_tool:=docker
+cloud:=azure
 
 app_port=3000
 host_port:=3000
@@ -145,6 +146,28 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
+
+.PHONY: cloud-validator
+cloud-validator:
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
+	$(error The "cloud" argument only supports "aws", "azure", "gcloud", or "heroku")
+endif
+
+.PHONY: cloud-init
+cloud-init: cloud-validator
+	@make $(cloud)-init
+
+.PHONY: cloud-install
+cloud-install: cloud-validator
+	@make $(cloud)-install
+
+.PHONY: cloud-logs
+cloud-logs: cloud-validator
+	@make $(cloud)-logs
+
+.PHONY: cloud-uninstall
+cloud-uninstall: cloud-validator
+	@make $(cloud)-uninstall
 
 .PHONY: aws-init
 aws-init:
