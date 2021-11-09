@@ -8,7 +8,7 @@ image_tag:=our-hello-java-springboot-webapi:latest
 
 docker_push_registry:=ghcr.io
 docker_push_organization_or_user:=ericis
-docker_push_repository:=hello-world
+docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
 .DEFAULT_GOAL:=install
