@@ -28,4 +28,6 @@ jobs:
 
       - name: cleanup
         if: ${{ always() }}
-        run: [ -f "${DOCKER_PASSWORD_FILE_PATH}" ] && rm "${DOCKER_PASSWORD_FILE_PATH}"
+        run: |
+          [ -f "${DOCKER_PASSWORD_FILE_PATH}" ] \
+          && rm "${DOCKER_PASSWORD_FILE_PATH}"
