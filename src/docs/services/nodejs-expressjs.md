@@ -11,6 +11,12 @@ The [contributor guide](../contribute.md) has the steps necessary to run this pr
 
 ## Deployments
 
+### Docker
+
+The "hello-world/our-hello-nodejs-expressjs-webapi" docker image is simply the packaged and runnable version of the web service.
+
+Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service using the default "dev_tool" `docker`. The GitHub Actions workflow "./.github/workflows/nodejs_expressjs_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-world/our-hello-nodejs-expressjs-webapi" image](https://github.com/ericis/hello-cloud/pkgs/container/hello-world%2Four-hello-nodejs-expressjs-webapi).
+
 ### Amazon Web Services (AWS)
 
 #### Prerequisites

@@ -13,6 +13,8 @@ nav:
   - "Home": "index.md"
   - "Web Services":
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
+  - "Docker":
+      - "hello-world/our-hello-nodejs-expressjs-webapi": "./services/nodejs-expressjs/#docker"
   - "Contribute": "contribute.md"
   - "License": "license.md"
   - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
