@@ -25,7 +25,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
 - [`yarn`](https://yarnpkg.com/) 🔗 or [`node`](https://nodejs.org/) 🔗 are required to run NodeJS projects (_`yarn` is recommended_). The version of `yarn` is "pinned" in ".yarnrc" and will be automatically selected and used by the `yarn` command. However, container runtimes make this installation optional.
 - [`nvm`](https://github.com/nvm-sh/nvm) 🔗 can make switching between specific versions of `node`, `npm`, and `npx` easier across projects for a more consistent project experience across machines. The version of `node` is "pinned" in ".nvmrc" and will be automatically selected and used by the `nvm use` command. However, container runtimes make this installation optional.
-- [`java` OpenJDK](https://openjdk.java.net/install/) 🔗 is required to run Java projects. However, container runtimes make this installation optional.
+- [`java` 11 OpenJDK](https://openjdk.java.net/install/) 🔗 is required to run Java projects. However, container runtimes make this installation optional.
 - [VS `code`](https://code.visualstudio.com/) 🔗 may be used for an improved developer experience with support for project-specific settings, extensions, and tasks.
 - [`git-town`](https://www.git-town.com/install.html) 🔗 may be used for improved developer workflow.
 

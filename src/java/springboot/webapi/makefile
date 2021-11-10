@@ -51,7 +51,7 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	&& ./gradlew build
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
 	@set -eu \
-	&& ./mvnw install
+	&& ./mvnw package
 endif
 
 .PHONY: check
@@ -226,31 +226,28 @@ azure-init:
 	&& az appservice plan create \
 		--name $(azure_app_plan_name) \
 		--is-linux \
-		--sku F1 \
+		--sku B1 \
 	&& echo 'AppService Plan successfully created.' \
-	&& echo 'Creating Java web AppService...' \
-	&& az webapp create \
-		--name $(azure_app_name) \
-		--plan $(azure_app_plan_name) \
-		--runtime "JAVA|11-java11" \
-	&& echo 'AppService successfully created.' \
-	&& az config set logging.enable_log_file=true
 
 # BUG: https://github.com/Azure/azure-cli/issues/20277
 .PHONY: azure-install
 azure-install:
+ifneq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
+	$(error Only "dev_tool=maven" is supported for the target $@)
+endif
+	@make install
 	@set -eu \
 	&& az config set \
 		defaults.group=$(azure_rg) \
 		defaults.location=$(azure_region) \
 	&& echo 'Deploying build artifact jar file to Azure Java web AppService...' \
-	&& az webapp deploy \
-		--name $(azure_app_name) \
-		--src-path ./build/libs/hello-cloud-0.0.1-SNAPSHOT.jar \
-		--type jar \
-		--async true \
-		--restart true \
-	&& echo 'Java jar file successfully deployed.'
+    && ./mvnw azure-webapp:deploy \
+        "-Dazure.resourcegroup=$(azure_rg)" \
+        "-Dazure.region=$(azure_region)" \
+        "-Dazure.appservice.name=$(azure_app_name)" \
+        "-Dazure.appservice.name=$(azure_app_name)" \
+        "-Dazure.appservice.plan.name=$(azure_app_plan_name)" \
+	&& echo 'Java web app successfully deployed.'
 
 .PHONY: azure-logs
 azure-logs:
@@ -266,67 +263,3 @@ azure-uninstall:
 		--name $(azure_rg) \
 		--yes \
 	&& echo 'Resource Group successfully deleted.'
-
-.PHONY: gcloud-init
-gcloud-init:
-	@set -eu \
-	&& gcloud projects create \
-		"$(gcloud_project_unique_name)" \
-		--quiet \
-	&& gcloud config set project \
-		"$(gcloud_project_unique_name)" \
-		--quiet \
-	&& gcloud app create \
-		--region=$(gcloud_region) \
-		--quiet
-
-.PHONY: gcloud-install
-gcloud-install:
-	@set -eu \
-	&& gcloud app deploy \
-		./app.yaml \
-		--stop-previous-version \
-		--promote \
-		--quiet
-
-.PHONY: gcloud-logs
-gcloud-logs:
-	@set -eu \
-	&& gcloud app logs tail -s default
-
-.PHONY: gcloud-uninstall
-gcloud-uninstall:
-	@set -eu \
-	&& gcloud projects delete \
-		"$(gcloud_project_unique_name)" \
-		--quiet
-
-.PHONY: heroku-init
-heroku-init:
-	@set -eu \
-	&& heroku create \
-		$(heroku_app_name) \
-		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
-	&& heroku buildpacks:add \
-		-a $(heroku_app_name) \
-		heroku/nodejs \
-	&& heroku config:set \
-		-a $(heroku_app_name) \
-		APP_BASE=src/nodejs/expressjs/webapi/
-
-.PHONY: heroku-install
-heroku-install:
-	@set -eu \
-	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
-
-.PHONY: heroku-logs
-heroku-logs:
-	@set -eu \
-	&& heroku logs -a $(heroku_app_name)
-
-.PHONY: heroku-uninstall
-heroku-uninstall:
-	@set -eu \
-	&& heroku apps:destroy \
-		-a $(heroku_app_name) \
-		--confirm $(heroku_app_name)
