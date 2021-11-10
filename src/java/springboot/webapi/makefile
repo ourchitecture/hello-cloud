@@ -1,4 +1,5 @@
 dev_tool:=docker
+cloud:=azure
 
 app_port=8080
 host_port:=8080
@@ -10,6 +11,11 @@ docker_push_registry:=ghcr.io
 docker_push_organization_or_user:=ericis
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
+
+aws_app_name:=app-our-hello-java-springboot-webapi
+aws_env_name:=env-our-hello-java-springboot
+aws_platform:=corretto-11
+aws_region:=us-east-1
 
 .DEFAULT_GOAL:=install
 
@@ -146,3 +152,52 @@ run: start
 serve: start
 down: stop
 uninstall: clean
+
+.PHONY: cloud-validator
+cloud-validator:
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
+	$(error The "cloud" argument only supports "aws", "azure", "gcloud", or "heroku")
+endif
+
+.PHONY: cloud-init
+cloud-init: cloud-validator
+	@make $(cloud)-init
+
+.PHONY: cloud-install
+cloud-install: cloud-validator
+	@make $(cloud)-install
+
+.PHONY: cloud-logs
+cloud-logs: cloud-validator
+	@make $(cloud)-logs
+
+.PHONY: cloud-uninstall
+cloud-uninstall: cloud-validator
+	@make $(cloud)-uninstall
+
+.PHONY: aws-init
+aws-init:
+	@set -eu \
+	&& eb init $(aws_app_name) \
+		--platform $(aws_platform) \
+		--region $(aws_region) \
+	&& eb create \
+		--sample $(aws_env_name) \
+	&& eb setenv SERVER_PORT=5000
+
+.PHONY: aws-install
+aws-install:
+	@set -eu \
+	&& eb deploy
+
+.PHONY: aws-logs
+aws-logs:
+	@set -eu \
+	&& eb logs
+
+.PHONY: aws-uninstall
+aws-uninstall:
+	@set -eu \
+	&& eb terminate \
+		--force \
+		--all

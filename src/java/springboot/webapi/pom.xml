@@ -14,7 +14,7 @@
 	<name>hello-cloud</name>
 	<description>Hello cloud web API for Java using Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
