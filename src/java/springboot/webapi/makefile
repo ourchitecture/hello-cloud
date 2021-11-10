@@ -16,6 +16,15 @@ aws_app_name:=app-our-hello-java-springboot-webapi
 aws_env_name:=env-our-hello-java-springboot
 aws_platform:=corretto-11
 aws_region:=us-east-1
+azure_app_plan_name:=plan-our-hello
+azure_app_name:=app-our-hello-java-springboot-webapi
+azure_rg:=rg-our-hello-cloud
+azure_region:=centralus
+gcloud_project_name:=ourhelloexpress
+gcloud_project_name_suffix:=001
+gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
+gcloud_region:=us-east1
+heroku_app_name:=our-hellojavaspringbootwebapi
 
 .DEFAULT_GOAL:=install
 
@@ -201,3 +210,123 @@ aws-uninstall:
 	&& eb terminate \
 		--force \
 		--all
+
+.PHONY: azure-init
+azure-init:
+	@set -eu \
+	&& echo 'Creating Resource Group...' \
+	&& az group create \
+		--name $(azure_rg) \
+		--location $(azure_region) \
+	&& echo 'Resource Group successfully created.' \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region) \
+	&& echo 'Creating AppService Plan...' \
+	&& az appservice plan create \
+		--name $(azure_app_plan_name) \
+		--is-linux \
+		--sku F1 \
+	&& echo 'AppService Plan successfully created.' \
+	&& echo 'Creating Java web AppService...' \
+	&& az webapp create \
+		--name $(azure_app_name) \
+		--plan $(azure_app_plan_name) \
+		--runtime "JAVA|11-java11" \
+	&& echo 'AppService successfully created.' \
+	&& az config set logging.enable_log_file=true
+
+# BUG: https://github.com/Azure/azure-cli/issues/20277
+.PHONY: azure-install
+azure-install:
+	@set -eu \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region) \
+	&& echo 'Deploying build artifact jar file to Azure Java web AppService...' \
+	&& az webapp deploy \
+		--name $(azure_app_name) \
+		--src-path ./build/libs/hello-cloud-0.0.1-SNAPSHOT.jar \
+		--type jar \
+		--async true \
+		--restart true \
+	&& echo 'Java jar file successfully deployed.'
+
+.PHONY: azure-logs
+azure-logs:
+	@set -eu \
+	&& az webapp log tail \
+		--name $(azure_app_name)
+
+.PHONY: azure-uninstall
+azure-uninstall:
+	@set -eu \
+	&& echo 'Deleting Resource Group, including child resources...' \
+	&& az group delete \
+		--name $(azure_rg) \
+		--yes \
+	&& echo 'Resource Group successfully deleted.'
+
+.PHONY: gcloud-init
+gcloud-init:
+	@set -eu \
+	&& gcloud projects create \
+		"$(gcloud_project_unique_name)" \
+		--quiet \
+	&& gcloud config set project \
+		"$(gcloud_project_unique_name)" \
+		--quiet \
+	&& gcloud app create \
+		--region=$(gcloud_region) \
+		--quiet
+
+.PHONY: gcloud-install
+gcloud-install:
+	@set -eu \
+	&& gcloud app deploy \
+		./app.yaml \
+		--stop-previous-version \
+		--promote \
+		--quiet
+
+.PHONY: gcloud-logs
+gcloud-logs:
+	@set -eu \
+	&& gcloud app logs tail -s default
+
+.PHONY: gcloud-uninstall
+gcloud-uninstall:
+	@set -eu \
+	&& gcloud projects delete \
+		"$(gcloud_project_unique_name)" \
+		--quiet
+
+.PHONY: heroku-init
+heroku-init:
+	@set -eu \
+	&& heroku create \
+		$(heroku_app_name) \
+		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
+	&& heroku buildpacks:add \
+		-a $(heroku_app_name) \
+		heroku/nodejs \
+	&& heroku config:set \
+		-a $(heroku_app_name) \
+		APP_BASE=src/nodejs/expressjs/webapi/
+
+.PHONY: heroku-install
+heroku-install:
+	@set -eu \
+	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
+
+.PHONY: heroku-logs
+heroku-logs:
+	@set -eu \
+	&& heroku logs -a $(heroku_app_name)
+
+.PHONY: heroku-uninstall
+heroku-uninstall:
+	@set -eu \
+	&& heroku apps:destroy \
+		-a $(heroku_app_name) \
+		--confirm $(heroku_app_name)
