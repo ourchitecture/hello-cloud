@@ -31,7 +31,7 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-- Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku]`
+- Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
 - Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
 - Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
 - Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`

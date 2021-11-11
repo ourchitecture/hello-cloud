@@ -31,10 +31,10 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-- Initialize with the command `make cloud-init cloud=aws|azure|gcloud]`
-- Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud`
-- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud`
-- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud`
+- Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
+- Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
+- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
+- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
 
 ### Amazon Web Services (AWS)
 
@@ -93,14 +93,29 @@ Google Cloud has documentation for both Gradle and Maven plugins. However, this 
 
 _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
 
+### SalesForce Heroku
+
+#### Prerequisites
+
+- A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
+- [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
+
+#### Steps to deploy
+
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+2. Login to your Heroku account with the CLI using the command `heroku login`
+3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as the [Java buildpack](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-java)
+4. Install the application with the command `make heroku-install`
+5. Check the application logs with the command `make heroku-logs`
+6. Uninstall and clean up the application deployment with the command `make heroku-uninstall`
+
 ## Roadmap
 
 - ✅ Local "hello-cloud" service (`./gradlew` or `./mvnw`)
 - ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
 - ✅ Deploy container to GitHub Container Registry as GitHub Package
 - ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- ✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud")
-- ⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("heroku")
+- ✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud", "heroku")
 - ⬜ Deploy to cloud Managed Containers ("aws", "azure", "gcloud", "heroku") _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
 - ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
 - ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
