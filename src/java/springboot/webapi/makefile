@@ -297,3 +297,33 @@ gcloud-uninstall:
 	&& gcloud projects delete \
 		"$(gcloud_project_unique_name)" \
 		--quiet
+
+.PHONY: heroku-init
+heroku-init:
+	@set -eu \
+	&& heroku create \
+		$(heroku_app_name) \
+		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
+	&& heroku buildpacks:add \
+		-a $(heroku_app_name) \
+		heroku/java \
+	&& heroku config:set \
+		-a $(heroku_app_name) \
+		APP_BASE=src/java/springboot/webapi/
+
+.PHONY: heroku-install
+heroku-install:
+	@set -eu \
+	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
+
+.PHONY: heroku-logs
+heroku-logs:
+	@set -eu \
+	&& heroku logs -a $(heroku_app_name)
+
+.PHONY: heroku-uninstall
+heroku-uninstall:
+	@set -eu \
+	&& heroku apps:destroy \
+		-a $(heroku_app_name) \
+		--confirm $(heroku_app_name)
