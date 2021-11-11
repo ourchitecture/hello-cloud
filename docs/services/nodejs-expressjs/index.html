@@ -750,11 +750,13 @@
 <li>Enable <a href="https://cloud.google.com/build">Google Cloud Build</a> with the command <code>gcloud services enable cloudbuild.googleapis.com</code></li>
 </ul>
 <h4 id="steps-to-deploy_2">Steps to deploy</h4>
+<p>Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. <a href="../../contribute/">Contributions are welcome!</a></p>
 <ol>
 <li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/nodejs/expressjs/webapi</code>)</li>
 <li>Login to your Google Cloud account with the CLI using the command <code>gcloud auth login</code></li>
-<li>Run the command <code>make gcloud-init gcloud_project_name_suffix=001</code> to create the Google Cloud project</li>
+<li>Run the command <code>make gcloud-init gcloud_project_name_suffix=01</code> to create the Google Cloud project</li>
 <li>Install the application with the command <code>make gcloud-install</code></li>
+<li>If the output indicates that billing must be enabled, login to the <a href="https://console.cloud.google.com/billing/projects">projects list</a> and associate the newly created project with the appropriate billing account (even if you are using free resources)</li>
 <li>Check the application logs with the command <code>make gcloud-logs</code></li>
 <li>Uninstall and clean up the application deployment with the command <code>make gcloud-uninstall gcloud_project_name_suffix=001</code></li>
 </ol>
