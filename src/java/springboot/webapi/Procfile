@@ -1,2 +1,2 @@
 # BUG: this path assumes maven
-web: java -jar target/hello-cloud-0.0.1-SNAPSHOT.jar
+web: java -Dserver.port=$PORT -jar target/hello-cloud-0.0.1-SNAPSHOT.jar
