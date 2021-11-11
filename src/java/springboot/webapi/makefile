@@ -16,14 +16,18 @@ aws_app_name:=app-our-hello-java-springboot-webapi
 aws_env_name:=env-our-hello-java-springboot
 aws_platform:=corretto-11
 aws_region:=us-east-1
+
 azure_app_plan_name:=plan-our-hello
 azure_app_name:=app-our-hello-java-springboot-webapi
 azure_rg:=rg-our-hello-cloud
 azure_region:=centralus
-gcloud_project_name:=ourhelloexpress
-gcloud_project_name_suffix:=001
+
+gcloud_project_name:=ourhellospringboot
+gcloud_project_name_suffix:=01
 gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
 gcloud_region:=us-east1
+gcloud_logs_limit:=20
+
 heroku_app_name:=our-hellojavaspringbootwebapi
 
 .DEFAULT_GOAL:=install
@@ -36,7 +40,7 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) build \
 		-t $(image_tag) \
-		-f ./Dockerfile \
+		-f ./docker/Dockerfile \
 		. \
 	&& echo 'Successfully built: $(image_tag)'
 else ifeq '$(dev_tool)' 'docker-compose'
@@ -60,7 +64,7 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) build \
 		-t $(image_tag) \
-		-f ./Dockerfile \
+		-f ./docker/Dockerfile \
 		. \
 	&& echo 'Successfully built: $(image_tag)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
@@ -263,3 +267,33 @@ azure-uninstall:
 		--name $(azure_rg) \
 		--yes \
 	&& echo 'Resource Group successfully deleted.'
+
+.PHONY: gcloud-init
+gcloud-init:
+	@GCLOUD_PROJECT_NAME=$(gcloud_project_unique_name) \
+	GCLOUD_REGION=$(gcloud_region) \
+	./gcloud-init.sh
+
+.PHONY: gcloud-install
+gcloud-install:
+	@set -eu \
+	&& echo 'Deploying the application...' \
+	&& gcloud app deploy \
+		./app.yaml \
+		--stop-previous-version \
+		--promote \
+		--quiet
+
+.PHONY: gcloud-logs
+gcloud-logs:
+	@set -eu \
+	&& gcloud logging read \
+		--project=$(gcloud_project_unique_name) \
+		 --limit=$(gcloud_logs_limit)
+
+.PHONY: gcloud-uninstall
+gcloud-uninstall:
+	@set -eu \
+	&& gcloud projects delete \
+		"$(gcloud_project_unique_name)" \
+		--quiet

@@ -31,10 +31,10 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-- Initialize with the command `make cloud-init cloud=aws|azure]`
-- Install (deploy) with the command `make cloud-install cloud=aws|azure`
-- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure`
-- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure`
+- Initialize with the command `make cloud-init cloud=aws|azure|gcloud]`
+- Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud`
+- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud`
+- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud`
 
 ### Amazon Web Services (AWS)
 
@@ -69,14 +69,38 @@ While each cloud provider below has unique prerequisites and important notes, al
 6. Check the application logs with the command `make azure-logs`
 7. Uninstall and clean up the application deployment with the command `make azure-uninstall`
 
+### Google Cloud
+
+#### Prerequisites
+
+- An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+- [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
+- Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+
+#### Steps to deploy
+
+Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](../contribute.md)
+
+Google Cloud has documentation for both Gradle and Maven plugins. However, this project focuses on using the `gcloud` CLI to deploy, allowing the independent choice of either Gradle or Maven. Note that Microsoft Azure support for Java SpringBoot deployments seems to require using their Maven plug-in and does not support Gradle.
+
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
+3. Run the command `make gcloud-init gcloud_project_name_suffix=01` to create the Google Cloud project
+4. Install the application with the command `make gcloud-install`.
+5. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources)
+6. Check the application logs with the command `make gcloud-logs`
+7. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`
+
+_\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
+
 ## Roadmap
 
 - ✅ Local "hello-cloud" service (`./gradlew` or `./mvnw`)
 - ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
 - ✅ Deploy container to GitHub Container Registry as GitHub Package
 - ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- ✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure")
-- ⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("gcloud", "heroku")
+- ✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud")
+- ⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("heroku")
 - ⬜ Deploy to cloud Managed Containers ("aws", "azure", "gcloud", "heroku") _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
 - ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
 - ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
