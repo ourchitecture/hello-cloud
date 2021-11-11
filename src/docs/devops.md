@@ -17,8 +17,3 @@ The production pipeline uses [GitHub Actions](https://github.com/ericis/hello-cl
 - **Deployment(s):** "./docs" and [GitHub Pages](https://ericis.github.io/hello-cloud/)
 
 Documentation is auto-generated using `make install-docs` with [MkDocs](https://www.mkdocs.org/) 🔗, [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) 🔗, and the ["mkdocs-material"](https://hub.docker.com/r/squidfunk/mkdocs-material/) 🔗 dockerized task runtime. The result generates the source output of everything contained in "./docs".
-
-### Projects
-
-- [Java with SpringBoot](./services/java-springboot.md)
-- [NodeJS with ExpressJS](./services/nodejs-expressjs.md)

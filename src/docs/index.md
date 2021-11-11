@@ -9,6 +9,7 @@ While each major cloud provider offers similar tutorials, they tend to focus alm
 
 ## Web Services
 
+- [.NET](./services/dotnet.md)
 - [Java with SpringBoot](./services/java-springboot.md)
 - [NodeJS with ExpressJS](./services/nodejs-expressjs.md)
 
@@ -32,7 +33,7 @@ See specific projects for their unique roadmaps.
 - ✅ GitHub Actions workflow
 - ✅ GitHub Packages with GitHub Container Registry
 - ✅ Developer tool choices (e.g. `docker` vs. `docker-compose` vs. `podman` vs. [`yarn` vs. `npm` OR `gradle` vs. `maven`])
-- ⬜ .NET Core C# service example
+- ✅ .NET Core C# service example
 - ⬜ Python service example
 - ⬜ Go service example
 - ⬜ Angular web example
