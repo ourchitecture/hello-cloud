@@ -374,6 +374,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#salesforce-heroku" class="md-nav__link">
+    SalesForce Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="SalesForce Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_3" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -602,6 +629,33 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#salesforce-heroku" class="md-nav__link">
+    SalesForce Heroku
+  </a>
+  
+    <nav class="md-nav" aria-label="SalesForce Heroku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_3" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -652,10 +706,10 @@
 <h3 id="multi-cloud">Multi-cloud</h3>
 <p>While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. <code>make cloud-init cloud=aws</code>)</p>
 <ul>
-<li>Initialize with the command <code>make cloud-init cloud=aws|azure|gcloud]</code></li>
-<li>Install (deploy) with the command <code>make cloud-install cloud=aws|azure|gcloud</code></li>
-<li>Get the applicaiton logs with the command <code>make cloud-logs cloud=aws|azure|gcloud</code></li>
-<li>Uninstall (delete/destroy) with the command <code>make cloud-uninstall cloud=aws|azure|gcloud</code></li>
+<li>Initialize with the command <code>make cloud-init cloud=aws|azure|gcloud|heroku</code></li>
+<li>Install (deploy) with the command <code>make cloud-install cloud=aws|azure|gcloud|heroku</code></li>
+<li>Get the applicaiton logs with the command <code>make cloud-logs cloud=aws|azure|gcloud|heroku</code></li>
+<li>Uninstall (delete/destroy) with the command <code>make cloud-uninstall cloud=aws|azure|gcloud|heroku</code></li>
 </ul>
 <h3 id="amazon-web-services-aws">Amazon Web Services (AWS)</h3>
 <h4 id="prerequisites">Prerequisites</h4>
@@ -708,14 +762,28 @@
 <li>Uninstall and clean up the application deployment with the command <code>make gcloud-uninstall gcloud_project_name_suffix=001</code></li>
 </ol>
 <p><em>*Update the "gcloud_project_name_suffix" argument value for <code>gcloud-init</code> and <code>gcloud-uninstall</code> by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future <a href="../../contribute/">contribution to this project</a> could simply restore a deleted project if it was recently deleted and use the same name.</em></p>
+<h3 id="salesforce-heroku">SalesForce Heroku</h3>
+<h4 id="prerequisites_3">Prerequisites</h4>
+<ul>
+<li>A <a href="https://signup.heroku.com/">Heroku account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
+<li><a href="https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli"><code>heroku</code> CLI</a></li>
+</ul>
+<h4 id="steps-to-deploy_3">Steps to deploy</h4>
+<ol>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/java/springboot/webapi</code>)</li>
+<li>Login to your Heroku account with the CLI using the command <code>heroku login</code></li>
+<li>Run the command <code>make heroku-init</code> to create and configure the cloud app including assigning the <a href="https://github.com/lstoll/heroku-buildpack-monorepo#readme">community monorepo buildpack</a> as well as the <a href="https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-java">Java buildpack</a></li>
+<li>Install the application with the command <code>make heroku-install</code></li>
+<li>Check the application logs with the command <code>make heroku-logs</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make heroku-uninstall</code></li>
+</ol>
 <h2 id="roadmap">Roadmap</h2>
 <ul>
 <li>✅ Local "hello-cloud" service (<code>./gradlew</code> or <code>./mvnw</code>)</li>
 <li>✅ Build and run as container (<code>docker</code>, <code>docker-compose</code>, or <code>podman</code>)</li>
 <li>✅ Deploy container to GitHub Container Registry as GitHub Package</li>
 <li>✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package</li>
-<li>✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud")</li>
-<li>⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("heroku")</li>
+<li>✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud", "heroku")</li>
 <li>⬜ Deploy to cloud Managed Containers ("aws", "azure", "gcloud", "heroku") <em>*prefer "run as container" deployment over full-blown Managed Kubernetes deployment</em></li>
 <li>⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)</li>
 <li>⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site</li>
