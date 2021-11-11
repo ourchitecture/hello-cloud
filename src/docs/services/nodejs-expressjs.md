@@ -79,12 +79,15 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Steps to deploy
 
+Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](../contribute.md)
+
 1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
 2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
-3. Run the command `make gcloud-init gcloud_project_name_suffix=001` to create the Google Cloud project
+3. Run the command `make gcloud-init gcloud_project_name_suffix=01` to create the Google Cloud project
 4. Install the application with the command `make gcloud-install`
-5. Check the application logs with the command `make gcloud-logs`
-6. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`
+5. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources)
+6. Check the application logs with the command `make gcloud-logs`
+7. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`
 
 _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
 
