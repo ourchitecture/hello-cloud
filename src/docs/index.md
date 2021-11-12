@@ -23,6 +23,22 @@ While each major cloud provider offers similar tutorials, they tend to focus alm
 
 See specific projects for their unique roadmaps.
 
+### Started
+
+- ⚙️ .NET Core C# service example
+
+### Future
+
+- ⬜ Python service example
+- ⬜ Go service example
+- ⬜ Angular web example
+- ⬜ React web example
+- ⬜ Vue web example
+- ⬜ Ionic stencil web example
+- ⬜ Containerized web example(s)
+
+### Completed
+
 - ✅ Documentation automation wit MkDocs
 - ✅ NodeJS with ExpressJS service example
 - ✅ Java with SpringBoot service example
@@ -34,11 +50,3 @@ See specific projects for their unique roadmaps.
 - ✅ GitHub Actions workflow
 - ✅ GitHub Packages with GitHub Container Registry
 - ✅ Developer tool choices (e.g. `docker` vs. `docker-compose` vs. `podman` vs. [`yarn` vs. `npm` OR `gradle` vs. `maven`])
-- ✅ .NET Core C# service example
-- ⬜ Python service example
-- ⬜ Go service example
-- ⬜ Angular web example
-- ⬜ React web example
-- ⬜ Vue web example
-- ⬜ Ionic stencil web example
-- ⬜ Containerized web example(s)
