@@ -82,7 +82,7 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	&& $(dev_tool) run \
 		--name=$(container_name) \
 		-d \
-		-p $(app_port):$(host_port) \
+		-p $(host_port):$(app_port) \
 		$(image_tag)
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
