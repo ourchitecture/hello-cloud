@@ -1,6 +1,6 @@
 # Service: Java with SpringBoot
 
-- **Path:** [./src/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/java/springboot/webapi)
+- **Path:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
 - **Runtime:** [OpenJDK](https://openjdk.java.net/) 🔗
 - **Language:** [Java](https://docs.oracle.com/javase/specs/) 🔗
 - **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) 🔗
@@ -16,7 +16,7 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 
 - **Tasks:** [`make`](../contribute.md)
 - **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
-- **Source:** ["./src/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/java/springboot/webapi/)
+- **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi/)
 - **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container
 
 ## Deployments
@@ -45,7 +45,7 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
 2. Run the command `make aws-init` to create the AWS Elastic Beanstalk Environment. This command may take a few minutes. The `eb` CLI will prompt you for access credentials. Create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials) 🔗, expanding "Access keys" and creating a new key.
 3. Install the application with the command `make aws-install`. This command may take several seconds.
 4. Check the application logs with the command `make aws-logs`
@@ -61,7 +61,7 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
 2. Login to your Azure account with the CLI using the command `az login`
 3. If you have more than one subscription, first [set the default subscription](https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription)
 4. Run the command `make azure-init` to create the Azure Resource Group
@@ -83,7 +83,7 @@ Every attempt is made to automate the deployment. However, some timing issues ha
 
 Google Cloud has documentation for both Gradle and Maven plugins. However, this project focuses on using the `gcloud` CLI to deploy, allowing the independent choice of either Gradle or Maven. Note that Microsoft Azure support for Java SpringBoot deployments seems to require using their Maven plug-in and does not support Gradle.
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
 2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
 3. Run the command `make gcloud-init gcloud_project_name_suffix=01` to create the Google Cloud project
 4. Install the application with the command `make gcloud-install`.
@@ -102,7 +102,7 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/java/springboot/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
 2. Login to your Heroku account with the CLI using the command `heroku login`
 3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as the [Java buildpack](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-java)
 4. Install the application with the command `make heroku-install`

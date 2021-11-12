@@ -3,7 +3,7 @@ dev_tool:=docker
 docker_image_mkdocs_material_version:=7.3.4
 docker_image_mkdocs_material_tag:=docker.io/squidfunk/mkdocs-material:$(docker_image_mkdocs_material_version)
 
-project_dirs=./src/java/springboot/webapi ./src/nodejs/expressjs/webapi
+project_dirs=./src/services/java/springboot/webapi ./src/services/nodejs/expressjs/webapi
 
 docs_app_port=8000
 docs_host_port:=8000

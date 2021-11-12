@@ -282,7 +282,7 @@ heroku-init:
 		heroku/nodejs \
 	&& heroku config:set \
 		-a $(heroku_app_name) \
-		APP_BASE=src/nodejs/expressjs/webapi/
+		APP_BASE=src/services/nodejs/expressjs/webapi/
 
 .PHONY: heroku-install
 heroku-install:

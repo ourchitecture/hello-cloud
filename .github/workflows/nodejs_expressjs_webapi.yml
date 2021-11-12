@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/nodejs_expressjs_webapi.yml"
-      - "src/nodejs/expressjs/webapi/**"
+      - "src/services/nodejs/expressjs/webapi/**"
 
 env:
   DOCKER_USERNAME: ${{ github.actor }}
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: build
-        working-directory: ./src/nodejs/expressjs/webapi/
+        working-directory: ./src/services/nodejs/expressjs/webapi/
         # write the github actions secret to a file
         # the file allows us to use `docker login --password-stdin`
         # while it would be possible to:

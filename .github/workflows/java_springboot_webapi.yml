@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/java_springboot_webapi.yml"
-      - "src/java/springboot/webapi/**"
+      - "src/services/java/springboot/webapi/**"
 
 env:
   DOCKER_USERNAME: ${{ github.actor }}
@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: build
-        working-directory: ./src/java/springboot/webapi/
+        working-directory: ./src/services/java/springboot/webapi/
         # write the github actions secret to a file
         # the file allows us to use `docker login --password-stdin`
         # while it would be possible to:

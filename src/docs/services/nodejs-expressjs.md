@@ -1,6 +1,6 @@
 # Service: NodeJS with ExpressJS
 
-- **Path:** [./src/nodejs/expressjs/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/nodejs/expressjs/webapi)
+- **Path:** [./src/services/nodejs/expressjs/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/nodejs/expressjs/webapi)
 - **Runtime:** [NodeJS](https://nodejs.org/) 🔗
 - **Language:** [JavaScript](https://javascript.info/) 🔗
 - **Framework:** [ExpressJS](https://expressjs.com/) 🔗
@@ -16,7 +16,7 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 
 - **Tasks:** [`make`](../contribute.md)
 - **Pipeline:** ["./.github/workflows/nodejs_expressjs_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/nodejs_expressjs_webapi.yml)
-- **Source:** ["./src/nodejs/expressjs/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/nodejs/expressjs/webapi/)
+- **Source:** ["./src/services/nodejs/expressjs/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/nodejs/expressjs/webapi/)
 - **Deployment(s):** ["hello-cloud/our-hello-nodejs-expressjs-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-nodejs-expressjs-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
 
 ## Deployments
@@ -45,7 +45,7 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
 2. Run the command `make aws-init` to create the AWS Elastic Beanstalk Environment. This command may take a few minutes. The `eb` CLI will prompt you for access credentials. Create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials), expanding "Access keys" and creating a new key.
 3. Install the application with the command `make aws-install`. This command may take several seconds.
 4. Check the application logs with the command `make aws-logs`
@@ -60,7 +60,7 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
 2. Login to your Azure account with the CLI using the command `az login`
 3. If you have more than one subscription, first [set the default subscription](https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription)
 4. Run the command `make azure-init` to create the Azure Resource Group
@@ -81,7 +81,7 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](../contribute.md)
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
 2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
 3. Run the command `make gcloud-init gcloud_project_name_suffix=01` to create the Google Cloud project
 4. Install the application with the command `make gcloud-install`
@@ -100,7 +100,7 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 
 #### Steps to deploy
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/nodejs/expressjs/webapi`)
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
 2. Login to your Heroku account with the CLI using the command `heroku login`
 3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as the [node.js buildpack](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-nodejs)
 4. Install the application with the command `make heroku-install`
