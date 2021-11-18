@@ -24,7 +24,7 @@ azure_rg:=rg-our-hello-cloud
 azure_region:=centralus
 
 gcloud_project_name:=ourhelloexpress
-gcloud_project_name_suffix:=01
+gcloud_project_name_suffix:=001
 gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
 gcloud_region:=us-east1
 gcloud_logs_limit:=20

@@ -83,15 +83,15 @@ Every attempt is made to automate the deployment. However, some timing issues ha
 
 Google Cloud has documentation for both Gradle and Maven plugins. However, this project focuses on using the `gcloud` CLI to deploy, allowing the independent choice of either Gradle or Maven. Note that Microsoft Azure support for Java SpringBoot deployments seems to require using their Maven plug-in and does not support Gradle.
 
-1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
-2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`
-3. Run the command `make gcloud-init gcloud_project_name_suffix=01` to create the Google Cloud project
-4. Install the application with the command `make gcloud-install`.
-5. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources)
-6. Check the application logs with the command `make gcloud-logs`
-7. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`).
+2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`.
+3. Run the command `make gcloud-init gcloud_project_name_suffix=001` to create the Google Cloud project.
+4. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources). Once the project is associated with a billing account, re-run the "gcloud-init" command above.
+5. Install the application with the command `make gcloud-install`.
+6. Check the application logs with the command `make gcloud-logs`.
+7. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`.
 
-_\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
+_\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times within a short period. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name._
 
 ### SalesForce Heroku
 

@@ -18,6 +18,12 @@ docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_use
 aws_stack_name:=our-hello
 aws_region:=us-east-1
 
+gcloud_project_name:=ourhellodotnet
+gcloud_project_name_suffix:=01
+gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
+gcloud_region:=us-east1
+gcloud_logs_limit:=20
+
 .DEFAULT_GOAL:=install
 
 all: install
@@ -132,6 +138,28 @@ serve: start
 down: stop
 uninstall: clean
 
+.PHONY: cloud-validator
+cloud-validator:
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "gcloud"))
+	$(error The "cloud" argument only supports "aws" or "gcloud")
+endif
+
+.PHONY: cloud-init
+cloud-init: cloud-validator
+	@make $(cloud)-init
+
+.PHONY: cloud-install
+cloud-install: cloud-validator
+	@make $(cloud)-install
+
+.PHONY: cloud-logs
+cloud-logs: cloud-validator
+	@make $(cloud)-logs
+
+.PHONY: cloud-uninstall
+cloud-uninstall: cloud-validator
+	@make $(cloud)-uninstall
+
 .PHONY: aws-init
 aws-init:
 	@set -eu \
@@ -147,7 +175,7 @@ aws-init:
 # an interactive prompt with option to select from.
 # https://github.com/aws/aws-dotnet-deploy/issues/403
 .PHONY: aws-install
-aws-install:
+aws-install: install
 	@set -eu \
 	&& echo "2" | dotnet dotnet-aws deploy \
 		--region $(aws_region) \
@@ -173,3 +201,35 @@ aws-uninstall:
 	@set -eu \
 	&& echo "y" | dotnet dotnet-aws delete-deployment \
 		$(aws_stack_name)
+
+.PHONY: gcloud-init
+gcloud-init:
+	@GCLOUD_PROJECT_NAME=$(gcloud_project_unique_name) \
+	GCLOUD_REGION=$(gcloud_region) \
+	./gcloud-init.sh
+
+.PHONY: gcloud-install
+gcloud-install: install
+	@set -eu \
+	&& echo 'Deploying the application...' \
+	&& gcloud app deploy \
+		./app.yaml \
+		--stop-previous-version \
+		--promote \
+		--quiet \
+	&& echo '' \
+	&& echo 'Successfully deployed to gcloud!'
+
+.PHONY: gcloud-logs
+gcloud-logs:
+	@set -eu \
+	&& gcloud logging read default \
+		--project=$(gcloud_project_unique_name) \
+		--limit=$(gcloud_logs_limit)
+
+.PHONY: gcloud-uninstall
+gcloud-uninstall:
+	@set -eu \
+	&& gcloud projects delete \
+		"$(gcloud_project_unique_name)" \
+		--quiet
