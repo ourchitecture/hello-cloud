@@ -7,16 +7,30 @@ site_author: "Ourchitecture"
 copyright: "Creative Commons Zero v1.0 Universal"
 theme:
   name: "material"
+  custom_dir: "./src/mkdocs"
   logo: "img/logo.png"
   favicon: "img/favicon.png"
+  palette:
+    - scheme: "slate"
+      primary: "blue"
+      accent: "deep orange"
+      toggle:
+        icon: "material/weather-sunny"
+        name: "Switch to light mode"
+    - scheme: "default"
+      primary: "blue grey"
+      accent: "light blue"
+      toggle:
+        icon: "material/weather-night"
+        name: "Switch to dark mode"
   features:
-    - header.autohide
-    - navigation.indexes
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
-    - navigation.sections
-    - toc.integrate
+    - "header.autohide"
+    - "navigation.indexes"
+    - "navigation.tabs"
+    - "navigation.tabs.sticky"
+    - "navigation.top"
+    - "navigation.sections"
+    - "toc.integrate"
 nav:
   - "Home": "index.md"
   - "Projects":

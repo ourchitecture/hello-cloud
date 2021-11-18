@@ -1,4 +1,6 @@
 node_modules/
 
+src/mkdocs/*
+
 package.lock
 yarn.lock
