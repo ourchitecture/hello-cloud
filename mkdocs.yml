@@ -16,6 +16,7 @@ nav:
       - "Java with SpringBoot": "./services/java-springboot.md"
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
   - "Contribute": "contribute.md"
+  - "Comments": "comments.md"
   - "License": "license.md"
   - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
 extra:
