@@ -113,8 +113,16 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 - ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
 - ✅ Deploy container to GitHub Container Registry as GitHub Package
 - ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- ✅ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "azure", "gcloud", "heroku")
-- ⬜ Deploy to cloud Managed Containers ("aws", "azure", "gcloud", "heroku") _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+- Deploy to cloud Platform-as-a-Service (PaaS)
+  - ✅ "aws"
+  - ✅ "azure"
+  - ✅ "gcloud"
+  - ✅ "heroku"
+- Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+  - ⬜ "aws"
+  - ⬜ "azure"
+  - ⬜ "gcloud"
+  - ⬜ "heroku"
 - ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
 - ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
 - ⬜ Ping / Health endpoint

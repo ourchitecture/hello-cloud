@@ -52,6 +52,24 @@ While each cloud provider below has unique prerequisites and important notes, al
 4. Check the application logs with the command `make aws-logs`. [Help wanted](../contribute.md) to automate this command.
 5. Uninstall and clean up the application deployment with the command `make aws-uninstall`. This command may take several seconds.
 
+### Microsoft Azure
+
+#### Prerequisites
+
+- An [Azure account](https://azure.microsoft.com/en-us/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
+- [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 🔗
+- [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) 🔗
+
+#### Steps to deploy
+
+1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
+2. Login to your Azure account with the CLI using the command `az login`
+3. If you have more than one subscription, first [set the default subscription](https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription)
+4. Run the command `make azure-init` to create the Azure Resource Group
+5. Install the application with the command `make azure-install`
+6. Check the application logs with the command `make azure-logs`
+7. Uninstall and clean up the application deployment with the command `make azure-uninstall`
+
 ### Google Cloud
 
 #### Prerequisites
@@ -80,9 +98,16 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 - ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
 - ✅ Deploy container to GitHub Container Registry as GitHub Package
 - ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- ⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "gcloud", "azure", "heroku")
-- ✅ Deploy to cloud Managed Containers ("aws", "gcloud") _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
-- ⬜ Deploy to cloud Managed Containers ("azure", "heroku") _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+- ⏱️ Deploy to cloud Platform-as-a-Service (PaaS)
+  - 💥 "aws" requires a container
+  - ✅ "azure"
+  - 💥 "gcloud" requires a container
+  - ⬜ "heroku"
+- ⏱️ Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+  - ✅ "aws"
+  - ⬜ "azure"
+  - ✅ "gcloud"
+  - ⬜ "heroku"
 - ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
 - ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
 - ⬜ Ping / Health endpoint

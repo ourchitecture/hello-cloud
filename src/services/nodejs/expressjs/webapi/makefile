@@ -20,7 +20,7 @@ aws_platform:=node.js-14
 aws_region:=us-east-1
 
 azure_app_name:=app-our-hello-nodejs-expressjs-webapi
-azure_rg:=rg-our-hello-cloud
+azure_rg:=rg-our-hello-cloud-expressjs
 azure_region:=centralus
 
 gcloud_project_name:=ourhelloexpress
@@ -222,10 +222,13 @@ azure-install:
 	&& az webapp up \
 		--name $(azure_app_name)
 
+# TODO: how to show recent application log entries?
 .PHONY: azure-logs
 azure-logs:
 	@set -eu \
-	&& az webapp log tail \
+	&& az webapp log deployment show \
+		--name $(azure_app_name)
+	&& az webapp log show \
 		--name $(azure_app_name)
 
 .PHONY: azure-uninstall

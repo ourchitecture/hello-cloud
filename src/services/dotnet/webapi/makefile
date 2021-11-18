@@ -18,8 +18,13 @@ docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_use
 aws_stack_name:=our-hello
 aws_region:=us-east-1
 
+azure_app_name:=app-our-hello-dotnet-webapi
+azure_rg:=rg-our-hello-cloud-dotnet
+azure_region:=centralus
+azure_app_runtime:=DOTNET|6.0
+
 gcloud_project_name:=ourhellodotnet
-gcloud_project_name_suffix:=01
+gcloud_project_name_suffix:=001
 gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
 gcloud_region:=us-east1
 gcloud_logs_limit:=20
@@ -140,8 +145,8 @@ uninstall: clean
 
 .PHONY: cloud-validator
 cloud-validator:
-ifneq ("$(cloud)",$(filter "$(cloud)","aws" "gcloud"))
-	$(error The "cloud" argument only supports "aws" or "gcloud")
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+	$(error The "cloud" argument only supports "aws", "azure" or "gcloud")
 endif
 
 .PHONY: cloud-init
@@ -201,6 +206,42 @@ aws-uninstall:
 	@set -eu \
 	&& echo "y" | dotnet dotnet-aws delete-deployment \
 		$(aws_stack_name)
+
+.PHONY: azure-init
+azure-init:
+	@set -eu \
+	&& az group create \
+		--name $(azure_rg) \
+		--location $(azure_region) \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region)
+
+.PHONY: azure-install
+azure-install:
+	@set -eu \
+	&& az config set \
+		defaults.group=$(azure_rg) \
+		defaults.location=$(azure_region) \
+	&& az webapp up \
+		--name $(azure_app_name) \
+		--runtime "$(azure_app_runtime)"
+
+# TODO: how to show recent application log entries?
+.PHONY: azure-logs
+azure-logs:
+	@set -eu \
+	&& az webapp log deployment show \
+		--name $(azure_app_name)
+	&& az webapp log show \
+		--name $(azure_app_name)
+
+.PHONY: azure-uninstall
+azure-uninstall:
+	@set -eu \
+	&& az group delete \
+		--name $(azure_rg) \
+		--yes
 
 .PHONY: gcloud-init
 gcloud-init:

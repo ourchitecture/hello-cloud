@@ -19,7 +19,7 @@ aws_region:=us-east-1
 
 azure_app_plan_name:=plan-our-hello
 azure_app_name:=app-our-hello-java-springboot-webapi
-azure_rg:=rg-our-hello-cloud
+azure_rg:=rg-our-hello-cloud-springboot
 azure_region:=centralus
 
 gcloud_project_name:=ourhellospringboot
@@ -253,10 +253,13 @@ endif
         "-Dazure.appservice.plan.name=$(azure_app_plan_name)" \
 	&& echo 'Java web app successfully deployed.'
 
+# TODO: how to show recent application log entries?
 .PHONY: azure-logs
 azure-logs:
 	@set -eu \
-	&& az webapp log tail \
+	&& az webapp log deployment show \
+		--name $(azure_app_name)
+	&& az webapp log show \
 		--name $(azure_app_name)
 
 .PHONY: azure-uninstall
