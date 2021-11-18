@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://github.com/ericis/hello-cloud/roadmap/</loc>
+         <lastmod>2021-11-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://github.com/ericis/hello-cloud/services/dotnet/</loc>
          <lastmod>2021-11-18</lastmod>
          <changefreq>daily</changefreq>
