@@ -767,15 +767,15 @@
 <p>Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. <a href="../../contribute/">Contributions are welcome!</a></p>
 <p>Google Cloud has documentation for both Gradle and Maven plugins. However, this project focuses on using the <code>gcloud</code> CLI to deploy, allowing the independent choice of either Gradle or Maven. Note that Microsoft Azure support for Java SpringBoot deployments seems to require using their Maven plug-in and does not support Gradle.</p>
 <ol>
-<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/services/java/springboot/webapi</code>)</li>
-<li>Login to your Google Cloud account with the CLI using the command <code>gcloud auth login</code></li>
-<li>Run the command <code>make gcloud-init gcloud_project_name_suffix=01</code> to create the Google Cloud project</li>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/services/java/springboot/webapi</code>).</li>
+<li>Login to your Google Cloud account with the CLI using the command <code>gcloud auth login</code>.</li>
+<li>Run the command <code>make gcloud-init gcloud_project_name_suffix=001</code> to create the Google Cloud project.</li>
+<li>If the output indicates that billing must be enabled, login to the <a href="https://console.cloud.google.com/billing/projects">projects list</a> and associate the newly created project with the appropriate billing account (even if you are using free resources). Once the project is associated with a billing account, re-run the "gcloud-init" command above.</li>
 <li>Install the application with the command <code>make gcloud-install</code>.</li>
-<li>If the output indicates that billing must be enabled, login to the <a href="https://console.cloud.google.com/billing/projects">projects list</a> and associate the newly created project with the appropriate billing account (even if you are using free resources)</li>
-<li>Check the application logs with the command <code>make gcloud-logs</code></li>
-<li>Uninstall and clean up the application deployment with the command <code>make gcloud-uninstall gcloud_project_name_suffix=001</code></li>
+<li>Check the application logs with the command <code>make gcloud-logs</code>.</li>
+<li>Uninstall and clean up the application deployment with the command <code>make gcloud-uninstall gcloud_project_name_suffix=001</code>.</li>
 </ol>
-<p><em>*Update the "gcloud_project_name_suffix" argument value for <code>gcloud-init</code> and <code>gcloud-uninstall</code> by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times. A future <a href="../../contribute/">contribution to this project</a> could simply restore a deleted project if it was recently deleted and use the same name.</em></p>
+<p><em>*Update the "gcloud_project_name_suffix" argument value for <code>gcloud-init</code> and <code>gcloud-uninstall</code> by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times within a short period. A future <a href="../../contribute/">contribution to this project</a> could simply restore a deleted project if it was recently deleted and use the same name.</em></p>
 <h3 id="salesforce-heroku">SalesForce Heroku</h3>
 <h4 id="prerequisites_3">Prerequisites</h4>
 <ul>
