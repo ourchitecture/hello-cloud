@@ -15,6 +15,9 @@ docker_push_organization_or_user:=ericis
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
+aws_stack_name:=our-hello
+aws_region:=us-east-1
+
 .DEFAULT_GOAL:=install
 
 all: install
@@ -127,3 +130,42 @@ run: start
 serve: start
 down: stop
 uninstall: clean
+
+.PHONY: aws-init
+aws-init:
+	@set -eu \
+	&& echo '' \
+	&& echo 'Version for aws CLI:' \
+	&& aws --version \
+	&& echo '' \
+	&& echo 'Version for dotnet aws.deploy.cli CLI:' \
+	&& dotnet dotnet-aws --version
+
+# FRAGILE: there does not appear to be a named argument
+# for the value "Choose deployment option" provided via
+# an interactive prompt with option to select from.
+# https://github.com/aws/aws-dotnet-deploy/issues/403
+.PHONY: aws-install
+aws-install:
+	@set -eu \
+	&& echo "2" | dotnet dotnet-aws deploy \
+		--region $(aws_region) \
+		--project-path ./ \
+		--stack-name=$(aws_app_name)
+
+# HELP: need an automation solution
+.PHONY: aws-logs
+aws-logs:
+	@set -eu \
+	&& echo '' \
+	&& echo 'Logs are available in the online console at:' \
+	&& echo 'https://console.aws.amazon.com/apprunner/home' \
+	&& echo 'Select the region and deployed service and then navigate to "Logs" and "Application Logs"' \
+	&& echo '' \
+	&& echo 'Developers wanted! Contribute an automated CLI command option for streaming logs here.'
+
+.PHONY: aws-uninstall
+aws-uninstall:
+	@set -eu \
+	&& dotnet dotnet-aws delete-deployment \
+		--stack-name=$(aws_app_name)

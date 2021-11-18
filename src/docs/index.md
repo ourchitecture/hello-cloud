@@ -25,7 +25,7 @@ See specific projects for their unique roadmaps.
 
 ### Started
 
-- ⚙️ .NET Core C# service example
+- ⏱️ .NET Core C# service example
 
 ### Future
 
@@ -49,4 +49,4 @@ See specific projects for their unique roadmaps.
 - ✅ Containerized service example(s) (NodeJS with ExpressJS, Java with SpringBoot)
 - ✅ GitHub Actions workflow
 - ✅ GitHub Packages with GitHub Container Registry
-- ✅ Developer tool choices (e.g. `docker` vs. `docker-compose` vs. `podman` vs. [`yarn` vs. `npm` OR `gradle` vs. `maven`])
+- ✅ Developer tool choices (e.g. `docker` vs. `docker-compose` vs. `podman` vs. [`yarn` vs. `npm` OR `gradle` vs. `maven` OR `dotnet`])
