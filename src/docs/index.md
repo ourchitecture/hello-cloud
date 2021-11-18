@@ -8,14 +8,8 @@ While each major cloud provider offers similar tutorials, they tend to focus alm
 - ♾️ Learn about the [DevOps pipeline](./devops.md)
 - 🔮 See where things are headed on [the roadmap](./roadmap.md)
 
-## Web Services
+## Projects
 
 - [.NET](./services/dotnet.md)
 - [Java with SpringBoot](./services/java-springboot.md)
 - [NodeJS with ExpressJS](./services/nodejs-expressjs.md)
-
-## Docker
-
-- [hello-cloud/our-hello-dotnet-webapi](./services/dotnet.md)
-- [hello-cloud/our-hello-java-springboot-webapi](./services/java-springboot.md)
-- [hello-cloud/our-hello-nodejs-expressjs-webapi](./services/nodejs-expressjs.md)

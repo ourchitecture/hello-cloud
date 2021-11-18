@@ -1,6 +1,7 @@
 # Service: .NET Core
 
-- **Path:** [./src/services/dotnet/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi)
+- **Container:** [hello-cloud/our-hello-dotnet-webapi](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi)
+- **Source:** [./src/services/dotnet/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi)
 - **Runtime:** [.NET Core](https://dotnet.microsoft.com/) 🔗
 - **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) 🔗
 - **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) 🔗
@@ -17,7 +18,7 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 - **Tasks:** [`make`](../contribute.md)
 - **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
 - **Source:** ["./src/services/dotnet/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi/)
-- **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container
+- **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
 
 ## Deployments
 

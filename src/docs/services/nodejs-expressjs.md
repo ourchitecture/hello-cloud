@@ -1,6 +1,7 @@
 # Service: NodeJS with ExpressJS
 
-- **Path:** [./src/services/nodejs/expressjs/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/nodejs/expressjs/webapi)
+- **Container:** ["hello-cloud/our-hello-nodejs-expressjs-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-nodejs-expressjs-webapi)
+- **Source:** [./src/services/nodejs/expressjs/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/nodejs/expressjs/webapi)
 - **Runtime:** [NodeJS](https://nodejs.org/) 🔗
 - **Language:** [JavaScript](https://javascript.info/) 🔗
 - **Framework:** [ExpressJS](https://expressjs.com/) 🔗

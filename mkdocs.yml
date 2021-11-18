@@ -1,6 +1,8 @@
 docs_dir: "src/docs"
 site_name: "Hello Cloud"
 site_url: "https://github.com/ericis/hello-cloud/#readme"
+repo_url: "https://github.com/ericis/hello-cloud/#readme"
+repo_name: ericis/hello-cloud
 site_author: "Ourchitecture"
 copyright: "Creative Commons Zero v1.0 Universal"
 theme:
@@ -10,9 +12,14 @@ theme:
   features:
     - header.autohide
     - navigation.indexes
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.sections
+    - toc.integrate
 nav:
   - "Home": "index.md"
-  - "Web Services":
+  - "Projects":
       - ".NET": "./services/dotnet.md"
       - "Java with SpringBoot": "./services/java-springboot.md"
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
@@ -20,7 +27,6 @@ nav:
   - "Contribute": "contribute.md"
   - "Comments": "comments.md"
   - "License": "license.md"
-  - "Code (GitHub)": "https://github.com/ericis/hello-cloud/"
 extra:
   social:
     - icon: "fontawesome/brands/github"

@@ -1,6 +1,7 @@
 # Service: Java with SpringBoot
 
-- **Path:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
+- **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi)
+- **Source:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
 - **Runtime:** [OpenJDK](https://openjdk.java.net/) 🔗
 - **Language:** [Java](https://docs.oracle.com/javase/specs/) 🔗
 - **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) 🔗
@@ -17,7 +18,7 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 - **Tasks:** [`make`](../contribute.md)
 - **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
 - **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi/)
-- **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container
+- **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
 
 ## Deployments
 

@@ -50,6 +50,7 @@ start-docs: init
 			--livereload \
 			--watch-theme \
 			--config-file ./mkdocs.yml
+	@echo 'Successfully started: http://localhost:$(docs_host_port)'
 
 .PHONY: stop-docs
 stop-docs:
