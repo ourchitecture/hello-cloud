@@ -1,10 +1,10 @@
 # Service: .NET Core
 
-- **Container:** [hello-cloud/our-hello-dotnet-webapi](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi)
-- **Source:** [./src/services/dotnet/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi)
-- **Runtime:** [.NET Core](https://dotnet.microsoft.com/) 🔗
-- **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) 🔗
-- **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) 🔗
+-   **Container:** [hello-cloud/our-hello-dotnet-webapi](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi)
+-   **Source:** [./src/services/dotnet/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi)
+-   **Runtime:** [.NET Core](https://dotnet.microsoft.com/) 🔗
+-   **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) 🔗
+-   **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) 🔗
 
 ## Getting started
 
@@ -15,10 +15,10 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 
 ## DevOps
 
-- **Tasks:** [`make`](../contribute.md)
-- **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
-- **Source:** ["./src/services/dotnet/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi/)
-- **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
+-   **Tasks:** [`make`](../contribute.md)
+-   **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
+-   **Source:** ["./src/services/dotnet/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi/)
+-   **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
 
 ## Deployments
 
@@ -32,18 +32,18 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-- Initialize with the command `make cloud-init cloud=aws|gcloud`
-- Install (deploy) with the command `make cloud-install cloud=aws|gcloud`
-- Get the applicaiton logs with the command `make cloud-logs cloud=aws|gcloud`
-- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|gcloud`
+-   Initialize with the command `make cloud-init cloud=aws|gcloud`
+-   Install (deploy) with the command `make cloud-install cloud=aws|gcloud`
+-   Get the applicaiton logs with the command `make cloud-logs cloud=aws|gcloud`
+-   Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|gcloud`
 
 ### Amazon Web Services (AWS)
 
 #### Prerequisites
 
-- An [AWS account](https://aws.amazon.com/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
-- [`aws` CLI](https://docs.aws.amazon.com/cli/) 🔗
-- `dotnet` ["aws.deploy.cli" tool](https://github.com/aws/aws-dotnet-deploy#getting-started)
+-   An [AWS account](https://aws.amazon.com/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
+-   [`aws` CLI](https://docs.aws.amazon.com/cli/) 🔗
+-   `dotnet` ["aws.deploy.cli" tool](https://github.com/aws/aws-dotnet-deploy#getting-started)
 
 #### Steps to deploy
 
@@ -57,9 +57,9 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Prerequisites
 
-- An [Azure account](https://azure.microsoft.com/en-us/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
-- [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 🔗
-- [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) 🔗
+-   An [Azure account](https://azure.microsoft.com/en-us/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
+-   [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 🔗
+-   [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) 🔗
 
 #### Steps to deploy
 
@@ -75,9 +75,9 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Prerequisites
 
-- An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
-- [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
-- Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+-   An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+-   [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
+-   Google Cloud [Billing Account](https://console.cloud.google.com/billing)
 
 #### Steps to deploy
 
@@ -95,20 +95,20 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 
 ## Roadmap
 
-- ✅ Local "hello-cloud" service (`dotnet`)
-- ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
-- ✅ Deploy container to GitHub Container Registry as GitHub Package
-- ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- ⏱️ Deploy to cloud Platform-as-a-Service (PaaS)
-  - 💥 "aws" requires a container
-  - ✅ "azure"
-  - 💥 "gcloud" requires a container
-  - ⬜ "heroku"
-- ⏱️ Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
-  - ✅ "aws"
-  - ⬜ "azure"
-  - ✅ "gcloud"
-  - ⬜ "heroku"
-- ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
-- ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
-- ⬜ Ping / Health endpoint
+-   ✅ Local "hello-cloud" service (`dotnet`)
+-   ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
+-   ✅ Deploy container to GitHub Container Registry as GitHub Package
+-   ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
+-   ⏱️ Deploy to cloud Platform-as-a-Service (PaaS)
+    -   💥 "aws" requires a container
+    -   ✅ "azure"
+    -   💥 "gcloud" requires a container
+    -   ⬜ "heroku"
+-   ⏱️ Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+    -   ✅ "aws"
+    -   ⬜ "azure"
+    -   ✅ "gcloud"
+    -   ⬜ "heroku"
+-   ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
+-   ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
+-   ⬜ Ping / Health endpoint

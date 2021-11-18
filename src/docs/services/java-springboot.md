@@ -1,10 +1,10 @@
 # Service: Java with SpringBoot
 
-- **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi)
-- **Source:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
-- **Runtime:** [OpenJDK](https://openjdk.java.net/) 🔗
-- **Language:** [Java](https://docs.oracle.com/javase/specs/) 🔗
-- **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) 🔗
+-   **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi)
+-   **Source:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
+-   **Runtime:** [OpenJDK](https://openjdk.java.net/) 🔗
+-   **Language:** [Java](https://docs.oracle.com/javase/specs/) 🔗
+-   **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) 🔗
 
 ## Getting started
 
@@ -15,10 +15,10 @@ Run this service with any Open Container Initiative (OCI) compatible runtime, li
 
 ## DevOps
 
-- **Tasks:** [`make`](../contribute.md)
-- **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
-- **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi/)
-- **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
+-   **Tasks:** [`make`](../contribute.md)
+-   **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
+-   **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi/)
+-   **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
 
 ## Deployments
 
@@ -32,17 +32,17 @@ Using the standard developer `make` tasks, the service can be containerized and 
 
 While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-- Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
-- Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
-- Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
-- Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
+-   Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
+-   Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
+-   Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
+-   Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
 
 ### Amazon Web Services (AWS)
 
 #### Prerequisites
 
-- An [AWS account](https://aws.amazon.com/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
-- [`eb` CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html) 🔗
+-   An [AWS account](https://aws.amazon.com/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
+-   [`eb` CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html) 🔗
 
 #### Steps to deploy
 
@@ -56,9 +56,9 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Prerequisites
 
-- An [Azure account](https://azure.microsoft.com/en-us/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
-- [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 🔗
-- [`java` 11 OpenJDK](https://openjdk.java.net/install/) 🔗 (required to execute `./mvnw` commands)
+-   An [Azure account](https://azure.microsoft.com/en-us/free/) 🔗 (_this project worked with free infrastructure at the time of its creation_)
+-   [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 🔗
+-   [`java` 11 OpenJDK](https://openjdk.java.net/install/) 🔗 (required to execute `./mvnw` commands)
 
 #### Steps to deploy
 
@@ -74,9 +74,9 @@ While each cloud provider below has unique prerequisites and important notes, al
 
 #### Prerequisites
 
-- An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
-- [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
-- Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+-   An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+-   [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
+-   Google Cloud [Billing Account](https://console.cloud.google.com/billing)
 
 #### Steps to deploy
 
@@ -98,8 +98,8 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 
 #### Prerequisites
 
-- A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
-- [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
+-   A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
+-   [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
 
 #### Steps to deploy
 
@@ -112,20 +112,20 @@ _\*Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and 
 
 ## Roadmap
 
-- ✅ Local "hello-cloud" service (`./gradlew` or `./mvnw`)
-- ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
-- ✅ Deploy container to GitHub Container Registry as GitHub Package
-- ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-- Deploy to cloud Platform-as-a-Service (PaaS)
-  - ✅ "aws"
-  - ✅ "azure"
-  - ✅ "gcloud"
-  - ✅ "heroku"
-- Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
-  - ⬜ "aws"
-  - ⬜ "azure"
-  - ⬜ "gcloud"
-  - ⬜ "heroku"
-- ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
-- ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
-- ⬜ Ping / Health endpoint
+-   ✅ Local "hello-cloud" service (`./gradlew` or `./mvnw`)
+-   ✅ Build and run as container (`docker`, `docker-compose`, or `podman`)
+-   ✅ Deploy container to GitHub Container Registry as GitHub Package
+-   ✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
+-   Deploy to cloud Platform-as-a-Service (PaaS)
+    -   ✅ "aws"
+    -   ✅ "azure"
+    -   ✅ "gcloud"
+    -   ✅ "heroku"
+-   Deploy to cloud Managed Containers _\*prefer "run as container" deployment over full-blown Managed Kubernetes deployment_
+    -   ⬜ "aws"
+    -   ⬜ "azure"
+    -   ⬜ "gcloud"
+    -   ⬜ "heroku"
+-   ⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
+-   ⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site
+-   ⬜ Ping / Health endpoint
