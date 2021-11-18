@@ -28,7 +28,7 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) build \
 		-t $(image_tag) \
-		-f ./docker/Dockerfile \
+		-f ./Dockerfile \
 		. \
 	&& echo 'Successfully built: $(image_tag)'
 else ifeq '$(dev_tool)' 'docker-compose'
@@ -69,6 +69,7 @@ else ifeq '$(dev_tool)' 'dotnet'
 	@set -eu \
 	&& dotnet run --nologo
 endif
+	@echo 'Successfully started: http://localhost:$(host_port)'
 
 .PHONY: stop
 stop:
@@ -151,7 +152,7 @@ aws-install:
 	&& echo "2" | dotnet dotnet-aws deploy \
 		--region $(aws_region) \
 		--project-path ./ \
-		--stack-name=$(aws_app_name)
+		--stack-name $(aws_stack_name)
 
 # HELP: need an automation solution
 .PHONY: aws-logs
@@ -164,8 +165,11 @@ aws-logs:
 	&& echo '' \
 	&& echo 'Developers wanted! Contribute an automated CLI command option for streaming logs here.'
 
+# FRAGILE: there does not appear to be a "force" argument,
+# so "y" is piped to confirm "are you sure?".
+# https://github.com/aws/aws-dotnet-deploy/issues/404
 .PHONY: aws-uninstall
 aws-uninstall:
 	@set -eu \
-	&& dotnet dotnet-aws delete-deployment \
-		--stack-name=$(aws_app_name)
+	&& echo "y" | dotnet dotnet-aws delete-deployment \
+		$(aws_stack_name)
