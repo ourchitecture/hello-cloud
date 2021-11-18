@@ -321,11 +321,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#google-cloud" class="md-nav__link">
-    Google Cloud
+  <a href="#microsoft-azure" class="md-nav__link">
+    Microsoft Azure
   </a>
   
-    <nav class="md-nav" aria-label="Google Cloud">
+    <nav class="md-nav" aria-label="Microsoft Azure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -337,6 +337,33 @@
         
           <li class="md-nav__item">
   <a href="#steps-to-deploy_1" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    Google Cloud
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_2" class="md-nav__link">
     Steps to deploy
   </a>
   
@@ -536,11 +563,11 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#google-cloud" class="md-nav__link">
-    Google Cloud
+  <a href="#microsoft-azure" class="md-nav__link">
+    Microsoft Azure
   </a>
   
-    <nav class="md-nav" aria-label="Google Cloud">
+    <nav class="md-nav" aria-label="Microsoft Azure">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -552,6 +579,33 @@
         
           <li class="md-nav__item">
   <a href="#steps-to-deploy_1" class="md-nav__link">
+    Steps to deploy
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#google-cloud" class="md-nav__link">
+    Google Cloud
+  </a>
+  
+    <nav class="md-nav" aria-label="Google Cloud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steps-to-deploy_2" class="md-nav__link">
     Steps to deploy
   </a>
   
@@ -632,14 +686,31 @@
 <li>Check the application logs with the command <code>make aws-logs</code>. <a href="../../contribute/">Help wanted</a> to automate this command.</li>
 <li>Uninstall and clean up the application deployment with the command <code>make aws-uninstall</code>. This command may take several seconds.</li>
 </ol>
-<h3 id="google-cloud">Google Cloud</h3>
+<h3 id="microsoft-azure">Microsoft Azure</h3>
 <h4 id="prerequisites_1">Prerequisites</h4>
+<ul>
+<li>An <a href="https://azure.microsoft.com/en-us/free/">Azure account</a> 🔗 (<em>this project worked with free infrastructure at the time of its creation</em>)</li>
+<li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"><code>az</code> CLI</a> 🔗</li>
+<li><a href="https://dotnet.microsoft.com/download"><code>dotnet</code> 6 SDK</a> 🔗</li>
+</ul>
+<h4 id="steps-to-deploy_1">Steps to deploy</h4>
+<ol>
+<li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/services/dotnet/webapi</code>)</li>
+<li>Login to your Azure account with the CLI using the command <code>az login</code></li>
+<li>If you have more than one subscription, first <a href="https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription">set the default subscription</a></li>
+<li>Run the command <code>make azure-init</code> to create the Azure Resource Group</li>
+<li>Install the application with the command <code>make azure-install</code></li>
+<li>Check the application logs with the command <code>make azure-logs</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make azure-uninstall</code></li>
+</ol>
+<h3 id="google-cloud">Google Cloud</h3>
+<h4 id="prerequisites_2">Prerequisites</h4>
 <ul>
 <li>An <a href="https://cloud.google.com/free">Google Cloud account</a> <em>*this project worked with free infrastructure at the time of its creation</em></li>
 <li><a href="https://cloud.google.com/sdk/docs/quickstart">Google Cloud SDK</a></li>
 <li>Google Cloud <a href="https://console.cloud.google.com/billing">Billing Account</a></li>
 </ul>
-<h4 id="steps-to-deploy_1">Steps to deploy</h4>
+<h4 id="steps-to-deploy_2">Steps to deploy</h4>
 <p>Every attempt is made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. <a href="../../contribute/">Contributions are welcome!</a></p>
 <ol>
 <li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/services/dotnet/webapi</code>).</li>
@@ -657,9 +728,16 @@
 <li>✅ Build and run as container (<code>docker</code>, <code>docker-compose</code>, or <code>podman</code>)</li>
 <li>✅ Deploy container to GitHub Container Registry as GitHub Package</li>
 <li>✅ GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package</li>
-<li>⬜ Deploy to cloud Platform-as-a-Service (PaaS) ("aws", "gcloud", "azure", "heroku")</li>
-<li>✅ Deploy to cloud Managed Containers ("aws", "gcloud") <em>*prefer "run as container" deployment over full-blown Managed Kubernetes deployment</em></li>
-<li>⬜ Deploy to cloud Managed Containers ("azure", "heroku") <em>*prefer "run as container" deployment over full-blown Managed Kubernetes deployment</em></li>
+<li>⏱️ Deploy to cloud Platform-as-a-Service (PaaS)</li>
+<li>💥 "aws" requires a container</li>
+<li>✅ "azure"</li>
+<li>💥 "gcloud" requires a container</li>
+<li>⬜ "heroku"</li>
+<li>⏱️ Deploy to cloud Managed Containers <em>*prefer "run as container" deployment over full-blown Managed Kubernetes deployment</em></li>
+<li>✅ "aws"</li>
+<li>⬜ "azure"</li>
+<li>✅ "gcloud"</li>
+<li>⬜ "heroku"</li>
 <li>⬜ GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)</li>
 <li>⬜ Service contracts and auto-generated documentation integrated with MkDocs documentation site</li>
 <li>⬜ Ping / Health endpoint</li>
