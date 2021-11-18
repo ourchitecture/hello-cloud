@@ -8,7 +8,8 @@ theme:
   logo: "img/logo.png"
   favicon: "img/favicon.png"
   features:
-    - "header.autohide"
+    - header.autohide
+    - navigation.indexes
 nav:
   - "Home": "index.md"
   - "Web Services":
@@ -24,3 +25,7 @@ extra:
     - icon: "fontawesome/brands/github"
       link: "https://github.com/ericis/hello-cloud/"
       name: "GitHub"
+  disqus: hello-cloud
+  analytics:
+    provider: google
+    property: G-YWLCJCMGFX
