@@ -3,6 +3,7 @@ site_name: "Hello Cloud"
 site_url: "https://github.com/ericis/hello-cloud/#readme"
 repo_url: "https://github.com/ericis/hello-cloud/#readme"
 repo_name: ericis/hello-cloud
+edit_uri: "edit/main/src/docs"
 site_author: "Ourchitecture"
 copyright: "Creative Commons Zero v1.0 Universal"
 theme:
