@@ -11,6 +11,8 @@ theme:
   custom_dir: "./src/mkdocs"
   logo: "img/logo.png"
   favicon: "img/favicon.png"
+  icon:
+    repo: fontawesome/brands/github
   palette:
     - scheme: "slate"
       primary: "blue"
