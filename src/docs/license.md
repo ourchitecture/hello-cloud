@@ -31,7 +31,7 @@
     - [MkDocs](https://www.mkdocs.org/)
     - [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
     - [podman](https://podman.io/)
-    - [Java OpenSDK](https://openjdk.java.net/)
+    - [Java OpenJDK](https://openjdk.java.net/)
     - [Java Spring](https://spring.io/)
     - [.NET Core](https://dotnet.microsoft.com/)
     - [NodeJS](https://nodejs.org/)
