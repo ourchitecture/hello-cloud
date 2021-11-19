@@ -142,14 +142,45 @@ This project attempts to support a variety of developer tooling choices while ma
     If you do not wish to use `make`, review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.
 
     ```shell
+    # instead of using make across all projects
+    # and not needing to know specific tools or their arguments
+    # and even forgetting exactly which command to use
+    # among other synonym alternatives...
+    # example:
+    $ make start # or make [start,run,up,serve]
+    # and, instead of running make with a variety of tooling choices...
+    # examples:
+    $ make start dev_tool=podman
+    $ make start dev_tool=docker
+    $ make start dev_tool=docker-compose
+    $ make start dev_tool=node
+    $ make start dev_tool=npm
+    $ make start dev_tool=yarn
+    $ make start dev_tool=gradle
+    $ make start dev_tool=gradlew
+    $ make start dev_tool=maven
+    $ make start dev_tool=mvn
+    $ make start dev_tool=mvnw
+    $ make start dev_tool=dotnet
+
+    # ... you can use the tools themselves directly
+    # this is especially useful for getting things working
+    # however, once things are working,
+    # it's great to go back and re-test the make commands
+    # to ensure consistent command definitions and execution
+    # across machines (developers and DevOps pipelines)
+
     # run a NodeJS project with native commands
+    # (may have project-specific arguments)
     $ npm install && npm start
     $ yarn && yarn start
 
     # run a Java project with native commands
+    # (may have project-specific arguments)
     $ ./gradlew bootRun
     $ ./mvnw spring-boot:run
 
     # run a .NET Core project with native commands
+    # (may have project-specific arguments)
     $ dotnet run
     ```
