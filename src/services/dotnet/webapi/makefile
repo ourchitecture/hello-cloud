@@ -29,6 +29,8 @@ gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
 gcloud_region:=us-east1
 gcloud_logs_limit:=20
 
+heroku_app_name:=our-hellodotnetwebapi
+
 .DEFAULT_GOAL:=install
 
 all: install
@@ -274,3 +276,33 @@ gcloud-uninstall:
 	&& gcloud projects delete \
 		"$(gcloud_project_unique_name)" \
 		--quiet
+
+.PHONY: heroku-init
+heroku-init:
+	@set -eu \
+	&& heroku create \
+		$(heroku_app_name) \
+		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
+	&& heroku buildpacks:add \
+		-a $(heroku_app_name) \
+		https://github.com/jincod/dotnetcore-buildpack \
+	&& heroku config:set \
+		-a $(heroku_app_name) \
+		APP_BASE=src/services/dotnet/webapi/
+
+.PHONY: heroku-install
+heroku-install:
+	@set -eu \
+	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
+
+.PHONY: heroku-logs
+heroku-logs:
+	@set -eu \
+	&& heroku logs -a $(heroku_app_name)
+
+.PHONY: heroku-uninstall
+heroku-uninstall:
+	@set -eu \
+	&& heroku apps:destroy \
+		-a $(heroku_app_name) \
+		--confirm $(heroku_app_name)

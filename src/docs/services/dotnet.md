@@ -111,6 +111,22 @@
 
       Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times within a short period. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name.
 
+### :fontawesome-brands-salesforce: SalesForce Heroku
+
+!!! todo "Prerequisites"
+
+    -   A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
+    -   [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
+
+!!! example "Commands"
+
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
+    2. Login to your Heroku account with the CLI using the command `heroku login`
+    3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as a community [dotnet buildpack](https://github.com/jincod/dotnetcore-buildpack)
+    4. Install the application with the command `make heroku-install`
+    5. Check the application logs with the command `make heroku-logs`
+    6. Uninstall and clean up the application deployment with the command `make heroku-uninstall`
+
 ## Roadmap
 
 ???+ info "Started"
@@ -119,8 +135,6 @@
 
 ???+ question "Future"
 
-    -   Deploy to cloud Platform-as-a-Service (PaaS)
-        -   "heroku"
     -   Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
         -   "azure"
         -   "heroku"
@@ -143,6 +157,7 @@
         -   :material-heart-broken: "aws" requires a container
         -   "azure"
         -   :material-heart-broken: "gcloud" requires a container
+        -   "heroku"
     -   Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
         -   "aws"
         -   "gcloud"
