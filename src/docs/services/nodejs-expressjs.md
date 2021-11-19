@@ -130,7 +130,7 @@
 
 ???+ info "Started"
 
-    [Start contributing!](./contribute.md){ .md-button }
+    [Start contributing!](../contribute.md){ .md-button }
 
 ???+ question "Future"
 
