@@ -1,3 +1,3 @@
 # .NET
 
-👉🏼 Read the [project documentation](https://ericis.github.io/hello-cloud/services/dotnet/). 👀
+👉🏼 Read the [project documentation](https://www.ourchitecture.io/hello-cloud/services/dotnet/). 👀

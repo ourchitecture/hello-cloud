@@ -1,7 +1,7 @@
 # Service: Java with SpringBoot
 
--   :octicons-container-16: **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi)
--   :octicons-code-16: **Source:** [./src/services/java/springboot/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi)
+-   :octicons-container-16: **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi)
+-   :octicons-code-16: **Source:** [./src/services/java/springboot/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/java/springboot/webapi)
 -   :fontawesome-brands-java: **Runtime:** [OpenJDK](https://openjdk.java.net/) :octicons-link-16:
 -   :fontawesome-brands-java: **Language:** [Java](https://docs.oracle.com/javase/specs/) :octicons-link-16:
 -   :fontawesome-solid-leaf: **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) :octicons-link-16:
@@ -16,9 +16,9 @@
 !!! info ""
 
     -   :material-run-fast: **Tasks:** [`make`](../contribute.md#development)
-    -   :material-pipe: **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
-    -   :octicons-code-16: **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/java/springboot/webapi/)
-    -   :goal: **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
+    -   :material-pipe: **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ourchitecture/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
+    -   :octicons-code-16: **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/java/springboot/webapi/)
+    -   :goal: **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
 
 ## Deployments
 
@@ -26,7 +26,7 @@
 
 !!! example "Run as a container"
 
-    The ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker image is simply the packaged and runnable version of the web service.
+    The ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker image is simply the packaged and runnable version of the web service.
 
     Run this service with any Open Container Initiative (OCI) compatible runtime, like `docker` or `podman` and then browse to http://localhost:8080/.
 
@@ -35,10 +35,10 @@
       --name=our-hello-java-springboot-webapi \
       --detach \
       --publish=8080:8080 \
-      ghcr.io/ericis/hello-cloud/our-hello-java-springboot-webapi:latest
+      ghcr.io/ourchitecture/hello-cloud/our-hello-java-springboot-webapi:latest
     ```
 
-    Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/java_springboot_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-cloud/our-hello-java-springboot-webapi" image](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi).
+    Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/java_springboot_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-cloud/our-hello-java-springboot-webapi" image](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi).
 
 ### :cloud: Multi-cloud
 

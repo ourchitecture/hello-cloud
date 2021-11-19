@@ -3,8 +3,8 @@ ARG BASE_DOCKER_IMAGE_NAME=mcr.microsoft.com/dotnet/aspnet
 ARG DOTNET_VERSION=6.0
 ARG ALPINE_VERSION=3.14
 
-ARG PUBLISHED_SOURCE_URL=https://github.com/ericis/hello-cloud
-ARG PUBLISHED_DOCUMENTATION_URL=https://ericis.github.io/hello-cloud/
+ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
+ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
 FROM ${BASE_BUILDER_DOCKER_IMAGE_NAME}:${DOTNET_VERSION}-alpine${ALPINE_VERSION} as builder
 

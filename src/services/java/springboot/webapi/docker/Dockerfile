@@ -5,8 +5,8 @@ ARG JAR_NAME=hello-cloud
 ARG JAR_VERSION=0.0.1-SNAPSHOT
 ARG JAR_FILE_NAME=${JAR_NAME}-${JAR_VERSION}.jar
 
-ARG PUBLISHED_SOURCE_URL=https://github.com/ericis/hello-cloud
-ARG PUBLISHED_DOCUMENTATION_URL=https://ericis.github.io/hello-cloud/
+ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
+ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
 FROM ${BASE_DOCKER_IMAGE_NAME}:${JAVA_VERSION} as base
 

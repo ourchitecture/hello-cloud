@@ -1,7 +1,7 @@
 # Service: .NET Core
 
--   :octicons-container-16: **Container:** [hello-cloud/our-hello-dotnet-webapi](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi)
--   :octicons-code-16: **Source:** [./src/services/dotnet/webapi/](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi)
+-   :octicons-container-16: **Container:** [hello-cloud/our-hello-dotnet-webapi](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi)
+-   :octicons-code-16: **Source:** [./src/services/dotnet/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi)
 -   :material-dot-net: **Runtime:** [.NET Core](https://dotnet.microsoft.com/) :octicons-link-16:
 -   :material-language-csharp: **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) :octicons-link-16:
 -   :material-dot-net: **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) :octicons-link-16:
@@ -16,9 +16,9 @@
 !!! info ""
 
     -   :material-run-fast: **Tasks:** [`make`](../contribute.md#development)
-    -   :material-pipe: **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ericis/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
-    -   :octicons-code-16: **Source:** ["./src/services/dotnet/webapi"](https://github.com/ericis/hello-cloud/tree/main/src/services/dotnet/webapi/)
-    -   :goal: **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
+    -   :material-pipe: **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ourchitecture/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
+    -   :octicons-code-16: **Source:** ["./src/services/dotnet/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi/)
+    -   :goal: **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
 
 ## Deployments
 
@@ -26,7 +26,7 @@
 
 !!! example "Run as a container"
 
-    The ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker image is simply the packaged and runnable version of the web service.
+    The ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker image is simply the packaged and runnable version of the web service.
 
     Run this service with any Open Container Initiative (OCI) compatible runtime, like `docker` or `podman` and then browse to http://localhost:5124/.
 
@@ -35,10 +35,10 @@
       --name=our-hello-dotnet-webapi \
       --detach \
       --publish=5124:80 \
-      ghcr.io/ericis/hello-cloud/our-hello-dotnet-webapi:latest
+      ghcr.io/ourchitecture/hello-cloud/our-hello-dotnet-webapi:latest
     ```
 
-    Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/java_springboot_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-cloud/our-hello-dotnet-webapi" image](https://github.com/ericis/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi).
+    Using the standard developer `make` tasks, the service can be containerized and executed with `docker`, `docker-compose` or `podman`. The DevOps pipeline for Continuous Integration (CI) and Deployment (CD) uses the `make deploy` task to build and deploy the service as a container (_`make deploy` only supports "dev_tool=docker" or "dev_tool=podman"_). The GitHub Actions workflow "./.github/workflows/java_springboot_webapi.yml" authenticates to the GitHub Container Registry for this repository and pushes (publishes) [the "hello-cloud/our-hello-dotnet-webapi" image](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi).
 
 ### :cloud: Multi-cloud
 

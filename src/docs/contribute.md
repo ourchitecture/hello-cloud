@@ -10,14 +10,14 @@ Is your favorite language and/or framework to build a website or web service mis
 
 ???+ example "1. The 'Hello World' program"
 
-    1. Check if the idea is already on [the roadmap](./roadmap.md) or has already been submitted as [an issue](https://github.com/ericis/hello-cloud/issues).
-    2. [Submit an issue](https://github.com/ericis/hello-cloud/issues) that describes your idea to start a discussion.
-    3. [Fork this project](https://github.com/ericis/hello-cloud/fork) and clone it to your local system.
+    1. Check if the idea is already on [the roadmap](./roadmap.md) or has already been submitted as [an issue](https://github.com/ourchitecture/hello-cloud/issues).
+    2. [Submit an issue](https://github.com/ourchitecture/hello-cloud/issues) that describes your idea to start a discussion.
+    3. [Fork this project](https://github.com/ourchitecture/hello-cloud/fork) and clone it to your local system.
     4. Review the "Development" steps below.
     5. Review one of the [existing projects](./index.md#projects) for similarities to your idea.
     6. Create a new directory for your source code (e.g. "./src/services/[language/framework]" for web services or "./src/apps/[language/framework]" for web applications).
     7. Add a basic "hello world" example using the language and framework of choice.
-    8. Commit small, working changes regularly and please use ["conventional commit messages"](https://www.conventionalcommits.org/en/v1.0.0/). You can see [existing examples of commit messages](https://github.com/ericis/hello-cloud/commits/main).
+    8. Commit small, working changes regularly and please use ["conventional commit messages"](https://www.conventionalcommits.org/en/v1.0.0/). You can see [existing examples of commit messages](https://github.com/ourchitecture/hello-cloud/commits/main).
     9. Automate the developer tasks by creating a new "./makefile" in your project, copy command targets from an existing "./makefile" from another project and customize the commands to work with your language and framework. Ignore any deployment commands for now and also ignore command targets you are not ready or not sure how to implement.
     10. Commit your changes.
     11. Add the path to your project in the root "./makefile" in the space-separated "project_dirs" variable list. This will enable developers to build and run all projects at the same time, including yours.
@@ -66,7 +66,7 @@ Once we have a working, containerized program, we can begin cloud deployment aut
 
 ???+ example "1. Pick just one cloud"
 
-    1. Pick one of the major cloud providers that you will target a deployment for (e.g. AWS, Azure, GCP, or Heroku). If your cloud provider is not in this list, please first propose a new one by [submitting an issue](https://github.com/ericis/hello-cloud/issues) and we can discuss the proposal. Please understand that your request could be denied. You will need an account that may incur costs when testing your cloud deployment. Most "hello world" implementations are free or very cheap on major cloud providers, especially if you focus on automating destruction of cloud resources and destroy them immediately after creating them and testing for success.
+    1. Pick one of the major cloud providers that you will target a deployment for (e.g. AWS, Azure, GCP, or Heroku). If your cloud provider is not in this list, please first propose a new one by [submitting an issue](https://github.com/ourchitecture/hello-cloud/issues) and we can discuss the proposal. Please understand that your request could be denied. You will need an account that may incur costs when testing your cloud deployment. Most "hello world" implementations are free or very cheap on major cloud providers, especially if you focus on automating destruction of cloud resources and destroy them immediately after creating them and testing for success.
     2. Review an existing project's cloud deployment documentation.
     3. Review an existing project's "./makefile" cloud deployment command targets.
     4. Begin work to add your own cloud deployment command targets to your project's "./makefile".
@@ -129,7 +129,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
     All automation tasks are abstracted behind `make` :octicons-gear-16: command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` or `maven` (for Java projects), `yarn` or `node` / `npm` (for Node projects), or `dotnet` (for .NET projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn`; `make start dev_tool=podman`; `make run dev_tool=dotnet`). However, `docker` is recommended as the default "dev_tool", since it is also used by DevOps pipeline tasks for production build, test, and deploy.
 
-    1. Clone the repository with the command `git clone --depth=1 https://github.com/ericis/hello-cloud`
+    1. Clone the repository with the command `git clone --depth=1 https://github.com/ourchitecture/hello-cloud`
     2. Navigate to the project in a terminal or open your favorite editor
     3. Build the project with the command `make` or `make install` (`make build` will also work)
     4. Test the system with the command `make check` (`make test` will also work)

@@ -3,8 +3,8 @@ ARG NODE_VERSION=17.0.1
 ARG ALPINE_VERSION=3.12
 ARG BASE_DOCKER_IMAGE_TAG=${NODE_VERSION}-alpine${ALPINE_VERSION}
 
-ARG PUBLISHED_SOURCE_URL=https://github.com/ericis/hello-cloud
-ARG PUBLISHED_DOCUMENTATION_URL=https://ericis.github.io/hello-cloud/
+ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
+ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
 FROM ${BASE_DOCKER_IMAGE_NAME}:${BASE_DOCKER_IMAGE_TAG} as base
 

@@ -1,3 +1,3 @@
 # Java with SpringBoot
 
-👉🏼 Read the [project documentation](https://ericis.github.io/hello-cloud/services/java-springboot/). 👀
+👉🏼 Read the [project documentation](https://www.ourchitecture.io/hello-cloud/services/java-springboot/). 👀
