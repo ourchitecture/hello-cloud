@@ -758,15 +758,46 @@
 </ol>
 </div>
 <details class="hint"><summary>Using locally installed tools...</summary><p>If you do not wish to use <code>make</code>, review the commands in the "./makefile" and construct the appropriate command or simply try out what you expect to work.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># run a NodeJS project with native commands</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># instead of using make across all projects</span>
+<span class="c1"># and not needing to know specific tools or their arguments</span>
+<span class="c1"># and even forgetting exactly which command to use</span>
+<span class="c1"># among other synonym alternatives...</span>
+<span class="c1"># example:</span>
+$ make start <span class="c1"># or make [start,run,up,serve]</span>
+<span class="c1"># and, instead of running make with a variety of tooling choices...</span>
+<span class="c1"># examples:</span>
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>podman
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>docker
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>docker-compose
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>node
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>npm
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>yarn
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>gradle
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>gradlew
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>maven
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>mvn
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>mvnw
+$ make start <span class="nv">dev_tool</span><span class="o">=</span>dotnet
+
+<span class="c1"># ... you can use the tools themselves directly</span>
+<span class="c1"># this is especially useful for getting things working</span>
+<span class="c1"># however, once things are working,</span>
+<span class="c1"># it&#39;s great to go back and re-test the make commands</span>
+<span class="c1"># to ensure consistent command definitions and execution</span>
+<span class="c1"># across machines (developers and DevOps pipelines)</span>
+
+<span class="c1"># run a NodeJS project with native commands</span>
+<span class="c1"># (may have project-specific arguments)</span>
 $ npm install <span class="o">&amp;&amp;</span> npm start
 $ yarn <span class="o">&amp;&amp;</span> yarn start
 
 <span class="c1"># run a Java project with native commands</span>
+<span class="c1"># (may have project-specific arguments)</span>
 $ ./gradlew bootRun
 $ ./mvnw spring-boot:run
 
 <span class="c1"># run a .NET Core project with native commands</span>
+<span class="c1"># (may have project-specific arguments)</span>
 $ dotnet run
 </code></pre></div>
 </details>
