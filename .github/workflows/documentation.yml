@@ -28,7 +28,7 @@ jobs:
 
       - name: publish
         if: ${{ github.event_name == 'push' }}
-        run: |
+        bash: |
           git config user.name our-github-actions
           git config user.email ericis@users.noreply.github.com
           random_word=`rl -c 1 /usr/share/dict/words`
