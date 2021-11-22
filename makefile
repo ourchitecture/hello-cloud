@@ -145,3 +145,7 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
+
+.PHONY: pr
+pr:
+	@git-town new-pull-request
