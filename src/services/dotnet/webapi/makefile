@@ -147,8 +147,8 @@ uninstall: clean
 
 .PHONY: cloud-validator
 cloud-validator:
-ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
-	$(error The "cloud" argument only supports "aws", "azure" or "gcloud")
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
+	$(error The "cloud" argument only supports "aws", "azure" "gcloud", or "heroku")
 endif
 
 .PHONY: cloud-init
