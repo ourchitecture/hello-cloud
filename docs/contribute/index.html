@@ -684,7 +684,7 @@
 <li>We will start a discussion on the proposed implementation. Please be open to making any suggested changes.</li>
 </ol>
 </details>
-<details class="example" open="open"><summary>2. Containers</summary><p>Once you have a basic "hello world" example working, it's time to containerize your system, so that it can be executed by any Open Container Initiative-compatible runtime.</p>
+<details class="example" open="open"><summary>2. Containers</summary><p>Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.</p>
 <ol>
 <li>Review an existing "./makefile" from another project and customize your project's commands to work with <code>docker</code>, <code>docker-compose</code> and <code>podman</code>.</li>
 <li>Hopefully, a base docker image will already exist to mount and execute your application (e.g. <a href="https://hub.docker.com/_/node">node</a>). If so, use this as your base. If not, consider choosing <a href="https://hub.docker.com/_/alpine">Alpine Linux</a>, <a href="https://hub.docker.com/_/debian">Debian</a>, or <a href="https://hub.docker.com/_/ubuntu">Ubuntu</a> for your base image.</li>
