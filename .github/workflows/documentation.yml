@@ -23,9 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: sync
-        run: git pull
-
       - name: documentation
         run: make install-docs
 
@@ -34,7 +31,9 @@ jobs:
         run: |
           git config user.name our-github-actions
           git config user.email ericis@users.noreply.github.com
+          random_word=`rl -c 1 /usr/share/dict/words`
+          branch_name=autodocs_${random_word}
+          git checkout -b ${branch_name}
           git add .
           git commit -m 'docs: auto-generate documentation [skip ci]'
-          git pull
-          git push
+          git push --set-upstream origin ${branch_name}
