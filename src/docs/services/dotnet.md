@@ -46,10 +46,10 @@
 
     While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-    -   Initialize with the command `make cloud-init cloud=aws|gcloud`
-    -   Install (deploy) with the command `make cloud-install cloud=aws|gcloud`
-    -   Get the applicaiton logs with the command `make cloud-logs cloud=aws|gcloud`
-    -   Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|gcloud`
+    -   Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
+    -   Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
+    -   Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
+    -   Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
 
 ### :fontawesome-brands-aws: Amazon Web Services (AWS)
 
