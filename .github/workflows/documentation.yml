@@ -26,14 +26,26 @@ jobs:
       - name: documentation
         run: make install-docs
 
-      - name: publish
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         if: ${{ github.event_name == 'push' }}
-        run: |
-          git config user.name our-github-actions
-          git config user.email ericis@users.noreply.github.com
-          random_word=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
-          branch_name=autodocs_${random_word}
-          git checkout -b ${branch_name}
-          git add .
-          git commit -m 'docs: auto-generate documentation [skip ci]'
-          git push --set-upstream origin ${branch_name}
+        with:
+          title: "docs: auto-generated documentation"
+          signoff: true
+          commit-message: "docs: auto-generated documentation [skip ci]"
+          body: "Automatically generated documentation that requires a PR, because the main branch is protected."
+          labels: "documentation"
+          reviewers: "ericis"
+          assignees: "ericis"
+
+      # - name: publish
+      #   if: ${{ github.event_name == 'push' }}
+      #   run: |
+      #     git config user.name our-github-actions
+      #     git config user.email ericis@users.noreply.github.com
+      #     random_word=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
+      #     branch_name=autodocs_${random_word}
+      #     git checkout -b ${branch_name}
+      #     git add .
+      #     git commit -m 'docs: auto-generate documentation [skip ci]'
+      #     git push --set-upstream origin ${branch_name}
