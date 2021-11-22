@@ -27,7 +27,7 @@ Is your favorite language and/or framework to build a website or web service mis
 
 ???+ example "2. Containers"
 
-    Once you have a basic "hello world" example working, it's time to containerize your system, so that it can be executed by any Open Container Initiative-compatible runtime.
+    Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.
 
     1. Review an existing "./makefile" from another project and customize your project's commands to work with `docker`, `docker-compose` and `podman`.
     2. Hopefully, a base docker image will already exist to mount and execute your application (e.g. [node](https://hub.docker.com/_/node)). If so, use this as your base. If not, consider choosing [Alpine Linux](https://hub.docker.com/_/alpine), [Debian](https://hub.docker.com/_/debian), or [Ubuntu](https://hub.docker.com/_/ubuntu) for your base image.
