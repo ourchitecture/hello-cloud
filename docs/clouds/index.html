@@ -399,6 +399,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_2">
@@ -433,8 +435,22 @@
   
   
     <li class="md-nav__item">
-      <a href="../services/java-springboot/" class="md-nav__link">
+      <a href="../services/jvm/java-springboot.md" class="md-nav__link">
         Java with SpringBoot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services/jvm/kotlin-springboot.md" class="md-nav__link">
+        Kotlin with SpringBoot
       </a>
     </li>
   
@@ -502,30 +518,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#cloud-providers" class="md-nav__link">
+    Cloud Providers
+  </a>
+  
+    <nav class="md-nav" aria-label="Cloud Providers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#amazon-web-services" class="md-nav__link">
     Amazon Web Services
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#microsoft-azure" class="md-nav__link">
     Microsoft Azure
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#google-cloud" class="md-nav__link">
     Google Cloud
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#salesforce-heroku" class="md-nav__link">
     Salesforce Heroku
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technology" class="md-nav__link">
+    Technology
+  </a>
+  
+    <nav class="md-nav" aria-label="Technology">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#java-and-kotlin" class="md-nav__link">
+    Java and Kotlin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -631,24 +680,29 @@
                 
                 <h1 id="clouds">Clouds</h1>
 <p>Following are some interesting cloud observations while developing basic, automated hello-world deployments for each.</p>
-<h2 id="amazon-web-services">Amazon Web Services</h2>
+<h2 id="cloud-providers">Cloud Providers</h2>
+<h3 id="amazon-web-services">Amazon Web Services</h3>
 <ul>
 <li>PaaS support for .NET is severely limited, requiring a containerized deployment.</li>
+<li>PaaS support for Java and Kotlin using Elastic Beanstalk and Corretto 11 complains during <code>eb deploy</code> with "Alert: The platform version that your environment is using isn't recommended. There's a recommended version in the same platform branch." This is because specifying <code>eb init --platform corretto-11 ...</code> defaults to version "3.2.7", when a newer platform version exists on AWS. <a href="../contribute/">Contributions</a> to fix this with a specific platform version are welcomed.</li>
 </ul>
-<h2 id="microsoft-azure">Microsoft Azure</h2>
+<h3 id="microsoft-azure">Microsoft Azure</h3>
 <ul>
-<li>Java PaaS support was challenging as it seems they only support a Maven plug-in, eliminating the ability for projects that target Azure to use Gradle. This is an odd choice, considering Gradle is perhaps equally or more popular than Maven for modern development and the entire Android ecosystem utilizes Gradle.</li>
+<li>Java and Kotlin PaaS support was challenging as it seems they only support a Maven plug-in, eliminating the ability for projects that target Azure to use Gradle. This is an odd choice, considering Gradle is perhaps equally or more popular than Maven for modern development and the entire Android ecosystem utilizes Gradle.</li>
 </ul>
-<h2 id="google-cloud">Google Cloud</h2>
+<h3 id="google-cloud">Google Cloud</h3>
 <ul>
 <li>Automatically setting up and tearing down PaaS infrastructure seems "quirky" and idempotency is challenging.</li>
 <li>The command <code>gcloud app deploy ...</code> does not properly ignore a "./Dockerfile", even if the "./app.yaml" specifies a standard runtime (not "custom" for docker containers) and the file "./.gcloudignore" explicitly ignores "Dockerfile".</li>
 </ul>
-<h2 id="salesforce-heroku">Salesforce Heroku</h2>
+<h3 id="salesforce-heroku">Salesforce Heroku</h3>
 <ul>
 <li>Does not work out-of-the-box with monorepos, requiring the use of an unsupported <a href="https://github.com/lstoll/heroku-buildpack-monorepo">community user buildpack</a>. Heroku also uses a <code>git</code> repository to push code changes. Currently, the entire monorepo must be synchronized with the Heroku repo. Future contribution enhancements could containerize the heroku runtime, mount just the project, initialize git and push the changes. Heroku tooling complains when a "shallow clone" is made (e.g. <code>git clone --depth=1 ...</code>). So, without the full history and simulating a new repository with each deploy, the effects of this are unknown.</li>
 <li>.NET Core is not an officially supported language, requiring the use of an unsupported <a href="https://github.com/jincod/dotnetcore-buildpack">community user buildpack</a>. This is odd, considering C# has been in the top lists of programming languages for professional developers for several years.</li>
 </ul>
+<h2 id="technology">Technology</h2>
+<h3 id="java-and-kotlin">Java and Kotlin</h3>
+<p>Some vendor Platform as a Service (PaaS) solutions are limited to Java 11 with Long-Term Support (LTS), despite the OpenJDK being released every 6 months including newer LTS versions (e.g. v17). Newer Java versions may use containers and examples are provided. See the <a href="https://www.oracle.com/java/technologies/java-se-support-roadmap.html">Oracle Java SE support roadmap</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> for more.</p>
                 
               
               
