@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.6.0</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>org.ourchitecture.hello.cloud</groupId>
+  <artifactId>hello-cloud</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>hello-cloud</name>
+  <description>Hello cloud web API for Java using Spring Boot</description>
+  <properties>
+    <azure-maven-plugin.version>0.2.0</azure-maven-plugin.version>
+    <azure-webapp-maven-plugin.version>2.2.1</azure-webapp-maven-plugin.version>
+    <azure-webapp-maven-plugin.schema.version>V2</azure-webapp-maven-plugin.schema.version>
+    <azure.java.version>java11</azure.java.version>
+    <azure.java.container>Java SE</azure.java.container>
+    <java.version>11</java.version>
+    <kotlin.version>1.6.0</kotlin.version>
+    <azure.auth.type>
+      auto
+      <!--
+        Override the Azure App Service plan name via command line:
+        ./mvnw ... "-Dazure.auth.type=enter-value-here"
+      -->
+    </azure.auth.type>
+    <azure.client.id>
+      <!--
+        For CI, Set the Azure service principal identifier via command line:
+        ./mvnw ... "-Dazure.client.id=enter-value-here"
+      -->
+    </azure.client.id>
+    <azure.client.key>
+      <!--
+        For CI, Set the Azure service principal password via command line:
+        ./mvnw ... "-Dazure.client.key=enter-value-here"
+      -->
+    </azure.client.key>
+    <azure.tenant.id>
+      <!--
+        For CI, Set the Azure tenant identifier via command line:
+        ./mvnw ... "-Dazure.tenant.id=enter-value-here"
+      -->
+    </azure.tenant.id>
+    <azure.appservice.name>
+      <!--
+        Set the Azure App Service name via command line:
+        ./mvnw ... "-Dazure.appservice.name=enter-value-here"
+      -->
+    </azure.appservice.name>
+    <azure.appservice.plan.name>
+      <!--
+        Set the Azure App Service plan name via command line:
+        ./mvnw ... "-Dazure.appservice.plan.name=enter-value-here"
+      -->
+    </azure.appservice.plan.name>
+    <azure.appservice.plan.os>
+      linux
+      <!--
+        Override the Azure App Service plan name via command line:
+        ./mvnw ... "-Dazure.appservice.plan.os=enter-value-here"
+      -->
+    </azure.appservice.plan.os>
+    <azure.appservice.plan.pricingtier>
+      B1
+      <!--
+        Override the Azure App Service plan name via command line:
+        ./mvnw ... "-Dazure.appservice.plan.pricingtier=enter-value-here"
+      -->
+    </azure.appservice.plan.pricingtier>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-kotlin</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib-jdk8</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <configuration>
+          <args>
+            <arg>-Xjsr305=strict</arg>
+          </args>
+          <compilerPlugins>
+            <plugin>spring</plugin>
+          </compilerPlugins>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!-- https://github.com/microsoft/azure-maven-plugins/blob/develop/azure-webapp-maven-plugin/README.md -->
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>${azure-webapp-maven-plugin.version}</version>
+        <configuration>
+          <schemaVersion>${azure-webapp-maven-plugin.schema.version}</schemaVersion>
+          <allowTelemetry>false</allowTelemetry>
+          <authType>${azure.auth.type}</authType>
+          <resourceGroup>${azure.resourcegroup}</resourceGroup>
+          <appName>${azure.appservice.name}</appName>
+          <appServicePlanName>${azure.appservice.plan.name}</appServicePlanName>
+          <pricingTier>${azure.appservice.plan.pricingtier}</pricingTier>
+          <region>${azure.region}</region>
+          <runtime>
+            <os>${azure.appservice.plan.os}</os>
+            <javaVersion>${azure.java.version}</javaVersion>
+            <webContainer>${azure.java.container}</webContainer>
+          </runtime>
+          <appSettings>
+            <property>
+              <name>JAVA_OPTS</name>
+              <value>-Dserver.port=80</value>
+            </property>
+          </appSettings>
+          <deployment>
+            <resources>
+              <resource>
+                <type>jar</type>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <!--
+    See this issue: https://github.com/microsoft/azure-maven-plugins/issues/1180#issuecomment-719563566
+  -->
+  <profiles>
+    <profile>
+      <id>automation-account</id>
+      <activation>
+        <property>
+          <name>azure.client.id</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-webapp-maven-plugin</artifactId>
+            <version>${azure-webapp-maven-plugin.version}</version>
+            <configuration>
+              <auth>
+                <tenant>${azure.tenant.id}</tenant>
+                <client>${azure.client.id}</client>
+                <key>${azure.client.key}</key>
+                <environment>AZURE</environment>
+              </auth>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

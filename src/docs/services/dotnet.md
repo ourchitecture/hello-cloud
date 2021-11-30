@@ -143,6 +143,7 @@
         -   "azure"
         -   "gcloud"
         -   "heroku"
+    -   HTTPS only deployment
     -   GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
     -   Service contracts and auto-generated documentation integrated with MkDocs documentation site
     -   Ping / Health endpoint

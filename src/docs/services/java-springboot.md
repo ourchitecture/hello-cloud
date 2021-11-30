@@ -1,7 +1,7 @@
 # Service: Java with SpringBoot
 
 -   :octicons-container-16: **Container:** ["hello-cloud/our-hello-java-springboot-webapi"](#docker)
--   :octicons-code-16: **Source:** [./src/services/java/springboot/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/java/springboot/webapi)
+-   :octicons-code-16: **Source:** [./src/services/jvm/java/springboot/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/jvm/java/springboot/webapi)
 -   :fontawesome-brands-java: **Runtime:** [OpenJDK](https://openjdk.java.net/) :octicons-link-16:
 -   :fontawesome-brands-java: **Language:** [Java](https://docs.oracle.com/javase/specs/) :octicons-link-16:
 -   :fontawesome-solid-leaf: **Framework:** [SpringBoot](https://spring.io/projects/spring-boot) :octicons-link-16:
@@ -17,7 +17,7 @@
 
     -   :material-run-fast: **Tasks:** [`make`](../contribute.md#development)
     -   :material-pipe: **Pipeline:** ["./.github/workflows/java_springboot_webapi.yml"](https://github.com/ourchitecture/hello-cloud/blob/main/.github/workflows/java_springboot_webapi.yml)
-    -   :octicons-code-16: **Source:** ["./src/services/java/springboot/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/java/springboot/webapi/)
+    -   :octicons-code-16: **Source:** ["./src/services/jvm/java/springboot/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/jvm/java/springboot/webapi/)
     -   :goal: **Deployment(s):** ["hello-cloud/our-hello-java-springboot-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-java-springboot-webapi) docker container, Amazon Web Services Elastic Beanstalk, Microsoft Azure App Service, Google Cloud App Engine, Salesforce Heroku
 
 ## Deployments
@@ -60,7 +60,7 @@
 
 !!! example "Commands"
 
-    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/jvm/java/springboot/webapi`)
     2. Run the command `make aws-init` to create the AWS Elastic Beanstalk Environment. This command may take a few minutes. The `eb` CLI will prompt you for access credentials. Create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials) :octicons-link-16:, expanding "Access keys" and creating a new key.
     3. Install the application with the command `make aws-install`. This command may take several seconds.
     4. Check the application logs with the command `make aws-logs`
@@ -76,7 +76,7 @@
 
 !!! example "Commands"
 
-    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/jvm/java/springboot/webapi`)
     2. Login to your Azure account with the CLI using the command `az login`
     3. If you have more than one subscription, first [set the default subscription](https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription)
     4. Run the command `make azure-init` to create the Azure Resource Group
@@ -102,7 +102,7 @@
 
 !!! example "Commands"
 
-    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`).
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/jvm/java/springboot/webapi`).
     2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`.
     3. Run the command `make gcloud-init gcloud_project_name_suffix=001` to create the Google Cloud project.
     4. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources). Once the project is associated with a billing account, re-run the "gcloud-init" command above.
@@ -123,7 +123,7 @@
 
 !!! example "Commands"
 
-    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/java/springboot/webapi`)
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/jvm/java/springboot/webapi`)
     2. Login to your Heroku account with the CLI using the command `heroku login`
     3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as the [Java buildpack](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-java)
     4. Install the application with the command `make heroku-install`
@@ -148,6 +148,7 @@
         -   "azure"
         -   "gcloud"
         -   "heroku"
+    -   HTTPS only deployment
     -   GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
     -   Service contracts and auto-generated documentation integrated with MkDocs documentation site
     -   Ping / Health endpoint
@@ -163,3 +164,19 @@
         -   "azure"
         -   "gcloud"
         -   "heroku"
+
+## Troubleshooting
+
+### Amazon Web Services
+
+Running the command `make aws-install dev_tool=gradle` may result in the error below. If it does, simply re-run the command.
+
+> ERROR: InvalidParameterValueError - Environment named env-our-hello-kotlin-springboot is in an invalid state for this operation. Must be Ready.
+
+### Microsoft Azure
+
+Running the command `make azure-install dev_tool=maven` may result in the error below and often successfully completes the deployment. If the deployment fails, simply check your network connection and re-run the command.
+
+> The connection observed an error
+> java.util.concurrent.TimeoutException: Channel write operation timed out
+> Last write attempt timed out; force-closing the connection.

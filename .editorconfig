@@ -24,3 +24,6 @@ tab_width = 4
 # Use tabs for indentation (Makefiles require tabs)
 indent_style = tab
 indent_size = 4
+
+[{Dockerfile,**.dockerfile}]
+tab_width = 4

@@ -3,6 +3,9 @@ ARG BASE_DOCKER_IMAGE_NAME=mcr.microsoft.com/dotnet/aspnet
 ARG DOTNET_VERSION=6.0
 ARG ALPINE_VERSION=3.14
 
+ARG HTTP_PORT=80
+ARG HTTPS_PORT=443
+
 ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
 ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
@@ -24,6 +27,8 @@ FROM ${BASE_DOCKER_IMAGE_NAME}:${DOTNET_VERSION}-alpine${ALPINE_VERSION} as prod
 
 ARG PUBLISHED_DOCUMENTATION_URL
 ARG PUBLISHED_SOURCE_URL
+ARG HTTP_PORT
+ARG HTTPS_PORT
 
 LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
 LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
@@ -32,7 +37,6 @@ COPY --from=builder /app/publish/ /app/
 
 WORKDIR /app
 
-EXPOSE 80
-EXPOSE 443
+EXPOSE ${HTTP_PORT} ${HTTPS_PORT}
 
 ENTRYPOINT ["dotnet", "webapi.dll"]
