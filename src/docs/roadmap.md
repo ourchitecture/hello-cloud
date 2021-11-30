@@ -4,7 +4,7 @@
 
 ???+ info "Started"
 
-    -   .NET Core C# service example
+    -   TO-DO
 
 ???+ question "Future"
 
@@ -19,8 +19,10 @@
 ???+ success "Completed"
 
     -   Documentation automation wit MkDocs
-    -   NodeJS with ExpressJS service example
+    -   .NET Core C# service example
     -   Java with SpringBoot service example
+    -   Kotlin with SpringBoot service example
+    -   NodeJS with ExpressJS service example
     -   Amazon Web Services cloud deployment example(s) (NodeJS with ExpressJS)
     -   Microsoft Azure cloud deployment example(s) (NodeJS with ExpressJS)
     -   Google Cloud cloud deployment example(s) (NodeJS with ExpressJS)

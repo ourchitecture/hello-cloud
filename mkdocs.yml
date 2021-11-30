@@ -38,7 +38,8 @@ nav:
   - "Home": "index.md"
   - "Projects":
       - ".NET": "./services/dotnet.md"
-      - "Java with SpringBoot": "./services/java-springboot.md"
+      - "Java with SpringBoot": "./services/jvm/java-springboot.md"
+      - "Kotlin with SpringBoot": "./services/jvm/kotlin-springboot.md"
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
   - "Clouds": "clouds.md"
   - "DevOps": "devops.md"

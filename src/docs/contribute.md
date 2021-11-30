@@ -99,7 +99,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
 !!! danger "Avoid"
 
-    Global installations of `gradle` or `maven` are not needed or recommended. The Java projects use [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) and [Maven wrapper](https://github.com/takari/maven-wrapper) with a pinned, project-specific version to ensure version consistency across machines.
+    Global installations of `gradle` or `maven` are not needed or recommended. The Java and Kotlin projects use [Gradle wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) and [Maven wrapper](https://github.com/takari/maven-wrapper) with a pinned, project-specific version to ensure version consistency across machines.
 
 !!! success "Required"
 
@@ -114,7 +114,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
     -   [`yarn`](https://yarnpkg.com/) :octicons-link-16: or [`node`](https://nodejs.org/) :octicons-link-16: are required to run NodeJS projects (_`yarn` is recommended_). The version of `yarn` is "pinned" in ".yarnrc" and will be automatically selected and used by the `yarn` command. However, container runtimes make this installation optional.
     -   [`nvm`](https://github.com/nvm-sh/nvm) :octicons-link-16: can make switching between specific versions of `node`, `npm`, and `npx` easier across projects for a more consistent project experience across machines. The version of `node` is "pinned" in ".nvmrc" and will be automatically selected and used by the `nvm use` command. However, container runtimes make this installation optional.
-    -   [`java` 11 OpenJDK](https://openjdk.java.net/install/) :octicons-link-16: is required to run Java projects. However, container runtimes make this installation optional.
+    -   [`java` 11 OpenJDK](https://openjdk.java.net/install/) :octicons-link-16: is required to run Java and Kotlin projects. However, container runtimes make this installation optional.
     -   [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16: is required to run .NET projects. However, container runtimes make this installation optional.
     -   [VS `code`](https://code.visualstudio.com/) :octicons-link-16: may be used for an improved developer experience with support for project-specific settings, extensions, and tasks.
     -   [`git-town`](https://www.git-town.com/install.html) :octicons-link-16: may be used for improved developer workflow.
@@ -127,7 +127,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
 !!! example "Commands that work across all projects"
 
-    All automation tasks are abstracted behind `make` :octicons-gear-16: command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` or `maven` (for Java projects), `yarn` or `node` / `npm` (for Node projects), or `dotnet` (for .NET projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn`; `make start dev_tool=podman`; `make run dev_tool=dotnet`). However, `docker` is recommended as the default "dev_tool", since it is also used by DevOps pipeline tasks for production build, test, and deploy.
+    All automation tasks are abstracted behind `make` :octicons-gear-16: command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` or `maven` (for Java and Kotlin projects), `yarn` or `node` / `npm` (for Node projects), or `dotnet` (for .NET projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn`; `make start dev_tool=podman`; `make run dev_tool=dotnet`). However, `docker` is recommended as the default "dev_tool", since it is also used by DevOps pipeline tasks for production build, test, and deploy.
 
     1. Clone the repository with the command `git clone --depth=1 https://github.com/ourchitecture/hello-cloud`
     2. Navigate to the project in a terminal or open your favorite editor
@@ -175,7 +175,7 @@ This project attempts to support a variety of developer tooling choices while ma
     $ npm install && npm start
     $ yarn && yarn start
 
-    # run a Java project with native commands
+    # run a Java or Kotlin project with native commands
     # (may have project-specific arguments)
     $ ./gradlew bootRun
     $ ./mvnw spring-boot:run
