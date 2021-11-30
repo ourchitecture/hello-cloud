@@ -26,7 +26,7 @@ jobs:
       - name: documentation
         run: |
           make install-docs
-          chown -R $(whoami) ./docs
+          sudo chown -R $(whoami) ./docs
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
