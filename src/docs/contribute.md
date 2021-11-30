@@ -129,7 +129,7 @@ This project attempts to support a variety of developer tooling choices while ma
 
     All automation tasks are abstracted behind `make` :octicons-gear-16: command targets. This enables task consistency across projects and tooling. You may run most commands using your choice of `podman`, `docker`, `docker-compose`, `gradle` or `maven` (for Java and Kotlin projects), `yarn` or `node` / `npm` (for Node projects), or `dotnet` (for .NET projects) by adding a "dev_tool" parameter to the `make` command, where the value of the parameter matches your preferred tool (e.g. `make install dev_tool=yarn`; `make start dev_tool=podman`; `make run dev_tool=dotnet`). However, `docker` is recommended as the default "dev_tool", since it is also used by DevOps pipeline tasks for production build, test, and deploy.
 
-    1. Clone the repository with the command `git clone --depth=1 https://github.com/ourchitecture/hello-cloud`
+    1. Clone the repository with the command `git clone --depth=1 https://github.com/ourchitecture/hello-cloud` (:fontawesome-brands-salesforce: SalesForce Heroku [rejects pushes from shallow clones](https://devcenter.heroku.com/changelog-items/775), so remove the ` --depth=1` argument)
     2. Navigate to the project in a terminal or open your favorite editor
     3. Build the project with the command `make` or `make install` (`make build` will also work)
     4. Test the system with the command `make check` (`make test` will also work)
