@@ -12,9 +12,9 @@
 
     [:material-dot-net: .NET](./services/dotnet.md)
 
-    [:material-language-java: Java with SpringBoot](./services/jvm/java-springboot.md)
+    [:material-language-java: Java with SpringBoot](./services/java-springboot.md)
 
-    [:material-language-kotlin: Kotlin with SpringBoot](./services/jvm/kotlin-springboot.md)
+    [:material-language-kotlin: Kotlin with SpringBoot](./services/kotlin-springboot.md)
 
     [:material-nodejs: NodeJS with ExpressJS](./services/nodejs-expressjs.md)
 
