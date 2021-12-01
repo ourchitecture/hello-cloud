@@ -1,7 +1,6 @@
 dev_tool:=docker
 
-docker_image_mkdocs_material_version:=7.3.4
-docker_image_mkdocs_material_tag:=docker.io/squidfunk/mkdocs-material:$(docker_image_mkdocs_material_version)
+docker_image_mkdocs_material_tag:=our-hello-mkdocs:latest
 
 project_dirs=./src/services/dotnet/webapi ./src/services/jvm/kotlin/springboot/webapi ./src/services/jvm/java/springboot/webapi ./src/services/nodejs/expressjs/webapi
 
@@ -19,9 +18,11 @@ init:
 ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	$(error The "$@" command target only supports "dev_tool=docker" or "dev_tool=podman")
 endif
-	@set -eu \
-	&& $(dev_tool) pull $(docker_image_mkdocs_material_tag) \
-	&& $(dev_tool) tag $(docker_image_mkdocs_material_tag) mkdocs
+	@set -eu; \
+	prev_dir=$(shell pwd); \
+	cd ./src/mkdocs && make install; \
+	cd $$prev_dir; \
+	$(dev_tool) tag $(docker_image_mkdocs_material_tag) mkdocs;
 
 .PHONY: install-docs
 install-docs: init

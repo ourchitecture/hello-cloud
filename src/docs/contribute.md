@@ -2,6 +2,16 @@
 
 :wave_tone5: Welcome and we are glad you are interested in contributing!
 
+!!! tip "Ways to contribute"
+
+    -   **:octicons-comment-discussion-16: Discuss:** post a comment at the bottom of every page
+    -   [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    -   [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    -   [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
+    -   [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
+    -   [**:octicons-repo-forked-16: Fork**](https://github.com/ourchitecture/hello-cloud/fork)
+    -   [**:material-new-box: Create a project**](#add-a-new-project)
+
 ## Adding a new project
 
 Is your favorite language and/or framework to build a website or web service missing from this project? What great ideas to you have to demonstrate getting systems to the cloud?
@@ -14,7 +24,8 @@ Is your favorite language and/or framework to build a website or web service mis
     2. [Submit an issue](https://github.com/ourchitecture/hello-cloud/issues) that describes your idea to start a discussion.
     3. [Fork this project](https://github.com/ourchitecture/hello-cloud/fork) and clone it to your local system.
     4. Review the "Development" steps below.
-    5. Review one of the [existing projects](./index.md#projects) for similarities to your idea.
+    [//]: # "BUG: when the link below used ../index.md#projects, it resulted in /hello-cloud#projects and a 404 error"
+    5. Review one of the [existing projects](../index.html#projects) for similarities to your idea.
     6. Create a new directory for your source code (e.g. "./src/services/[language/framework]" for web services or "./src/apps/[language/framework]" for web applications).
     7. Add a basic "hello world" example using the language and framework of choice.
     8. Commit small, working changes regularly and please use ["conventional commit messages"](https://www.conventionalcommits.org/en/v1.0.0/). You can see [existing examples of commit messages](https://github.com/ourchitecture/hello-cloud/commits/main).

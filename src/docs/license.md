@@ -1,30 +1,18 @@
 # License
 
-!!! danger "Restrictive Licensing"
-
-    Everything in the directory "./src/media/" may contain restrictive licensing. See below.
-
-## Creative Commons
-
 !!! info "The Free Stuff"
 
-    Everything except "Restrictive Licensing" below in the project falls under "Creative Commons Zero v1.0 Universal"; that is, completely :free:. You are free to use the code and documentation without concern or even attribution.
+    **Everything** except "Restrictive Licensing" below in the project falls under :fontawesome-brands-creative-commons: "Creative Commons Zero v1.0 Universal"; that is, completely free. You are free to use the code and documentation without concern or even attribution.
 
-## Restrictive Licensing
+!!! danger "Restrictive Licensing"
 
-!!! important ""
+    Everything in the directories "./src/docs/assets/images", "./src/docs/img" and "./src/media/" may contain restrictive licensing.
+    Media contained in these directories may have stricter licensing restrictions. Read the unique licensing concerns listed below...
 
-    :point_right_tone2: **Path:** "./src/media/"
+    -   "logo.svg", "logo.png", and "favicon.png" may not be redistributed and is licensed to Eric Swanson from [thenounproject.com](https://thenounproject.com/search/?q=touch+cloud&i=3936766)
+    -   "clouds.jpg" is made freely available by [@dpascoa on Unsplash](https://unsplash.com/photos/tjiPN3e45WE)
 
-    Media contained in this directory may have stricter licensing restrictions. Read the unique licensing concerns listed below...
-
-!!! attention "Licenses"
-
-    -   "./icons/logo/logo.svg" may not be redistributed and is licensed to Eric Swanson from [thenounproject.com](https://thenounproject.com/search/?q=touch+cloud&i=3936766)
-
-## Open Source
-
-!!! info "Projects"
+!!! info "Open Source"
 
     This project is entirely based on open source implementations that ultimately target deployments to proprietary clouds. While there are many open source projects used throughout this project, we have received the biggest help from the following projects:
 
