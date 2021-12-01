@@ -1,0 +1,38 @@
+.my-btn-group .md-button {
+  margin-top: 5px;
+}
+
+/* flowchart subgraph */
+.mermaid .cluster rect {
+  fill: var(--md-primary-fg-color) !important;
+  stroke: var(--md-primary-fg-color--dark) !important;
+  stroke-width: 1px !important;
+}
+
+/* flowchart subgraph label */
+.mermaid .cluster-label {
+  color: var(--md-primary-bg-color--light) !important;
+}
+
+/* flowchart node label */
+.mermaid .edgeLabel {
+  background-color: var(--md-default-bg-color) !important;
+  fill: var(--md-default-fg-color) !important;
+}
+
+/* flowchart node label */
+.mermaid .edgeLabel .label {
+  color: var(--md-default-fg-color) !important;
+}
+
+/* flowchart node */
+.mermaid .node rect {
+  fill: var(--md-accent-bg-color--light) !important;
+  stroke: var(--md-accent-fg-color) !important;
+  stroke-width: 1px !important;
+}
+
+/* flowchart link */
+.mermaid .flowchart-link {
+  stroke: var(--md-accent-fg-color) !important;
+}
