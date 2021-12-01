@@ -167,13 +167,13 @@
 
 ## Troubleshooting
 
-### Amazon Web Services
+### :fontawesome-brands-aws: Amazon Web Services
 
 Running the command `make aws-install dev_tool=gradle` may result in the error below. If it does, simply re-run the command.
 
 > ERROR: InvalidParameterValueError - Environment named env-our-hello-kotlin-springboot is in an invalid state for this operation. Must be Ready.
 
-### Microsoft Azure
+### :material-microsoft-azure: Microsoft Azure
 
 Running the command `make azure-install dev_tool=maven` may result in the error below and often successfully completes the deployment. If the deployment fails, simply check your network connection and re-run the command.
 

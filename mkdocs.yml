@@ -36,12 +36,12 @@ theme:
     - "toc.integrate"
 nav:
   - "Home": "index.md"
+  - "Clouds": "clouds.md"
   - "Projects":
       - ".NET": "./services/dotnet.md"
       - "Java with SpringBoot": "./services/java-springboot.md"
       - "Kotlin with SpringBoot": "./services/kotlin-springboot.md"
       - "NodeJS with ExpressJS": "./services/nodejs-expressjs.md"
-  - "Clouds": "clouds.md"
   - "DevOps": "devops.md"
   - "Roadmap": "roadmap.md"
   - "Contribute": "contribute.md"
@@ -56,16 +56,32 @@ extra:
   analytics:
     provider: "google"
     property: "G-YWLCJCMGFX"
+  generator: false
+extra_css:
+  - "assets/stylesheets/extra.css"
+extra_javascript:
+  - "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
 markdown_extensions:
   - "admonition"
   - "attr_list"
+  - "def_list"
+  - "md_in_html"
+  - "meta"
   - "pymdownx.details"
   - "pymdownx.emoji":
-      "emoji_index": !!python/name:materialx.emoji.twemoji
-      "emoji_generator": !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - "pymdownx.highlight"
   - "pymdownx.inlinehilite"
   - "pymdownx.keys"
   - "pymdownx.magiclink"
   - "pymdownx.snippets"
-  - "pymdownx.superfences"
+  - "pymdownx.superfences":
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - "pymdownx.tasklist":
+      custom_checkbox: true
+plugins:
+  - mermaid2
