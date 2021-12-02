@@ -2,37 +2,80 @@
   margin-top: 5px;
 }
 
-/* flowchart subgraph */
-.mermaid .cluster rect {
+/*******************************************************************************
+  Mermaid.js Flowchart
+*******************************************************************************/
+
+/* subgraph */
+.mermaid-flowchart .cluster rect {
   fill: var(--md-primary-fg-color) !important;
-  stroke: var(--md-primary-fg-color--dark) !important;
+  stroke: var(--md-primary-bg-color) !important;
   stroke-width: 1px !important;
 }
 
-/* flowchart subgraph label */
-.mermaid .cluster-label {
-  color: var(--md-primary-bg-color--light) !important;
+/* subgraph label */
+.mermaid-flowchart .cluster-label {
+  color: var(--md-primary-bg-color) !important;
 }
 
-/* flowchart node label */
-.mermaid .edgeLabel {
+/* node label */
+.mermaid-flowchart .edgeLabel {
   background-color: var(--md-default-bg-color) !important;
   fill: var(--md-default-fg-color) !important;
-}
-
-/* flowchart node label */
-.mermaid .edgeLabel .label {
   color: var(--md-default-fg-color) !important;
 }
 
-/* flowchart node */
-.mermaid .node rect {
-  fill: var(--md-accent-bg-color--light) !important;
-  stroke: var(--md-accent-fg-color) !important;
+/* node label */
+.mermaid-flowchart .edgeLabel .label {
+  color: var(--md-default-fg-color) !important;
+}
+
+/* node */
+.mermaid-flowchart .node rect {
+  fill: var(--md-default-bg-color) !important;
+  stroke: var(--md-default-fg-color) !important;
   stroke-width: 1px !important;
 }
 
-/* flowchart link */
-.mermaid .flowchart-link {
+/* node link */
+.mermaid-flowchart .edgePaths path {
   stroke: var(--md-accent-fg-color) !important;
+}
+
+/* node link circle end */
+.mermaid-flowchart marker#flowchart-circleEnd {
+  stroke: var(--md-accent-fg-color) !important;
+  fill: var(--md-accent-fg-color) !important;
+}
+
+
+/*******************************************************************************
+  Mermaid.js Sequence Diagram
+*******************************************************************************/
+
+/* participant and actor */
+.mermaid-sequence rect.actor {
+  fill: var(--md-default-bg-color) !important;
+  stroke: var(--md-default-fg-color) !important;
+  stroke-width: 1px !important;
+}
+
+/* message label */
+.mermaid-sequence text.messageText {
+  background-color: var(--md-default-bg-color) !important;
+  fill: var(--md-default-fg-color) !important;
+  color: var(--md-default-fg-color) !important;
+  stroke: var(--md-default-fg-color) !important;
+  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+}
+
+/* message */
+.mermaid-sequence .messageLine0 {
+  stroke: var(--md-accent-fg-color) !important;
+}
+
+/* message arrow */
+.mermaid-sequence defs marker#arrowhead path {
+  stroke: var(--md-accent-fg-color) !important;
+  fill: var(--md-accent-fg-color) !important;
 }
