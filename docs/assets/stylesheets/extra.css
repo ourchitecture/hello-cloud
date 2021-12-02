@@ -67,6 +67,14 @@
   font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
 }
 
+/* loop label */
+.mermaid-sequence text.loopText tspan {
+  fill: var(--md-default-fg-color) !important;
+  color: var(--md-default-fg-color) !important;
+  stroke: var(--md-default-fg-color) !important;
+  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+}
+
 /* message label */
 .mermaid-sequence text.messageText {
   background-color: var(--md-default-bg-color) !important;
