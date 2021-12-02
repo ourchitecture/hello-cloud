@@ -9,8 +9,8 @@
     -   [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
     -   [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
     -   [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
-    -   [**:octicons-repo-forked-16: Fork**](https://github.com/ourchitecture/hello-cloud/fork)
-    -   [**:material-new-box: Create a project**](#add-a-new-project)
+    -   [**:material-new-box: Create a project**](#adding-a-new-project)
+    -   [**:woman_technologist_tone4: :man_technologist_tone3: :woman_technologist_tone5: :man_technologist_tone2: :technologist_tone1: Development**](#development)
 
 ## Adding a new project
 
@@ -205,6 +205,14 @@ Once we have a working, containerized program, we can begin cloud deployment aut
 ## Development
 
 This project attempts to support a variety of developer tooling choices while maintaining a standard that everyone can test against.
+
+!!! info "Development resources"
+
+    -   [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    -   [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    -   [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
+    -   [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
+    -   [**:octicons-repo-forked-16: Fork**](https://github.com/ourchitecture/hello-cloud/fork)
 
 ### Prerequisites
 
