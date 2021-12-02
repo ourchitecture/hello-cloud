@@ -36,6 +36,29 @@ Is your favorite language and/or framework to build a website or web service mis
     13. Submit a ["draft pull request"](https://github.blog/2019-02-14-introducing-draft-pull-requests/) back to this project.
     14. We will start a discussion on the proposed implementation. Please be open to making any suggested changes.
 
+<figure>
+<div class="mermaid mermaid-sequence">sequenceDiagram
+    participant C as Contributor
+    participant M as Maintainer
+    participant R as Repository
+
+    C->>R: Check roadmap
+    C->>R: Submit issue
+    M->>R: Review issue
+    M->>C: Discuss issue
+    C->>R: Clone
+    C->>C: Create new project
+    C->>R: Submit "draft" PR
+    loop PR Review
+      M->>R: Review PR
+      M->>C: Discuss PR
+      C->>C: Make any changes
+      C->>R: Push changes
+    end
+</div>
+<figcaption>Hello World</figcaption>
+</figure>
+
 ???+ example "2. Containers"
 
     Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.
@@ -45,6 +68,24 @@ Is your favorite language and/or framework to build a website or web service mis
     3. Create a "Dockerfile" and test your container locally.
     4. Commit your changes.
     5. Update your existing Pull Request so that we can discuss the container work.
+
+<figure>
+<div class="mermaid mermaid-sequence">sequenceDiagram
+    participant C as Contributor
+    participant M as Maintainer
+    participant R as Repository
+
+    C->>C: Containerize system
+    C->>R: Push changes
+    loop PR Review
+      M->>R: Review PR
+      M->>C: Discuss PR
+      C->>C: Make any changes
+      C->>R: Push changes
+    end
+</div>
+<figcaption>Containers</figcaption>
+</figure>
 
 ???+ example "3. Writing documentation"
 
@@ -58,6 +99,24 @@ Is your favorite language and/or framework to build a website or web service mis
     6. Commit your changes.
     7. Update your existing Pull Request so that we can discuss the documentation.
 
+<figure>
+<div class="mermaid mermaid-sequence">sequenceDiagram
+    participant C as Contributor
+    participant M as Maintainer
+    participant R as Repository
+
+    C->>C: Document system
+    C->>R: Push changes
+    loop PR Review
+      M->>R: Review PR
+      M->>C: Discuss PR
+      C->>C: Make any changes
+      C->>R: Push changes
+    end
+</div>
+<figcaption>Documentation</figcaption>
+</figure>
+
 ???+ example "4. Integrating a DevOps pipeline"
 
     Documentation for all projects will be automatically built through [the "documentation" pipeline](./devops.md#documentation). However, we need to build and publish your project's docker container.
@@ -67,9 +126,56 @@ Is your favorite language and/or framework to build a website or web service mis
     3. Commit your changes.
     4. Update your existing Pull Request so that we can discuss the workflow.
 
+<figure>
+<div class="mermaid mermaid-sequence">sequenceDiagram
+    participant C as Contributor
+    participant M as Maintainer
+    participant R as Repository
+
+    C->>C: Create GitHub Actions workflow
+    C->>R: Push changes
+    loop PR Review
+      M->>R: Review PR
+      M->>C: Discuss PR
+      C->>C: Make any changes
+      C->>R: Push changes
+    end
+</div>
+<figcaption>Container DevOps</figcaption>
+</figure>
+
 ???+ example "5. Finalize PR"
 
     Although your project has not even been deployed to a major cloud provider yet, the basic foundation now exists to integrate cloud automation tasks. If your PR is finalized and has been approved, we will merge your PR to the "main" branch, your project container will be built and published, and your project will be added to the public documentation. This now provides others with a chance to build on top of your project too.
+
+<figure>
+<div class="mermaid mermaid-sequence">sequenceDiagram
+    participant C as Contributor
+    participant M as Maintainer
+    participant R as Repository
+    participant GHA as GitHub Actions
+    participant GHPkg as GitHub Packages
+    participant GHPages as GitHub Pages
+    participant site as Ourchitecture.io
+
+    loop PR Review
+      M->>R: Review PR
+      M->>C: Discuss PR
+      C->>C: Make any changes
+      C->>R: Push changes
+    end
+
+    M->>R: Approve PR
+    M->>R: Merge PR to "main"
+    GHA->>GHPkg: Generate docker image
+    GHA->>R: Generate documentation
+    GHA->>R: Submit documentation PR
+    M->>R: Approve and merge documentation PR
+    GHPages->>R: Read "./docs"
+    GHPages->>site: Update public documentation site
+</div>
+<figcaption>Finalize PR</figcaption>
+</figure>
 
 ### Cloud deployments
 
