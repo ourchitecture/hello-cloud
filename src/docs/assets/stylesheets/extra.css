@@ -18,15 +18,10 @@
   color: var(--md-primary-bg-color) !important;
 }
 
-/* node label */
+/* edge label */
 .mermaid-flowchart .edgeLabel {
   background-color: var(--md-default-bg-color) !important;
   fill: var(--md-default-fg-color) !important;
-  color: var(--md-default-fg-color) !important;
-}
-
-/* node label */
-.mermaid-flowchart .edgeLabel .label {
   color: var(--md-default-fg-color) !important;
 }
 
@@ -35,6 +30,11 @@
   fill: var(--md-default-bg-color) !important;
   stroke: var(--md-default-fg-color) !important;
   stroke-width: 1px !important;
+}
+
+/* node label */
+.mermaid-flowchart .nodeLabel {
+  color: var(--md-default-fg-color) !important;
 }
 
 /* node link */
@@ -48,7 +48,6 @@
   fill: var(--md-accent-fg-color) !important;
 }
 
-
 /*******************************************************************************
   Mermaid.js Sequence Diagram
 *******************************************************************************/
@@ -58,6 +57,14 @@
   fill: var(--md-default-bg-color) !important;
   stroke: var(--md-default-fg-color) !important;
   stroke-width: 1px !important;
+}
+
+/* participant and actor label */
+.mermaid-sequence text.actor tspan {
+  fill: var(--md-default-fg-color) !important;
+  color: var(--md-default-fg-color) !important;
+  stroke: var(--md-default-fg-color) !important;
+  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
 }
 
 /* message label */
