@@ -24,7 +24,7 @@
 ---
 
 <figure>
-<div class="mermaid">flowchart LR
+<div class="mermaid mermaid-flowchart">flowchart LR
     subgraph cloud [Cloud Provider]
     aws([Amazon Web Services])
     azure([Microsoft Azure])
