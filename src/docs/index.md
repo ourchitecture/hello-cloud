@@ -54,7 +54,8 @@
     gcloud --o|Google AppEngine| container
     gcloud --o|"Google Kubernetes Engine (GKE)"| orchestration
 
-    heroku --o application
+    heroku --o|Heroku Dynos| application
+    heroku --o|Heroku Dynos| container
 </div>
 <figcaption>Mapping Cloud Providers to Compute Abstractions</figcaption>
 </figure>
