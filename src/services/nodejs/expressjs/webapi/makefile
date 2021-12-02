@@ -15,6 +15,9 @@ docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
 aws_app_name:=app-our-hello-nodejs-expressjs-webapi
+aws_environment_name:=env-our-hello-nodejs-expressjs
+
+aws_app_name:=app-our-hello-nodejs-expressjs-webapi
 aws_env_name:=env-our-hello-nodejs-expressjs
 aws_platform:=node.js-14
 aws_region:=us-east-1
@@ -37,7 +40,6 @@ all: install
 
 .PHONY: install
 install:
-# nothing to do for "docker-compose"
 ifeq '$(dev_tool)' 'yarn'
 	@set -eu \
 	&& yarn
@@ -177,31 +179,46 @@ cloud-logs: cloud-validator
 cloud-uninstall: cloud-validator
 	@make $(cloud)-uninstall
 
+.PHONY: requires-yarn
+requires-yarn:
+ifneq ("$(dev_tool)",$(filter "$(dev_tool)","yarn" "node" "npm"))
+	$(error The "$@" command target only supports "dev_tool=yarn", "dev_tool=node" or "dev_tool=npm")
+endif
+
 .PHONY: aws-init
-aws-init:
-	@set -eu \
-	&& eb init $(aws_app_name) \
-		--platform $(aws_platform) \
-		--region $(aws_region) \
-	&& eb create \
-		--sample $(aws_env_name)
+aws-init: requires-yarn
+	@AWS_ENV_NAME="$(aws_environment_name)" \
+	AWS_APP_NAME="$(aws_app_name)" \
+	AWS_PLATFORM="$(aws_platform)" \
+	AWS_PLATFORM_ARN="$(aws_platform_arn)" \
+	AWS_REGION="$(aws_region)" \
+	./aws-init.sh
+
+.PHONY: aws-deploy
+aws-deploy: requires-yarn
+	@set -eu && eb deploy
 
 .PHONY: aws-install
-aws-install:
+aws-install: requires-yarn install aws-init aws-deploy aws-status
+
+.PHONY: aws-status
+aws-status:
 	@set -eu \
-	&& eb deploy
+	&& eb status
 
 .PHONY: aws-logs
 aws-logs:
 	@set -eu \
 	&& eb logs
 
+# BUG: uninstalling deletes the configuration file
+#      so, this always copies the config file back
+#      after the uninstall
 .PHONY: aws-uninstall
 aws-uninstall:
-	@set -eu \
-	&& eb terminate \
-		--force \
-		--all
+	@AWS_ENV_NAME="$(aws_environment_name)" \
+	AWS_REGION="$(aws_region)" \
+	./aws-uninstall.sh
 
 .PHONY: azure-init
 azure-init:
