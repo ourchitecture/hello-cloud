@@ -1,5 +1,11 @@
 # :octicons-infinity-16: DevOps
 
+[![documentation](https://github.com/ourchitecture/hello-cloud/actions/workflows/documentation.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/documentation.yml)
+[![dotnet_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/dotnet_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/dotnet_webapi.yml)
+[![java_springboot_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/java_springboot_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/java_springboot_webapi.yml)
+[![kotlin_springboot_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/kotlin_springboot_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/kotlin_springboot_webapi.yml)
+[![nodejs_expressjs_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/nodejs_expressjs_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/nodejs_expressjs_webapi.yml)
+
 ## Local development
 
 :eyes: See the [contributor guide](./contribute.md#development) for local development.
