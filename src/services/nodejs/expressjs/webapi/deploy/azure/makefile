@@ -1,5 +1,5 @@
 az_version=2.30.0
-image_tag:=our-hello-tasks-azure-cli:$(az_version)
+image_tag:=ghcr.io/ourchitecture/hello-cloud/our-hello-tasks-azure-cli:$(az_version)
 
 .DEFAULT_GOAL:=install
 

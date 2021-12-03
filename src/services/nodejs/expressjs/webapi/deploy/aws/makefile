@@ -1,6 +1,6 @@
 aws_version=2.4.4
 eb_version=3.20.2
-image_tag:=docker.io/library/our-hello-tasks-aws-cli:$(aws_version)-eb$(eb_version)
+image_tag:=ghcr.io/ourchitecture/hello-cloud/our-hello-tasks-aws-cli:$(aws_version)-eb$(eb_version)
 
 .DEFAULT_GOAL:=install
 
