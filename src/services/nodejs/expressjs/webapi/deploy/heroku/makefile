@@ -1,4 +1,4 @@
-image_tag:=our-hello-tasks-heroku-cli:latest
+image_tag:=ghcr.io/ourchitecture/hello-cloud/our-hello-tasks-heroku-cli:latest
 
 .DEFAULT_GOAL:=install
 
