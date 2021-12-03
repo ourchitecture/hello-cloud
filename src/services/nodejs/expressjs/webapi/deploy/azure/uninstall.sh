@@ -46,7 +46,7 @@ if ! contains "$resouce_group_exists_output" "ResourceGroupNotFound"; then
 		--name "$azure_resource_group" \
 		--yes
 
-  echo 'Successfully deleted Azure Resource Group.'
+  echo 'Successfully deleted the Azure Resource Group.'
 else
   echo 'The Azure Resource Group does not exist.'
 fi

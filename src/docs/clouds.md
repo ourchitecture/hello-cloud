@@ -16,7 +16,6 @@ Following are some interesting cloud observations while developing basic, automa
 ### :material-google-cloud: Google Cloud
 
 - Automatically setting up and tearing down PaaS infrastructure seems "quirky" and idempotency is challenging.
-- Strangely, Any `gcloud` command seems to rename a local file named "uninstall.sh" to "uninstall" and apply execute permissions (`chmod a+x uninstall`). It is quite surprising to see a CLI manipulate files seemingly randomly, especially when the command operations are not intended to itneract with them!
 - The command `gcloud app deploy ...` does not properly ignore a "./Dockerfile", even if the "./app.yaml" specifies a standard runtime (not "custom" for docker containers) and the file "./.gcloudignore" explicitly ignores "Dockerfile".
 
 ### :fontawesome-brands-salesforce: Salesforce Heroku

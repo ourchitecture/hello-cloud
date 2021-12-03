@@ -1,0 +1,50 @@
+#!/bin/bash
+
+set -eu
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# contains(string, substring)
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+if ! command -v heroku >/dev/null 2>&1; then
+    echo "The Heroku CLI ('heroku') could not be found and must be installed." 1>&2
+    exit 1
+fi
+
+if [ -z "$HEROKU_APP_NAME" ]; then
+    echo "The environment variable HEROKU_APP_NAME is required." 1>&2
+    exit 1
+fi
+
+app_name="$HEROKU_APP_NAME"
+
+# login (interactively or automatically with Service Principal)
+source $SCRIPT_DIR/login.sh
+
+app_exists_output=$(heroku apps:info --app="$app_name" 2>&1 || true)
+
+if ! contains "$app_exists_output" "Couldn't find"; then
+
+  echo 'Deleting Heroku application, including child resources...'
+
+  heroku apps:destroy \
+		--app="$app_name" \
+		--confirm="$app_name"
+
+  echo 'Successfully deleted the Heroku application.'
+else
+  echo 'Application already deleted.'
+fi

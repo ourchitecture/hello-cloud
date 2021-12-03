@@ -22,9 +22,7 @@ all: install
 
 .PHONY: install
 install:
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	$(error This command has not been completed. Please run `make cloud-install cloud=$(cloud)`)
-else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -93,11 +91,18 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	&& echo 'Successfully removed container: $(container_name)'
 endif
 
+.PHONY: logs
+logs:
+# TODO: docker container logs
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+endif
+
 .PHONY: clean
 clean:
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	$(error This command has not been completed. Please run `make cloud-uninstall cloud=$(cloud)`)
-else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -150,71 +155,3 @@ uninstall: clean
 .PHONY: sync
 sync:
 	@git-town sync
-
-.PHONY: cloud-validator
-cloud-validator:
-ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
-	$(error The "cloud" argument only supports "aws", "azure", "gcloud" or "heroku")
-endif
-
-.PHONY: cloud-init
-cloud-init: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	@make $(cloud)-init
-endif
-
-.PHONY: cloud-install
-cloud-install: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	@make $(cloud)-install
-else
-	$(error Deprecated. Please run `make install cloud=$(cloud)`)
-endif
-
-.PHONY: cloud-logs
-cloud-logs: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	@make $(cloud)-logs
-else
-	@prev_dir=$(shell pwd); \
-	cd ./deploy/$(cloud) && make logs; \
-	cd $$prev_dir;
-endif
-
-.PHONY: cloud-uninstall
-cloud-uninstall: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
-	@make $(cloud)-uninstall
-else
-	$(error Deprecated. Please run `make uninstall cloud=$(cloud)`)
-endif
-
-.PHONY: heroku-init
-heroku-init:
-	@set -eu \
-	&& heroku create \
-		$(heroku_app_name) \
-		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
-	&& heroku buildpacks:add \
-		-a $(heroku_app_name) \
-		heroku/nodejs \
-	&& heroku config:set \
-		-a $(heroku_app_name) \
-		APP_BASE=src/services/nodejs/expressjs/webapi/
-
-.PHONY: heroku-install
-heroku-install:
-	@set -eu \
-	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
-
-.PHONY: heroku-logs
-heroku-logs:
-	@set -eu \
-	&& heroku logs -a $(heroku_app_name)
-
-.PHONY: heroku-uninstall
-heroku-uninstall:
-	@set -eu \
-	&& heroku apps:destroy \
-		-a $(heroku_app_name) \
-		--confirm $(heroku_app_name)

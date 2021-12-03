@@ -44,12 +44,11 @@
 
 !!! example "Commands"
 
-    While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
+    While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make install cloud=aws`)
 
-    - Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
-    - Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
-    - Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
-    - Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
+    - Initialize and install (deploy) with the command `make install cloud=aws|azure|gcloud|heroku`
+    - Get the applicaiton logs with the command `make logs cloud=aws|azure|gcloud|heroku`
+    - Uninstall (delete/destroy) with the command `make uninstall cloud=aws|azure|gcloud|heroku`
 
 ### :fontawesome-brands-aws: Amazon Web Services (AWS)
 
@@ -70,7 +69,7 @@
     4. If required, for the values "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY", create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials), expanding "Access keys" and creating a new key.
     5. Run the command `make install cloud=aws` to create the AWS Elastic Beanstalk Environment and install the application. This command may take a few minutes.
     6. Update the application with the same command `make install cloud=aws`.
-    7. Check the application logs with the command `cd ./deploy/aws && make logs`
+    7. Check the application logs with the command `make logs cloud=aws`
     8. Uninstall and clean up the application deployment with the command `make uninstall cloud=aws`. This command may take several seconds.
 
 ### :material-microsoft-azure: Microsoft Azure
@@ -92,7 +91,7 @@
     4. If required, for the values "AZURE_SP_APPID", "AZURE_SP_PASSWORD", and "AZURE_SP_TENANT", create new service principal credentials with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16: and the command `az ad sp create-for-rbac --name "our-hello-sp" --role Contributor`, providing any `--name` as desired.
     5. *You may encounter an error with multiple subscriptions as this has not been tested. Consider a [contribution](https://github.com/ourchitecture/hello-cloud/issues/94).
     6. Run the command `make install cloud=azure` to create the Azure Resource Group, Azure AppService Plan, and AppService if they do not exist as well as to deploy the application.
-    7. Check the application logs with the command `cd ./deploy/azure && make logs`
+    7. Check the application logs with the command `make logs cloud=azure`
     8. Uninstall and clean up the application deployment with the command `make uninstall cloud=azure`
 
 ### :material-google-cloud: Google Cloud
@@ -117,10 +116,10 @@
     1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
     2. Copy the "./deploy/gcloud/.env.example" file and save it as a new file "./deploy/gcloud/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
     3. Edit the file "./deploy/gcloud/.env" and replace the values according to preferences.
-    4. Run the command `make install cloud=gcloud` to create a new Google Cloud project, application, and deploy the code
+    4. Run the command `make install cloud=gcloud` to create a new Google Cloud project, application, and deploy the code.
     5. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources)
     6. If the output indicates that "Cloud Build" must be enabled, login to the [projects list](https://cloud.google.com/build) and enable the cloud build API
-    7. Check the application logs with the command `cd ./deploy/gcloud && make logs`
+    7. Check the application logs with the command `make logs cloud=gcloud`
     8. Uninstall and clean up the application deployment with the command `make uninstall cloud=gcloud`
 
 !!! tip "Tip: Project Naming"
@@ -131,17 +130,21 @@
 
 !!! todo "Prerequisites"
 
+    See the [contributor guide](../contribute.md#development) for more details.
+
     - A [Heroku account](https://signup.heroku.com/) :octicons-link-16: _\*this project worked with free infrastructure at the time of its creation_
-    - [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli) :octicons-link-16:
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
 
 !!! example "Commands"
 
     1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/nodejs/expressjs/webapi`)
-    2. Login to your Heroku account with the CLI using the command `heroku login`
-    3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as the [node.js buildpack](https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-nodejs)
-    4. Install the application with the command `make heroku-install`
-    5. Check the application logs with the command `make heroku-logs`
-    6. Uninstall and clean up the application deployment with the command `make heroku-uninstall`
+    2. Copy the "./deploy/heroku/.env.example" file and save it as a new file "./deploy/heroku/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
+    3. Edit the file "./deploy/heroku/.env" and replace the values according to preferences.
+    4. Run the command `make install cloud=heroku` to create a new Heroku application and deploy the code.
+    5. Check the application logs with the command `make logs cloud=heroku`
+    6. Uninstall and clean up the application deployment with the command `make uninstall cloud=heroku`
 
 ## Roadmap
 
