@@ -16,7 +16,7 @@ if ! [ -z "$AZURE_SP_APPID" ]; then
   fi
 
   echo ''
-  echo 'Authenticating to Azure with Service Principal credentials...'
+  echo 'Authenticating with Azure using Service Principal credentials...'
   az login --service-principal \
     -u "${AZURE_SP_APPID}" \
     -p "${AZURE_SP_PASSWORD}" \
@@ -24,7 +24,7 @@ if ! [ -z "$AZURE_SP_APPID" ]; then
   echo 'Successfully authenticated.'
 else
   echo ''
-  echo 'Logging into Azure...'
+  echo 'Authenticating with Azure...'
   echo 'You will be prompted to interactively authenticate with your credentials...'
   az login --use-device-code
   echo 'Successfully authenticated.'

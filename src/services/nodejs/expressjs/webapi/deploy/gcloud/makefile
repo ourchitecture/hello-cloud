@@ -1,5 +1,5 @@
-az_version=2.30.0
-image_tag:=ghcr.io/ourchitecture/hello-cloud/our-hello-tasks-azure-cli:$(az_version)
+gcloud_version=365.0.1
+image_tag:=google/cloud-sdk:$(gcloud_version)-alpine
 
 .DEFAULT_GOAL:=install
 
@@ -15,20 +15,9 @@ install:
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
-		./deploy/azure/install.sh
+		./deploy/gcloud/install.sh
 
-.PHONY: status
-status:
-	@docker run \
-		--rm \
-		--interactive \
-		--tty \
-		--volume $(shell pwd)/../../:/app \
-		--workdir /app \
-		--env-file ./.env \
-		"$(image_tag)" \
-		az webapp log deployment show \
-			--name "$$AZURE_APPSERVICE_NAME"
+# TODO: status
 
 .PHONY: logs
 logs:
@@ -40,13 +29,12 @@ logs:
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
-		az webapp log show \
-			--name "$$AZURE_APPSERVICE_NAME"
+		./deploy/gcloud/logs.sh
 
 .PHONY: clean
 clean:
 ifneq '$(confirm)' '1'
-	$(warning Warning: you are about to completely delete this Azure Resource group.)
+	$(warning Warning: you are about to completely delete this Google Project.)
 	$(error If you wish to continue, append ` confirm=1` to the end of the command.)
 endif
 	@docker run \
@@ -57,6 +45,6 @@ endif
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
-		./deploy/azure/uninstall.sh
+		./deploy/gcloud/uninstall
 
 uninstall: clean

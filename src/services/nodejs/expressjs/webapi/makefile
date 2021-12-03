@@ -14,23 +14,6 @@ docker_push_organization_or_user:=ourchitecture
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
-aws_cli_image_tag:=docker.io/library/our-hello-deploy-aws-cli:latest
-aws_app_name:=app-our-hello-nodejs-expressjs-webapi
-aws_environment_name:=env-our-hello-nodejs-expressjs
-aws_env_name:=env-our-hello-nodejs-expressjs
-aws_platform:=node.js-14
-aws_region:=us-east-1
-
-azure_app_name:=app-our-hello-nodejs-expressjs-webapi
-azure_rg:=rg-our-hello-cloud-expressjs
-azure_region:=centralus
-
-gcloud_project_name:=ourhelloexpress
-gcloud_project_name_suffix:=001
-gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
-gcloud_region:=us-east1
-gcloud_logs_limit:=20
-
 heroku_app_name:=our-hellonodejsexpressjswebapi
 
 .DEFAULT_GOAL:=install
@@ -39,9 +22,9 @@ all: install
 
 .PHONY: install
 install:
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	$(error This command has not been completed. Please run `make cloud-install cloud=$(cloud)`)
-else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -112,9 +95,9 @@ endif
 
 .PHONY: clean
 clean:
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	$(error This command has not been completed. Please run `make cloud-uninstall cloud=$(cloud)`)
-else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -176,13 +159,13 @@ endif
 
 .PHONY: cloud-init
 cloud-init: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	@make $(cloud)-init
 endif
 
 .PHONY: cloud-install
 cloud-install: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	@make $(cloud)-install
 else
 	$(error Deprecated. Please run `make install cloud=$(cloud)`)
@@ -190,7 +173,7 @@ endif
 
 .PHONY: cloud-logs
 cloud-logs: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	@make $(cloud)-logs
 else
 	@prev_dir=$(shell pwd); \
@@ -200,47 +183,11 @@ endif
 
 .PHONY: cloud-uninstall
 cloud-uninstall: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+ifeq ("$(cloud)",$(filter "$(cloud)","heroku"))
 	@make $(cloud)-uninstall
 else
 	$(error Deprecated. Please run `make uninstall cloud=$(cloud)`)
 endif
-
-.PHONY: gcloud-init
-gcloud-init:
-	@set -eu \
-	&& gcloud projects create \
-		"$(gcloud_project_unique_name)" \
-		--quiet \
-	&& gcloud config set project \
-		"$(gcloud_project_unique_name)" \
-		--quiet \
-	&& gcloud app create \
-		--region=$(gcloud_region) \
-		--quiet
-
-.PHONY: gcloud-install
-gcloud-install:
-	@set -eu \
-	&& gcloud app deploy \
-		./app.yaml \
-		--stop-previous-version \
-		--promote \
-		--quiet
-
-.PHONY: gcloud-logs
-gcloud-logs:
-	@set -eu \
-	&& gcloud logging read \
-		--project=$(gcloud_project_unique_name) \
-		 --limit=$(gcloud_logs_limit)
-
-.PHONY: gcloud-uninstall
-gcloud-uninstall:
-	@set -eu \
-	&& gcloud projects delete \
-		"$(gcloud_project_unique_name)" \
-		--quiet
 
 .PHONY: heroku-init
 heroku-init:
