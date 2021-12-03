@@ -9,7 +9,7 @@
     Everything in the directories "./src/docs/assets/images", "./src/docs/img" and "./src/media/" may contain restrictive licensing.
     Media contained in these directories may have stricter licensing restrictions. Read the unique licensing concerns listed below...
 
-    -   "logo.svg", "logo.png", and "favicon.png" may not be redistributed and are licensed to Eric Swanson from [thenounproject.com](https://thenounproject.com/search/?q=touch+cloud&i=3936766)
+    - "logo.svg", "logo.png", and "favicon.png" may not be redistributed and are licensed to Eric Swanson from [thenounproject.com](https://thenounproject.com/search/?q=touch+cloud&i=3936766)
 
 !!! info "Open Source"
 

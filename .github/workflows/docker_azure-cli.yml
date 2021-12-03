@@ -1,0 +1,35 @@
+name: docker_azure-cli
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/docker_azure-cli.yml"
+      - "src/docker/azure-cli/**"
+
+env:
+  DOCKER_USERNAME: ${{ github.actor }}
+  DOCKER_PASSWORD_FILE_PATH: ./GITHUB_TOKEN
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build
+        working-directory: ./src/docker/azure-cli/
+        # write the github actions secret to a file
+        # the file allows us to use `docker login --password-stdin`
+        # while it would be possible to:
+        # `echo ${DOCKER_PASSWORD} | docker login --password-stdin`
+        # using a file encourages console logging and history best practices
+        run: |
+          printf "${{ secrets.GH_TOKEN_PACKAGES }}" >> ${DOCKER_PASSWORD_FILE_PATH}
+          make deploy
+
+      - name: cleanup
+        if: ${{ always() }}
+        run: |
+          rm -f "${DOCKER_PASSWORD_FILE_PATH}"

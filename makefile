@@ -129,6 +129,7 @@ stop: stop-docs
 .PHONY: clean
 clean:
 	@set -eu; \
+	docker rmi -f $(docker images | grep 'our-hello-'); \
 	for project_dir in $(project_dirs); do \
 		prev_dir=$(shell pwd); \
 		cd $$project_dir && make $@; \

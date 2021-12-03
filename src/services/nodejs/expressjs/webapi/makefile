@@ -1,5 +1,5 @@
 dev_tool:=docker
-cloud:=azure
+cloud:=
 
 app_port=3000
 host_port:=3000
@@ -14,7 +14,9 @@ docker_push_organization_or_user:=ourchitecture
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
+aws_cli_image_tag:=docker.io/library/our-hello-deploy-aws-cli:latest
 aws_app_name:=app-our-hello-nodejs-expressjs-webapi
+aws_environment_name:=env-our-hello-nodejs-expressjs
 aws_env_name:=env-our-hello-nodejs-expressjs
 aws_platform:=node.js-14
 aws_region:=us-east-1
@@ -37,8 +39,13 @@ all: install
 
 .PHONY: install
 install:
-# nothing to do for "docker-compose"
-ifeq '$(dev_tool)' 'yarn'
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+	$(error This command has not been completed. Please run `make cloud-install cloud=$(cloud)`)
+else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+else ifeq '$(dev_tool)' 'yarn'
 	@set -eu \
 	&& yarn
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","node" "npm"))
@@ -105,11 +112,17 @@ endif
 
 .PHONY: clean
 clean:
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
+	$(error This command has not been completed. Please run `make cloud-uninstall cloud=$(cloud)`)
+else ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","yarn" "node" "npm"))
 # removing "package-lock.json" for local dev "node" / "npm" use,
 # but not "yarn.lock" used by the project
-ifeq ("$(dev_tool)",$(filter "$(dev_tool)","yarn" "node" "npm"))
 	@set -eu \
-	&& rm -rf node_modules/ package-lock.json
+	&& rm -rf .yarn/cache/ .yarn/install-state.gz node_modules/ package-lock.json
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
@@ -135,12 +148,12 @@ ifeq ("${DOCKER_PASSWORD_FILE_PATH}", "")
 	$(error Missing environment variable "DOCKER_PASSWORD_FILE_PATH")
 endif
 	@set -eu \
-	&& $(dev_tool) tag $(image_tag) $(docker_push_image_tag) \
+	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)" \
 	&& cat "${DOCKER_PASSWORD_FILE_PATH}" \
-		| $(dev_tool) login $(docker_push_registry) \
+		| $(dev_tool) login "$(docker_push_registry)" \
 			--username "${DOCKER_USERNAME}" \
 			--password-stdin \
-	&& $(dev_tool) push $(docker_push_image_tag)
+	&& $(dev_tool) push "$(docker_push_image_tag)"
 
 # convenience aliases
 build: install
@@ -158,85 +171,40 @@ sync:
 .PHONY: cloud-validator
 cloud-validator:
 ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
-	$(error The "cloud" argument only supports "aws", "azure", "gcloud", or "heroku")
+	$(error The "cloud" argument only supports "aws", "azure", "gcloud" or "heroku")
 endif
 
 .PHONY: cloud-init
 cloud-init: cloud-validator
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
 	@make $(cloud)-init
+endif
 
 .PHONY: cloud-install
 cloud-install: cloud-validator
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
 	@make $(cloud)-install
+else
+	$(error Deprecated. Please run `make install cloud=$(cloud)`)
+endif
 
 .PHONY: cloud-logs
 cloud-logs: cloud-validator
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
 	@make $(cloud)-logs
+else
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make logs; \
+	cd $$prev_dir;
+endif
 
 .PHONY: cloud-uninstall
 cloud-uninstall: cloud-validator
+ifeq ("$(cloud)",$(filter "$(cloud)","gcloud" "heroku"))
 	@make $(cloud)-uninstall
-
-.PHONY: aws-init
-aws-init:
-	@set -eu \
-	&& eb init $(aws_app_name) \
-		--platform $(aws_platform) \
-		--region $(aws_region) \
-	&& eb create \
-		--sample $(aws_env_name)
-
-.PHONY: aws-install
-aws-install:
-	@set -eu \
-	&& eb deploy
-
-.PHONY: aws-logs
-aws-logs:
-	@set -eu \
-	&& eb logs
-
-.PHONY: aws-uninstall
-aws-uninstall:
-	@set -eu \
-	&& eb terminate \
-		--force \
-		--all
-
-.PHONY: azure-init
-azure-init:
-	@set -eu \
-	&& az group create \
-		--name $(azure_rg) \
-		--location $(azure_region) \
-	&& az config set \
-		defaults.group=$(azure_rg) \
-		defaults.location=$(azure_region)
-
-.PHONY: azure-install
-azure-install:
-	@set -eu \
-	&& az config set \
-		defaults.group=$(azure_rg) \
-		defaults.location=$(azure_region) \
-	&& az webapp up \
-		--name $(azure_app_name)
-
-# TODO: how to show recent application log entries?
-.PHONY: azure-logs
-azure-logs:
-	@set -eu \
-	&& az webapp log deployment show \
-		--name $(azure_app_name)
-	&& az webapp log show \
-		--name $(azure_app_name)
-
-.PHONY: azure-uninstall
-azure-uninstall:
-	@set -eu \
-	&& az group delete \
-		--name $(azure_rg) \
-		--yes
+else
+	$(error Deprecated. Please run `make uninstall cloud=$(cloud)`)
+endif
 
 .PHONY: gcloud-init
 gcloud-init:

@@ -19,7 +19,6 @@ aws_environment_name:=env-our-hello-kotlin-springboot
 #      e.g. `eb platform list` only displays "corretto-11"
 aws_platform:=corretto-11
 aws_platform_arn:=arn:aws:elasticbeanstalk:us-east-1::platform/Corretto 8 running on 64bit Amazon Linux 2/3.2.8
-
 aws_region:=us-east-1
 
 azure_resource_group:=rg-our-hello-cloud-springboot

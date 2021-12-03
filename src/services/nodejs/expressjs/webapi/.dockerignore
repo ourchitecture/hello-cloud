@@ -1,6 +1,5 @@
 .devcontainer/
 .vscode/
-node_modules/
 
 *.code-workspace
 *.md
@@ -10,3 +9,4 @@ node_modules/
 docker-compose.yml
 Dockerfile
 makefile
+package-lock.json

@@ -27,9 +27,6 @@ if [ -z "$AWS_REGION" ]; then
     exit 1
 fi
 
-aws_config_path="${AWS_CONFIG_PATH:-./.elasticbeanstalk/config.yml}"
-aws_config_backup_path="${AWS_CONFIG_BACKUP_PATH:-./aws-eb-config.yml.bak}"
-
 aws_env_name="$AWS_ENV_NAME"
 aws_region="$AWS_REGION"
 
