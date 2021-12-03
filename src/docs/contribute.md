@@ -4,13 +4,17 @@
 
 !!! tip "Ways to contribute"
 
-    -   **:octicons-comment-discussion-16: Discuss:** post a comment at the bottom of every page
-    -   [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
-    -   [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
-    -   [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
-    -   [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
-    -   [**:material-new-box: Create a project**](#adding-a-new-project)
-    -   [**:woman_technologist_tone4: :man_technologist_tone3: :woman_technologist_tone5: :man_technologist_tone2: :technologist_tone1: Development**](#development)
+    - **:octicons-comment-discussion-16: Discuss:** post a comment at the bottom of every page
+    - [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    - [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    - [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
+    - [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
+    - [**:material-new-box: Create a project**](#adding-a-new-project)
+    - [**:woman_technologist_tone4: :man_technologist_tone3: :woman_technologist_tone5: :man_technologist_tone2: :technologist_tone1: Development**](#development)
+
+!!! warning "./docs"
+
+    _The "./docs" folder is automatically generated output. Please make changes to "./src/docs"._
 
 ## Adding a new project
 
@@ -208,11 +212,11 @@ This project attempts to support a variety of developer tooling choices while ma
 
 !!! info "Development resources"
 
-    -   [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
-    -   [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
-    -   [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
-    -   [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
-    -   [**:octicons-repo-forked-16: Fork**](https://github.com/ourchitecture/hello-cloud/fork)
+    - [**:octicons-issue-opened-16: Submit an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    - [**:material-comment-plus: Comment on an issue**](https://github.com/ourchitecture/hello-cloud/issues)
+    - [**:material-star: Star**](https://github.com/ourchitecture/hello-cloud)
+    - [**:material-eye-plus: Watch**](https://github.com/ourchitecture/hello-cloud/subscription)
+    - [**:octicons-repo-forked-16: Fork**](https://github.com/ourchitecture/hello-cloud/fork)
 
 ### Prerequisites
 
@@ -228,21 +232,21 @@ This project attempts to support a variety of developer tooling choices while ma
 
 !!! success "Required"
 
-    -   [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
-    -   [`docker`](https://www.docker.com/get-started) :octicons-link-16:, [`docker-compose`](https://docs.docker.com/compose/gettingstarted/) :octicons-link-16:, or [`podman`](https://podman.io/getting-started/) :octicons-link-16: are required to build the documentation and production container images.
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16:, [`docker-compose`](https://docs.docker.com/compose/gettingstarted/) :octicons-link-16:, or [`podman`](https://podman.io/getting-started/) :octicons-link-16: are required to build the documentation and production container images.
 
 !!! info "Recommended"
 
-    -   [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: is required for DevOps pipelines Continuous Integration (CI) and Deployment (CD) tasks. For consistency, this install is recommended. (_Windows users: see note above_)
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: is required for DevOps pipelines Continuous Integration (CI) and Deployment (CD) tasks. For consistency, this install is recommended. (_Windows users: see note above_)
 
 ??? question "Optional..."
 
-    -   [`yarn`](https://yarnpkg.com/) :octicons-link-16: or [`node`](https://nodejs.org/) :octicons-link-16: are required to run NodeJS projects (_`yarn` is recommended_). The version of `yarn` is "pinned" in ".yarnrc" and will be automatically selected and used by the `yarn` command. However, container runtimes make this installation optional.
-    -   [`nvm`](https://github.com/nvm-sh/nvm) :octicons-link-16: can make switching between specific versions of `node`, `npm`, and `npx` easier across projects for a more consistent project experience across machines. The version of `node` is "pinned" in ".nvmrc" and will be automatically selected and used by the `nvm use` command. However, container runtimes make this installation optional.
-    -   [`java` 11 OpenJDK](https://openjdk.java.net/install/) :octicons-link-16: is required to run Java and Kotlin projects. However, container runtimes make this installation optional.
-    -   [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16: is required to run .NET projects. However, container runtimes make this installation optional.
-    -   [VS `code`](https://code.visualstudio.com/) :octicons-link-16: may be used for an improved developer experience with support for project-specific settings, extensions, and tasks.
-    -   [`git-town`](https://www.git-town.com/install.html) :octicons-link-16: may be used for improved developer workflow.
+    - [`yarn`](https://yarnpkg.com/) :octicons-link-16: or [`node`](https://nodejs.org/) :octicons-link-16: are required to run NodeJS projects (_`yarn` is recommended_). The version of `yarn` is "pinned" in ".yarnrc" and will be automatically selected and used by the `yarn` command. However, container runtimes make this installation optional.
+    - [`nvm`](https://github.com/nvm-sh/nvm) :octicons-link-16: can make switching between specific versions of `node`, `npm`, and `npx` easier across projects for a more consistent project experience across machines. The version of `node` is "pinned" in ".nvmrc" and will be automatically selected and used by the `nvm use` command. However, container runtimes make this installation optional.
+    - [`java` 11 OpenJDK](https://openjdk.java.net/install/) :octicons-link-16: is required to run Java and Kotlin projects. However, container runtimes make this installation optional.
+    - [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16: is required to run .NET projects. However, container runtimes make this installation optional.
+    - [VS `code`](https://code.visualstudio.com/) :octicons-link-16: may be used for an improved developer experience with support for project-specific settings, extensions, and tasks.
+    - [`git-town`](https://www.git-town.com/install.html) :octicons-link-16: may be used for improved developer workflow.
 
 ### Executing tasks
 

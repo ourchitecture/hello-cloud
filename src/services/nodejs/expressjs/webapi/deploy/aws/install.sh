@@ -79,3 +79,7 @@ if ! contains "$env_exists_output" "$aws_env_name"; then
 else
   echo 'The AWS Elastic Beanstalk environment and application already exists.'
 fi
+
+echo 'Deploying the application...'
+eb deploy
+echo 'Successfully deployed the application.'

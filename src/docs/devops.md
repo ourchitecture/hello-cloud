@@ -18,8 +18,8 @@ The production pipeline uses [GitHub Actions](https://github.com/ourchitecture/h
 
 ### Documentation
 
--   :material-pipe: **Workflow:** "./.github/workflows/documentation.yml"
--   :octicons-code-16: **Source:** "./src/docs"
--   :goal: **Deployment(s):** "./docs" and [GitHub Pages](https://www.ourchitecture.io/hello-cloud/)
+- :material-pipe: **Workflow:** "./.github/workflows/documentation.yml"
+- :octicons-code-16: **Source:** "./src/docs"
+- :goal: **Deployment(s):** "./docs" and [GitHub Pages](https://www.ourchitecture.io/hello-cloud/)
 
 Documentation is auto-generated using `make install-docs` with [MkDocs](https://www.mkdocs.org/) :octicons-link-16:, [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) :octicons-link-16:, and the ["mkdocs-material"](https://hub.docker.com/r/squidfunk/mkdocs-material/) :octicons-link-16: dockerized task runtime. The result generates the source output of everything contained in "./docs".

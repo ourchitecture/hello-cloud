@@ -1,6 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 set -eu
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # contains(string, substring)
 #
@@ -37,10 +39,19 @@ if [ -z "$AZURE_APPSERVICE_PLAN_NAME" ]; then
     exit 1
 fi
 
+if [ -z "$AZURE_APPSERVICE_NAME" ]; then
+    echo "The environment variable AZURE_APPSERVICE_NAME is required." 1>&2
+    exit 1
+fi
+
 azure_resource_group="$AZURE_RESOURCE_GROUP"
 azure_region="$AZURE_REGION"
 azure_appservice_plan_name="$AZURE_APPSERVICE_PLAN_NAME"
 azure_appservice_plan_sku="${AZURE_APPSERVICE_PLAN_SKU:-B1}"
+azure_appservice_name="$AZURE_APPSERVICE_NAME"
+
+# login (interactively or automatically with Service Principal)
+source $SCRIPT_DIR/login.sh
 
 resouce_group_exists_output=$(az group show \
   --resource-group "$azure_resource_group" \
@@ -81,3 +92,10 @@ if contains "$appservice_plan_exists_output" "ResourceNotFound"; then
 else
   echo 'The Azure AppService Plan already exists.'
 fi
+
+echo 'Deploying to Azure AppService...'
+
+az webapp up \
+  --name "$azure_appservice_name"
+
+echo 'Successfully deployed to Azure AppService.'

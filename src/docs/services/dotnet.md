@@ -1,24 +1,24 @@
 # Service: .NET Core
 
--   :octicons-container-16: **Container:** [hello-cloud/our-hello-dotnet-webapi](#docker)
--   :octicons-code-16: **Source:** [./src/services/dotnet/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi)
--   :material-dot-net: **Runtime:** [.NET Core](https://dotnet.microsoft.com/) :octicons-link-16:
--   :material-language-csharp: **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) :octicons-link-16:
--   :material-dot-net: **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) :octicons-link-16:
+- :octicons-container-16: **Container:** [hello-cloud/our-hello-dotnet-webapi](#docker)
+- :octicons-code-16: **Source:** [./src/services/dotnet/webapi/](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi)
+- :material-dot-net: **Runtime:** [.NET Core](https://dotnet.microsoft.com/) :octicons-link-16:
+- :material-language-csharp: **Language:** [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) :octicons-link-16:
+- :material-dot-net: **Framework:** [ASP.NET](https://dotnet.microsoft.com/apps/aspnet) :octicons-link-16:
 
 ## Getting started
 
--   See "[Docker](#docker)" below to run this project as a container
--   The [contributor guide](../contribute.md#executing-tasks) has the steps necessary to run this project locally. :material-more:
+- See "[Docker](#docker)" below to run this project as a container
+- The [contributor guide](../contribute.md#executing-tasks) has the steps necessary to run this project locally. :material-more:
 
 ## :octicons-infinity-16: DevOps
 
 !!! info ""
 
-    -   :material-run-fast: **Tasks:** [`make`](../contribute.md#development)
-    -   :material-pipe: **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ourchitecture/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
-    -   :octicons-code-16: **Source:** ["./src/services/dotnet/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi/)
-    -   :goal: **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
+    - :material-run-fast: **Tasks:** [`make`](../contribute.md#development)
+    - :material-pipe: **Pipeline:** ["./.github/workflows/dotnet_webapi.yml"](https://github.com/ourchitecture/hello-cloud/blob/main/.github/workflows/dotnet_webapi.yml)
+    - :octicons-code-16: **Source:** ["./src/services/dotnet/webapi"](https://github.com/ourchitecture/hello-cloud/tree/main/src/services/dotnet/webapi/)
+    - :goal: **Deployment(s):** ["hello-cloud/our-hello-dotnet-webapi"](https://github.com/ourchitecture/hello-cloud/pkgs/container/hello-cloud%2Four-hello-dotnet-webapi) docker container, Amazon Web Services AppRunner, Microsoft Azure App Service, Google Cloud App Engine
 
 ## Deployments
 
@@ -46,18 +46,18 @@
 
     While each cloud provider below has unique prerequisites and important notes, all of the tasks to deploy to each provider have been abstracted with the following automation tasks. Simply specify the provider as the argument (e.g. `make cloud-init cloud=aws`)
 
-    -   Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
-    -   Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
-    -   Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
-    -   Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
+    - Initialize with the command `make cloud-init cloud=aws|azure|gcloud|heroku`
+    - Install (deploy) with the command `make cloud-install cloud=aws|azure|gcloud|heroku`
+    - Get the applicaiton logs with the command `make cloud-logs cloud=aws|azure|gcloud|heroku`
+    - Uninstall (delete/destroy) with the command `make cloud-uninstall cloud=aws|azure|gcloud|heroku`
 
 ### :fontawesome-brands-aws: Amazon Web Services (AWS)
 
 !!! todo "Prerequisites"
 
-    -   An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
-    -   [`aws` CLI](https://docs.aws.amazon.com/cli/) :octicons-link-16:
-    -   `dotnet` ["aws.deploy.cli" tool](https://github.com/aws/aws-dotnet-deploy#getting-started)
+    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
+    - [`aws` CLI](https://docs.aws.amazon.com/cli/) :octicons-link-16:
+    - `dotnet` ["aws.deploy.cli" tool](https://github.com/aws/aws-dotnet-deploy#getting-started)
 
 !!! example "Commands"
 
@@ -71,9 +71,9 @@
 
 !!! todo "Prerequisites"
 
-      -   An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
-      -   [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16:
-      -   [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16:
+      - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
+      - [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16:
+      - [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16:
 
 !!! example "Commands"
 
@@ -89,9 +89,9 @@
 
 !!! todo "Prerequisites"
 
-      -   An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
-      -   [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
-      -   Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+      - An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+      - [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
+      - Google Cloud [Billing Account](https://console.cloud.google.com/billing)
 
 !!! attention "Known issues"
 
@@ -115,8 +115,8 @@
 
 !!! todo "Prerequisites"
 
-    -   A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
-    -   [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
+    - A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
+    - [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
 
 !!! example "Commands"
 
@@ -135,30 +135,30 @@
 
 ???+ question "Future"
 
-    -   Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
-        -   "azure"
-        -   "heroku"
-    -   Deploy to cloud Managed Kubernetes
-        -   "aws"
-        -   "azure"
-        -   "gcloud"
-        -   "heroku"
-    -   HTTPS only deployment
-    -   GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
-    -   Service contracts and auto-generated documentation integrated with MkDocs documentation site
-    -   Ping / Health endpoint
+    - Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
+        - "azure"
+        - "heroku"
+    - Deploy to cloud Managed Kubernetes
+        - "aws"
+        - "azure"
+        - "gcloud"
+        - "heroku"
+    - HTTPS only deployment
+    - GitHub Actions workflow to deploy this service to multiple clouds (automation of infrastructure setup and tear-down)
+    - Service contracts and auto-generated documentation integrated with MkDocs documentation site
+    - Ping / Health endpoint
 
 ???+ success "Completed"
 
-    -   Local "hello-cloud" service (`dotnet`)
-    -   Build and run as container (`docker`, `docker-compose`, or `podman`)
-    -   Deploy container to GitHub Container Registry as GitHub Package
-    -   GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
-    -   Deploy to cloud Platform-as-a-Service (PaaS)
-        -   :material-heart-broken: "aws" requires a container
-        -   "azure"
-        -   :material-heart-broken: "gcloud" requires a container
-        -   "heroku"
-    -   Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
-        -   "aws"
-        -   "gcloud"
+    - Local "hello-cloud" service (`dotnet`)
+    - Build and run as container (`docker`, `docker-compose`, or `podman`)
+    - Deploy container to GitHub Container Registry as GitHub Package
+    - GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
+    - Deploy to cloud Platform-as-a-Service (PaaS)
+        - :material-heart-broken: "aws" requires a container
+        - "azure"
+        - :material-heart-broken: "gcloud" requires a container
+        - "heroku"
+    - Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
+        - "aws"
+        - "gcloud"

@@ -1,11 +1,19 @@
 .devcontainer/
 .vscode/
+deploy/
 
 *.code-workspace
 *.md
 
+.dockerignore
+.ebignore
 .editorconfig
+.gclougignore
 .gitignore
+.nvmrc
+app.yaml
+azure-init.sh
+azure-install.sh
 docker-compose.yml
 Dockerfile
 makefile
