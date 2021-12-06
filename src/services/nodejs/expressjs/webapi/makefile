@@ -34,10 +34,12 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","node" "npm"))
 	&& npm install
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
-	&& IMAGE_TAG=$(image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	$(dev_tool) build \
+	&& IMAGE_TAG="$(image_tag)" \
+	APP_PORT="$(app_port)" \
+	HOST_PORT="$(host_port)" \
+	$(dev_tool) \
+		--file ./docker/docker-compose.yml \
+		build \
 	&& echo 'Successfully built: $(image_tag)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
@@ -61,16 +63,19 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","node" "npm"))
 	&& npm start
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
-	&& IMAGE_TAG=$(image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	$(dev_tool) up -d
+	&& IMAGE_TAG="$(image_tag)" \
+	APP_PORT="$(app_port)" \
+	HOST_PORT="$(host_port)" \
+	$(dev_tool) \
+		--file ./docker/docker-compose.yml \
+		up \
+		--detach
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) run \
 		--name $(container_name) \
-		-d \
-		-p $(host_port):$(app_port) \
+		--detach \
+		--publish $(host_port):$(app_port) \
 		$(image_tag)
 endif
 	@echo 'Successfully started: http://localhost:$(host_port)'
@@ -81,9 +86,11 @@ stop:
 ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	$(dev_tool) down \
+	APP_PORT="$(app_port)" \
+	HOST_PORT="$(host_port)" \
+	$(dev_tool) \
+		--file ./docker/docker-compose.yml \
+		down \
 	&& echo 'Successfully removed container: $(container_name)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	@set -eu \
@@ -114,9 +121,13 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","yarn" "node" "npm"))
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	$(dev_tool) rm -s -f \
+	APP_PORT="$(app_port)" \
+	HOST_PORT="$(host_port)" \
+	$(dev_tool) \
+		--file ./docker/docker-compose.yml \
+		rm \
+		--stop \
+		--force \
 	&& echo 'Successfully removed image: $(image_tag)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \

@@ -10,7 +10,12 @@ ARG HTTP_PORT=3000
 
 FROM ${BASE_DOCKER_IMAGE_NAME}:${BASE_DOCKER_IMAGE_TAG} as base
 
-FROM base as dependencies
+FROM base as packages
+
+RUN apk add --no-cache \
+      curl
+
+FROM packages as dependencies
 
 WORKDIR /app
 
@@ -33,6 +38,12 @@ COPY . /app/
 
 WORKDIR /app
 
+ENV HTTP_PORT=${HTTP_PORT}
+
 EXPOSE ${HTTP_PORT}
+
+# override with: https://docs.docker.com/engine/reference/run/#healthcheck
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s \
+  CMD curl --fail "http://localhost:${HTTP_PORT}" || exit 1
 
 ENTRYPOINT [ "node", "./index.js" ]

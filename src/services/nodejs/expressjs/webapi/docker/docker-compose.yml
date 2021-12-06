@@ -3,7 +3,9 @@ version: "3.9"
 services:
   web:
     build:
-      context: .
+      # context is the project directory
+      context: ../
+      # dockerfile is relative to the context
       dockerfile: ./docker/Dockerfile
     image: ${IMAGE_TAG}
     ports:

@@ -1,3 +1,4 @@
+.azure/
 .devcontainer/
 .vscode/
 
@@ -10,3 +11,5 @@ docker-compose.yml
 Dockerfile
 makefile
 package-lock.json
+test-local-tools.sh
+vs.code-workspace
