@@ -3,6 +3,8 @@ ARG NODE_VERSION=16.13.1
 ARG ALPINE_VERSION=3.12
 ARG BASE_DOCKER_IMAGE_TAG=${NODE_VERSION}-alpine${ALPINE_VERSION}
 
+ARG APK_VERSION_CURL=7.79.1-r0
+
 ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
 ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
@@ -12,8 +14,10 @@ FROM ${BASE_DOCKER_IMAGE_NAME}:${BASE_DOCKER_IMAGE_TAG} as base
 
 FROM base as packages
 
+ARG APK_VERSION_CURL
+
 RUN apk add --no-cache \
-      curl
+      curl=${APK_VERSION_CURL}
 
 FROM packages as dependencies
 

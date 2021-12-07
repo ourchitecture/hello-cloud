@@ -65,10 +65,10 @@ endif
 	@set -eu \
 	&& $(dev_tool) run \
 		--name $(docs_container_name) \
-		-d \
-		-v $(shell pwd):/app \
-		-w /app \
-		-p $(docs_app_port):$(docs_host_port) \
+		--detach \
+		--volume $(shell pwd):/app \
+		--workdir /app \
+		--publish $(docs_app_port):$(docs_host_port) \
 		mkdocs \
 		serve \
 			-a 0.0.0.0:$(docs_app_port) \
@@ -83,7 +83,7 @@ ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	$(error The "$@" command target only supports "dev_tool=docker" or "dev_tool=podman")
 endif
 	@set -eu \
-	&& $(dev_tool) rm -f our-hello-docs
+	&& $(dev_tool) rm --force our-hello-docs
 
 .PHONY: restart-docs
 restart-docs: stop-docs start-docs

@@ -1,8 +1,17 @@
+.azure/
+.devcontainer/
+.vscode/
+
 .gradle/
 bin/
 build/
 
+*.code-workspace
 *.md
 
+.editorconfig
 .gitignore
+docker-compose.yml
+docker/Dockerfile
 makefile
+test-local-tools.sh

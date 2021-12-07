@@ -7,4 +7,8 @@ services:
       dockerfile: ./Dockerfile
     image: ${IMAGE_TAG}
     ports:
-      - "${APP_PORT}:${HOST_PORT}"
+      # TODO: https
+      # read: https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
+      # read: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
+      - "${HOST_HTTP_PORT}:${APP_HTTP_PORT}"
+      # - "${HOST_HTTPS_PORT}:${APP_HTTPS_PORT}"

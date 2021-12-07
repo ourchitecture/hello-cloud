@@ -3,7 +3,7 @@ ARG JAVA_VERSION=17
 
 ARG GRADLE_VERSION=7.2
 
-ARG HTTP_PORT=8081
+ARG HTTP_PORT=8080
 
 # the following directory and file get set the first time
 # gradle is run and hides the "welcome" message from appearing
@@ -79,10 +79,19 @@ ARG HTTP_PORT
 LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
 LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
 
+# TODO: curl version
+RUN microdnf install curl
+
 COPY --from=builder /app/app.jar /app/
 
 WORKDIR /app
 
+ENV HTTP_PORT=${HTTP_PORT}
+
 EXPOSE ${HTTP_PORT}
+
+# override with: https://docs.docker.com/engine/reference/run/#healthcheck
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s \
+  CMD curl --silent --fail "http://localhost:${HTTP_PORT}" || exit 1
 
 ENTRYPOINT [ "java", "-jar", "./app.jar" ]

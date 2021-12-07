@@ -4,15 +4,16 @@
 # - docker
 # - docker-compose
 # - podman
-# - yarn
-# BUG: npm known issue (documented below)
+# - gradle
+# BUG: maven known issue (documented below)
 # Tips: https://google.github.io/styleguide/shellguide.html
 
 # TODO: always clean up containers and processes (before and after)
 
 set -eu
 
-app_url="${APP_URL:-http://localhost:3000}"
+# TODO: https
+app_url="${APP_URL:-http://localhost:8081}"
 app_content="Hello cloud"
 
 container_healthcheck_interval="0.2"
@@ -22,7 +23,7 @@ container_healthcheck_interval="0.2"
 ################################################################################
 
 dev_tool="docker"
-running_container_name="our-hello-nodejs-expressjs-webapi"
+running_container_name="our-hello-kotlin-springboot-webapi"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -65,7 +66,7 @@ fi
 ################################################################################
 
 dev_tool="docker-compose"
-running_container_name="docker_web_1"
+running_container_name="webapi_web_1"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -108,7 +109,7 @@ fi
 ################################################################################
 
 dev_tool="podman"
-running_container_name="our-hello-nodejs-expressjs-webapi"
+running_container_name="our-hello-kotlin-springboot-webapi"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -136,7 +137,7 @@ else
 
   echo ''
 
-  podman_additional_healthcheck_interval="2.0"
+  podman_additional_healthcheck_interval="10.0"
   echo ''
   echo "FRAGILE: podman healthchecks are not currently working, so sleeping an extra ${podman_additional_healthcheck_interval}s..."
   echo ''
@@ -161,14 +162,17 @@ else
 fi
 
 ################################################################################
-# dev_tool=yarn
+# dev_tool=gradle
 ################################################################################
 
-dev_tool=yarn
+dev_tool="gradle"
+# spring-boot defaults to 8080 (not using the container ports)
+app_url="http://localhost:8080"
 
-if ! command -v $dev_tool; then
+# requires "java", not "gradle", since we use ./gradlew
+if ! command -v java; then
   echo ''
-  echo "WARNING: Missing the tool: $dev_tool"
+  echo "WARNING: Missing the tool: java"
   echo "Skipping tests for $dev_tool."
   echo ''
 else
@@ -195,7 +199,7 @@ else
   echo ''
 
   echo "Waiting for $dev_tool to start..."
-  sleep 2.0
+  sleep 20.0
 
   if ! curl -s "$app_url" | grep -q "$app_content"; then
     echo "The command 'make $make_target dev_tool=$dev_tool' failed." 1>&2
@@ -208,9 +212,9 @@ else
   trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 fi
 
-# TODO: figure out how to also test "npm"
+# TODO: figure out how to also test ./mvnw, since Azure relies on plugins
 #       it's not possible to simply re-run the above section with a different
-#       "dev_tool=npm", because the "yarn" process is still running until
+#       "dev_tool=maven", because the "gradle" process is still running until
 #       the script fails or exits and will have a "port in use" collision
 
 echo ''

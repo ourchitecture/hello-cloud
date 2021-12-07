@@ -1,7 +1,16 @@
+.azure/
+.devcontainer/
+.vscode/
+
 bin/
 obj/
 
+*.code-workspace
 *.md
 
+.editorconfig
 .gitignore
+docker-compose.yml
+Dockerfile
 makefile
+test-local-tools.sh
