@@ -7,4 +7,4 @@ services:
       dockerfile: ./docker/Dockerfile
     image: ${IMAGE_TAG}
     ports:
-      - "${APP_PORT}:${HOST_PORT}"
+      - "${HOST_PORT}:${APP_PORT}"

@@ -12,11 +12,14 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// INFO: https redirect is explicitly disabled for services
+// Use only https://
+// see: "API projects" on https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

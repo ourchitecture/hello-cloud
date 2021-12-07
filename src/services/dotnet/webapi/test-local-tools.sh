@@ -4,15 +4,17 @@
 # - docker
 # - docker-compose
 # - podman
-# - yarn
-# BUG: npm known issue (documented below)
+# - dotnet
 # Tips: https://google.github.io/styleguide/shellguide.html
 
 # TODO: always clean up containers and processes (before and after)
 
 set -eu
 
-app_url="${APP_URL:-http://localhost:3000}"
+# TODO: https
+# read: https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
+# read: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
+app_url="${APP_URL:-http://localhost:5124}"
 app_content="Hello cloud"
 
 container_healthcheck_interval="0.2"
@@ -22,7 +24,7 @@ container_healthcheck_interval="0.2"
 ################################################################################
 
 dev_tool="docker"
-running_container_name="our-hello-nodejs-expressjs-webapi"
+running_container_name="our-hello-dotnet-webapi"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -65,7 +67,7 @@ fi
 ################################################################################
 
 dev_tool="docker-compose"
-running_container_name="docker_web_1"
+running_container_name="webapi_web_1"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -108,7 +110,7 @@ fi
 ################################################################################
 
 dev_tool="podman"
-running_container_name="our-hello-nodejs-expressjs-webapi"
+running_container_name="our-hello-dotnet-webapi"
 
 if ! command -v $dev_tool; then
   echo ''
@@ -161,10 +163,10 @@ else
 fi
 
 ################################################################################
-# dev_tool=yarn
+# dev_tool=dotnet
 ################################################################################
 
-dev_tool=yarn
+dev_tool=dotnet
 
 if ! command -v $dev_tool; then
   echo ''
@@ -195,7 +197,7 @@ else
   echo ''
 
   echo "Waiting for $dev_tool to start..."
-  sleep 2.0
+  sleep 10.0
 
   if ! curl -s "$app_url" | grep -q "$app_content"; then
     echo "The command 'make $make_target dev_tool=$dev_tool' failed." 1>&2
@@ -207,11 +209,6 @@ else
   echo 'Killing running background processes on exit...'
   trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 fi
-
-# TODO: figure out how to also test "npm"
-#       it's not possible to simply re-run the above section with a different
-#       "dev_tool=npm", because the "yarn" process is still running until
-#       the script fails or exits and will have a "port in use" collision
 
 echo ''
 echo '------------------------------------------------------------------'

@@ -20,8 +20,8 @@ Following are some interesting cloud observations while developing basic, automa
 
 ### :fontawesome-brands-salesforce: Salesforce Heroku
 
-- Does not work out-of-the-box with monorepos, requiring the use of an unsupported [community user buildpack](https://github.com/lstoll/heroku-buildpack-monorepo). Heroku also uses a `git` repository to push code changes. Currently, the entire monorepo must be synchronized with the Heroku repo. Future contribution enhancements could containerize the heroku runtime, mount just the project, initialize git and push the changes.
-- Heroku tooling complains when a "shallow clone" is made (e.g. `git clone --depth=1 ...`). So, without the full history and simulating a new repository with each deploy, the effects of this are unknown.
+- Does not work out-of-the-box with monorepos, requiring the use of an unsupported [community user buildpack](https://github.com/lstoll/heroku-buildpack-monorepo). Heroku also uses a `git` repository to push code changes. Currently, the entire monorepo must be synchronized with the Heroku repo. As a result, the `heroku` CLI was containerized with just the application code, initializing an empty git repository within (local to) the container and the code files were added and committed. This was sufficient to synchronize the application with Heroku.
+- Heroku tooling complains when a "shallow clone" is made (e.g. `git clone --depth=1 ...`); history is required. Just like the monorepo problem, containerizing the `heroku` CLI and application code fix this as well.
 - .NET Core is not an officially supported language, requiring the use of an unsupported [community user buildpack](https://github.com/jincod/dotnetcore-buildpack). This is odd, considering C# has been in the top lists of programming languages for professional developers for several years.
 
 ## Technology

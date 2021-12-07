@@ -31,6 +31,7 @@ ARG GRADLE_NOTIFICATIONS_PATH
 ARG GRADLE_NOTIFICATIONS_WELCOME_FILE
 
 # install "xargs" for gradle
+# TODO: findutils version
 RUN microdnf install findutils
 
 WORKDIR /app
@@ -79,10 +80,19 @@ ARG HTTP_PORT
 LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
 LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
 
+# TODO: curl version
+RUN microdnf install curl
+
 COPY --from=builder /app/app.jar /app/
 
 WORKDIR /app
 
+ENV HTTP_PORT=${HTTP_PORT}
+
 EXPOSE ${HTTP_PORT}
+
+# override with: https://docs.docker.com/engine/reference/run/#healthcheck
+HEALTHCHECK --interval=5s --timeout=3s --start-period=5s \
+  CMD curl --silent --fail "http://localhost:${HTTP_PORT}" || exit 1
 
 ENTRYPOINT [ "java", "-jar", "./app.jar" ]

@@ -3,9 +3,14 @@ cloud:=azure
 
 # see: "./Properties/launchSettings.json"
 #      .profiles.webapi.applicationUrl
-# ports should match for consistency
-app_port=80
-host_port:=5124
+#      Ports should match for consistency.
+# TODO: https
+# read: https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
+# read: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
+app_http_port=80
+host_http_port:=5124
+# app_https_port=443
+# host_https_port:=7032
 
 container_name:=our-hello-dotnet-webapi
 image_tag:=our-hello-dotnet-webapi:latest
@@ -47,8 +52,8 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
+	APP_HTTP_PORT=$(app_http_port) \
+	HOST_HTTP_PORT=$(host_http_port) \
 	$(dev_tool) build \
 	&& echo 'Successfully built: $(image_tag)'
 else ifeq '$(dev_tool)' 'dotnet'
@@ -69,20 +74,20 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) run \
 		--name=$(container_name) \
-		-d \
-		-p $(host_port):$(app_port) \
+		--detach \
+		--publish $(host_http_port):$(app_http_port) \
 		$(image_tag)
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
-	$(dev_tool) up -d
+	APP_HTTP_PORT=$(app_http_port) \
+	HOST_HTTP_PORT=$(host_http_port) \
+	$(dev_tool) up --detach
 else ifeq '$(dev_tool)' 'dotnet'
 	@set -eu \
 	&& dotnet run --nologo
 endif
-	@echo 'Successfully started: http://localhost:$(host_port)'
+	@echo 'Successfully started: http://localhost:$(host_http_port)'
 
 .PHONY: stop
 stop:
@@ -90,8 +95,8 @@ stop:
 ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
+	APP_HTTP_PORT=$(app_http_port) \
+	HOST_HTTP_PORT=$(host_http_port) \
 	$(dev_tool) down \
 	&& echo 'Successfully removed container: $(container_name)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
@@ -108,8 +113,8 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 else ifeq '$(dev_tool)' 'docker-compose'
 	@set -eu \
 	&& IMAGE_TAG=$(base_image_tag) \
-	APP_PORT=$(app_port) \
-	HOST_PORT=$(host_port) \
+	APP_HTTP_PORT=$(app_http_port) \
+	HOST_HTTP_PORT=$(host_http_port) \
 	$(dev_tool) rm -s -f \
 	&& echo 'Successfully removed image: $(image_tag)'
 else ifeq '$(dev_tool)' 'dotnet'
@@ -144,6 +149,7 @@ run: start
 serve: start
 down: stop
 uninstall: clean
+restart: stop start
 
 .PHONY: cloud-validator
 cloud-validator:

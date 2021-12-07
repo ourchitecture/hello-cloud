@@ -1,7 +1,7 @@
 dev_tool:=docker
 cloud:=azure
 
-app_port=8081
+app_port=8080
 host_port:=8081
 
 container_name:=our-hello-kotlin-springboot-webapi
@@ -86,8 +86,8 @@ ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) run \
 		--name="$(container_name)" \
-		-d \
-		-p $(host_port):$(app_port) \
+		--detach \
+		--publish $(host_port):$(app_port) \
 		"$(image_tag)" \
 	&& echo 'Successfully started: http://localhost:$(host_port)'
 else ifeq '$(dev_tool)' 'docker-compose'
@@ -95,7 +95,7 @@ else ifeq '$(dev_tool)' 'docker-compose'
 	&& IMAGE_TAG="$(image_tag)" \
 		APP_PORT="$(app_port)" \
 		HOST_PORT="$(host_port)" \
-		$(dev_tool) up -d \
+		$(dev_tool) up --detach \
 	&& echo 'Successfully started: http://localhost:$(host_port)'
 else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","gradle" "gradlew"))
 	@set -eu \
@@ -172,6 +172,7 @@ run: start
 serve: start
 down: stop
 uninstall: clean
+restart: stop start
 
 .PHONY: cloud-validator
 cloud-validator:
