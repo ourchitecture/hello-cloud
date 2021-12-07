@@ -94,3 +94,266 @@
   stroke: var(--md-accent-fg-color) !important;
   fill: var(--md-accent-fg-color) !important;
 }
+
+/*******************************************************************************
+  Custom Admonitions: numbers
+*******************************************************************************/
+
+:root {
+  --md-admonition-icon--num-bg-color: rgba(124,77,255,.1);
+  --md-admonition-icon--num-fg-color: rgb(124, 77, 255);
+
+  /* https://www.visualpharm.com/free-icons/level%201-595b40b75ba036ed117d7851 */
+  --md-admonition-icon--num-zero: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 z M 12 7.3125 C 14.1 7.3125 15.09375 8.7875 15.09375 11.1875 L 15.09375 12.8125 C 15.09375 13.5125 15.1 16.6875 12 16.6875 C 8.9 16.6875 8.90625 13.4125 8.90625 12.8125 L 8.90625 11.1875 C 8.90625 8.6875 9.9 7.3125 12 7.3125 z M 12 8.6875 C 10.7 8.6875 10.6875 10.30625 10.6875 10.90625 L 10.6875 13 C 10.6875 14.1 10.9 15.1875 12 15.1875 C 13.1 15.1875 13.3125 14 13.3125 13 L 13.3125 10.90625 C 13.3125 10.40625 13.3 8.6875 12 8.6875 z"/></svg>');
+  --md-admonition-icon--num-zero-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 12 7.3125 C 9.9 7.3125 8.90625 8.6875 8.90625 11.1875 L 8.90625 12.8125 C 8.90625 13.4125 8.9 16.6875 12 16.6875 C 15.1 16.6875 15.09375 13.5125 15.09375 12.8125 L 15.09375 11.1875 C 15.09375 8.7875 14.1 7.3125 12 7.3125 z M 12 8.6875 C 13.3 8.6875 13.3125 10.30625 13.3125 10.90625 L 13.3125 13 C 13.3125 14 13.1 15.1875 12 15.1875 C 10.9 15.1875 10.6875 14.1 10.6875 13 L 10.6875 10.90625 C 10.6875 10.30625 10.7 8.6875 12 8.6875 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-one: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M13.3,16.6h-1.8V9.5l-2.2,0.7V8.7l3.8-1.4h0.2V16.6z"/></svg>');
+  --md-admonition-icon--num-one-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 13.09375 7.3125 L 9.3125 8.6875 L 9.3125 10.1875 L 11.5 9.5 L 11.5 16.59375 L 13.3125 16.59375 L 13.3125 7.3125 L 13.09375 7.3125 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-two: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M15.3,16.6H8.9v-1.3c2.7-3,4.2-4.1,4.2-5.3 c0-0.4-0.2-1.3-1.2-1.3c-1.3,0-1.3,1.3-1.3,1.6H8.7c0-0.9,0.7-3,3.2-3c2.5,0,3,1.5,3,2.6c0,1.5-1.1,2.7-3.7,5.3h4V16.6z"/></svg>');
+  --md-admonition-icon--num-two-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11.4375 7.3125 C 9.3006592 7.5465088 8.6875 9.46875 8.6875 10.3125 L 10.59375 10.3125 C 10.59375 10.0125 10.60625 8.6875 11.90625 8.6875 C 12.90625 8.6875 13.09375 9.6 13.09375 10 C 13.09375 11.2 11.60625 12.3125 8.90625 15.3125 L 8.90625 16.59375 L 15.1875 16.59375 L 15.1875 15.1875 L 11.1875 15.1875 C 13.7875 12.5875 14.90625 11.40625 14.90625 9.90625 C 14.90625 8.80625 14.40625 7.3125 11.90625 7.3125 C 11.75 7.3125 11.579956 7.2968994 11.4375 7.3125 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-three: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M11.9,16.7c-2.4,0-3.2-1.7-3.1-2.7h1.8 c-0.1,0.3,0.2,1.2,1.4,1.2c1.3,0,1.4-1.1,1.4-1.3c0-1.4-1.3-1.4-1.5-1.4h-1v-1.4h1c0.5,0,1.4-0.1,1.4-1.3c0-1.1-1-1.2-1.3-1.2 c-1,0-1.2,0.8-1.2,1H8.9c0-1.8,1.8-2.5,3-2.5c2.8,0,3.1,1.9,3.1,2.6c0,1.3-1.2,1.9-1.4,2c0.5,0.2,1.5,0.7,1.5,2.2 C15.2,16.1,13.3,16.7,11.9,16.7z"/></svg>');
+  --md-admonition-icon--num-three-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 11.90625 7.1875 C 10.70625 7.1875 8.90625 7.8875 8.90625 9.6875 L 10.8125 9.6875 C 10.8125 9.4875 11 8.6875 12 8.6875 C 12.3 8.6875 13.3125 8.80625 13.3125 9.90625 C 13.3125 11.10625 12.40625 11.1875 11.90625 11.1875 L 10.90625 11.1875 L 10.8125 11.1875 L 10.8125 12.5 L 11.8125 12.5 C 12.0125 12.5 13.3125 12.50625 13.3125 13.90625 C 13.3125 14.10625 13.20625 15.1875 11.90625 15.1875 C 10.70625 15.1875 10.4 14.3 10.5 14 L 8.6875 14 C 8.5875 15 9.4125 16.6875 11.8125 16.6875 C 13.2125 16.6875 15.09375 16.1 15.09375 14 C 15.09375 12.5 14.09375 12.0125 13.59375 11.8125 C 13.79375 11.7125 15 11.1125 15 9.8125 C 15 9.1125 14.70625 7.1875 11.90625 7.1875 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-four: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 z M 12.1875 7.3125 L 14 7.3125 L 14 13.09375 L 15 13.09375 L 15 14.59375 L 14 14.59375 L 14 16.59375 L 12.1875 16.59375 L 12.1875 14.59375 L 8.40625 14.59375 L 8.3125 13.40625 L 12.1875 7.3125 z M 12.09375 9.90625 L 10.09375 13.09375 L 12.09375 13.09375 L 12.09375 9.90625 z"/></svg>');
+  --md-admonition-icon--num-four-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 12.1875 7.3125 L 8.3125 13.40625 L 8.40625 14.59375 L 12.1875 14.59375 L 12.1875 16.59375 L 14 16.59375 L 14 14.59375 L 15 14.59375 L 15 13.09375 L 14 13.09375 L 14 7.3125 L 12.1875 7.3125 z M 12.09375 9.90625 L 12.09375 13.09375 L 10.09375 13.09375 L 12.09375 9.90625 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-five: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M12,16.7c-2.4,0-3.2-1.8-3.1-2.7h1.8c0,0.4,0.3,1.2,1.3,1.2 c1.3,0,1.3-1.5,1.3-1.7c0-1.6-1.2-1.6-1.5-1.6c-0.8,0-1.2,0.4-1.2,0.5l-1.5-0.4l0.5-4.7h5.2v1.5h-3.7l-0.2,2c0.1,0,0.6-0.3,1.4-0.3 c2.7,0,2.8,2.6,2.8,3.1C15.1,15.2,14.1,16.7,12,16.7z"/></svg>');
+  --md-admonition-icon--num-five-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 9.59375 7.40625 L 9.09375 12.09375 L 10.59375 12.5 C 10.59375 12.4 11.0125 12 11.8125 12 C 12.1125 12 13.3125 11.99375 13.3125 13.59375 C 13.3125 13.79375 13.3 15.3125 12 15.3125 C 11 15.3125 10.6875 14.49375 10.6875 14.09375 L 8.90625 14.09375 C 8.80625 14.99375 9.6 16.8125 12 16.8125 C 14.1 16.8125 15.09375 15.2875 15.09375 13.6875 C 15.09375 13.1875 15.0125 10.59375 12.3125 10.59375 C 11.5125 10.59375 11.00625 10.90625 10.90625 10.90625 L 11.09375 8.90625 L 14.8125 8.90625 L 14.8125 7.40625 L 9.59375 7.40625 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-six: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 z M 13.5 7.1875 L 13.8125 7.1875 L 13.8125 8.6875 L 13.6875 8.6875 C 12.4875 8.6875 10.9875 9.19375 10.6875 11.09375 C 10.7875 10.99375 11.39375 10.3125 12.59375 10.3125 C 15.09375 10.3125 15.1875 13.00625 15.1875 13.40625 C 15.1875 15.60625 13.69375 16.6875 12.09375 16.6875 C 9.79375 16.6875 8.8125 14.8 8.8125 13 L 8.8125 12.3125 C 8.8125 11.1125 9.2 7.2875 13.5 7.1875 z M 12 11.90625 C 11.1 11.90625 10.6875 12.6125 10.6875 12.8125 L 10.6875 13.40625 C 10.6875 14.80625 11.29375 15.40625 12.09375 15.40625 C 13.29375 15.40625 13.40625 13.9875 13.40625 13.6875 C 13.40625 13.2875 13.3 11.90625 12 11.90625 z"/></svg>');
+  --md-admonition-icon--num-six-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 13.5 7.1875 C 9.2 7.2875 8.8125 11.1125 8.8125 12.3125 L 8.8125 13 C 8.8125 14.8 9.79375 16.6875 12.09375 16.6875 C 13.69375 16.6875 15.1875 15.5 15.1875 13.5 C 15.1875 13.1 15.09375 10.40625 12.59375 10.40625 C 11.39375 10.40625 10.7875 11.0875 10.6875 11.1875 C 10.9875 9.2875 12.4875 8.8125 13.6875 8.8125 L 13.8125 8.8125 L 13.8125 7.3125 L 13.8125 7.1875 L 13.5 7.1875 z M 12 11.90625 C 13.3 11.90625 13.40625 13.2875 13.40625 13.6875 C 13.40625 13.9875 13.29375 15.40625 12.09375 15.40625 C 11.29375 15.40625 10.6875 14.80625 10.6875 13.40625 L 10.6875 12.8125 C 10.6875 12.6125 11.1 11.90625 12 11.90625 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-seven: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M15.5,8.4l-3.6,8.2H10l3.6-7.8H8.9V7.4h6.5V8.4z"/></svg>');
+  --md-admonition-icon--num-seven-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 8.90625 7.40625 L 8.90625 8.8125 L 13.59375 8.8125 L 10 16.59375 L 11.90625 16.59375 L 15.5 8.40625 L 15.40625 8.40625 L 15.40625 7.40625 L 8.90625 7.40625 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-eight: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 z M 12 7.1875 C 14.4 7.1875 14.90625 8.8125 14.90625 9.8125 C 14.90625 11.0125 13.99375 11.6125 13.59375 11.8125 C 13.99375 12.0125 15.09375 12.7 15.09375 14 C 15.09375 16.4 13 16.6875 12 16.6875 C 9.2 16.6875 8.90625 14.8 8.90625 14 C 8.90625 12.6 9.90625 12.0125 10.40625 11.8125 C 10.00625 11.6125 9.09375 11.0125 9.09375 9.8125 C 9.09375 7.6125 11 7.1875 12 7.1875 z M 12 8.6875 C 11 8.6875 10.90625 9.50625 10.90625 9.90625 C 10.90625 10.30625 11 11.09375 12 11.09375 C 12.9 11.09375 13.09375 10.20625 13.09375 9.90625 C 13.09375 9.50625 13 8.6875 12 8.6875 z M 12 12.59375 C 10.8 12.59375 10.6875 13.70625 10.6875 13.90625 C 10.6875 15.20625 11.8 15.1875 12 15.1875 C 12.6 15.1875 13.3125 14.90625 13.3125 13.90625 C 13.3125 13.80625 13.2 12.59375 12 12.59375 z"/></svg>');
+  --md-admonition-icon--num-eight-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 12 7.1875 C 11 7.1875 9.09375 7.6125 9.09375 9.8125 C 9.09375 11.0125 10.00625 11.6125 10.40625 11.8125 C 9.90625 12.0125 8.90625 12.6 8.90625 14 C 8.90625 14.8 9.2 16.6875 12 16.6875 C 13 16.6875 15.09375 16.3 15.09375 14 C 15.09375 12.7 13.99375 12.0125 13.59375 11.8125 C 13.99375 11.6125 14.90625 11.0125 14.90625 9.8125 C 14.90625 8.9125 14.4 7.2875 12 7.1875 z M 12 8.6875 C 13 8.6875 13.09375 9.50625 13.09375 9.90625 C 13.09375 10.30625 12.9 11.09375 12 11.09375 C 11 11.09375 10.90625 10.30625 10.90625 9.90625 C 10.90625 9.50625 11 8.6875 12 8.6875 z M 12 12.6875 C 13.3 12.6875 13.3125 13.8 13.3125 14 C 13.3125 14.9 12.6 15.3125 12 15.3125 C 11.8 15.3125 10.6875 15.3 10.6875 14 C 10.6875 13.8 10.8 12.6875 12 12.6875 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+  --md-admonition-icon--num-nine: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 z M 12 7.1875 C 14.4 7.1875 15.09375 9.5 15.09375 11 L 15.09375 11.6875 C 15.09375 16.3875 11.50625 16.6875 10.40625 16.6875 L 10.3125 16.6875 L 10.3125 15.1875 L 10.40625 15.1875 C 13.10625 15.1875 13.2125 13.30625 13.3125 12.90625 C 13.1125 13.10625 12.49375 13.59375 11.59375 13.59375 C 10.79375 13.59375 8.90625 13.2 8.90625 10.5 C 8.90625 9 9.9 7.1875 12 7.1875 z M 12 8.6875 C 10.8 8.6875 10.6875 10.2 10.6875 10.5 C 10.6875 10.7 10.7 12.1875 12 12.1875 C 12.8 12.1875 13.1125 11.60625 13.3125 11.40625 L 13.3125 10.59375 C 13.3125 10.39375 13.2 8.6875 12 8.6875 z"/></svg>');
+  --md-admonition-icon--num-nine-outline: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" enable-background="new 0 0 24 24"><path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Bitstream Vera Sans" d="M 12 2 C 6.4889972 2 2 6.4889972 2 12 C 2 17.511003 6.4889972 22 12 22 C 17.511003 22 22 17.511003 22 12 C 22 6.4889972 17.511003 2 12 2 z M 12 4 C 16.430123 4 20 7.5698774 20 12 C 20 16.430123 16.430123 20 12 20 C 7.5698774 20 4 16.430123 4 12 C 4 7.5698774 7.5698774 4 12 4 z M 12 7.1875 C 9.9 7.1875 8.90625 9 8.90625 10.5 C 8.90625 13.2 10.79375 13.59375 11.59375 13.59375 C 12.49375 13.59375 13.1125 13.10625 13.3125 12.90625 C 13.2125 13.30625 13.10625 15.1875 10.40625 15.1875 L 10.40625 15.09375 L 10.3125 15.09375 L 10.3125 16.59375 L 10.40625 16.59375 C 11.50625 16.59375 15.09375 16.29375 15.09375 11.59375 L 15.09375 11 C 15.09375 9.5 14.4 7.1875 12 7.1875 z M 12 8.59375 C 13.3 8.59375 13.3125 10.29375 13.3125 10.59375 L 13.3125 11.40625 C 13.1125 11.60625 12.8 12.1875 12 12.1875 C 10.7 12.1875 10.6875 10.70625 10.6875 10.40625 C 10.6875 10.10625 10.8 8.59375 12 8.59375 z" overflow="visible" enable-background="accumulate" font-family="Bitstream Vera Sans"/></svg>');
+}
+
+.md-typeset .admonition.num-zero,
+.md-typeset details.num-zero,
+.md-typeset .admonition.num-zero-outline,
+.md-typeset details.num-zero-outline,
+.md-typeset .admonition.num-one,
+.md-typeset details.num-one,
+.md-typeset .admonition.num-one-outline,
+.md-typeset details.num-one-outline,
+.md-typeset .admonition.num-two,
+.md-typeset details.num-two,
+.md-typeset .admonition.num-two-outline,
+.md-typeset details.num-two-outline,
+.md-typeset .admonition.num-three,
+.md-typeset details.num-three,
+.md-typeset .admonition.num-three-outline,
+.md-typeset details.num-three-outline,
+.md-typeset .admonition.num-four,
+.md-typeset details.num-four,
+.md-typeset .admonition.num-four-outline,
+.md-typeset details.num-four-outline,
+.md-typeset .admonition.num-five,
+.md-typeset details.num-five,
+.md-typeset .admonition.num-five-outline,
+.md-typeset details.num-five-outline,
+.md-typeset .admonition.num-six,
+.md-typeset details.num-six,
+.md-typeset .admonition.num-six-outline,
+.md-typeset details.num-six-outline,
+.md-typeset .admonition.num-seven,
+.md-typeset details.num-seven,
+.md-typeset .admonition.num-seven-outline,
+.md-typeset details.num-seven-outline,
+.md-typeset .admonition.num-eight,
+.md-typeset details.num-eight,
+.md-typeset .admonition.num-eight-outline,
+.md-typeset details.num-eight-outline,
+.md-typeset .admonition.num-nine,
+.md-typeset details.num-nine,
+.md-typeset .admonition.num-nine-outline,
+.md-typeset details.num-nine-outline {
+  border-color: var(--md-admonition-icon--num-fg-color);
+}
+
+.md-typeset .num-zero > .admonition-title,
+.md-typeset .num-zero > summary,
+.md-typeset .num-zero-outline > .admonition-title,
+.md-typeset .num-zero-outline > summary,
+.md-typeset .num-one > .admonition-title,
+.md-typeset .num-one > summary,
+.md-typeset .num-one-outline > .admonition-title,
+.md-typeset .num-one-outline > summary,
+.md-typeset .num-two > .admonition-title,
+.md-typeset .num-two > summary,
+.md-typeset .num-two-outline > .admonition-title,
+.md-typeset .num-two-outline > summary,
+.md-typeset .num-three > .admonition-title,
+.md-typeset .num-three > summary,
+.md-typeset .num-three-outline > .admonition-title,
+.md-typeset .num-three-outline > summary,
+.md-typeset .num-four > .admonition-title,
+.md-typeset .num-four > summary,
+.md-typeset .num-four-outline > .admonition-title,
+.md-typeset .num-four-outline > summary,
+.md-typeset .num-five > .admonition-title,
+.md-typeset .num-five > summary,
+.md-typeset .num-five-outline > .admonition-title,
+.md-typeset .num-five-outline > summary,
+.md-typeset .num-six > .admonition-title,
+.md-typeset .num-six > summary,
+.md-typeset .num-six-outline > .admonition-title,
+.md-typeset .num-six-outline > summary,
+.md-typeset .num-seven > .admonition-title,
+.md-typeset .num-seven > summary,
+.md-typeset .num-seven-outline > .admonition-title,
+.md-typeset .num-seven-outline > summary,
+.md-typeset .num-eight > .admonition-title,
+.md-typeset .num-eight > summary,
+.md-typeset .num-eight-outline > .admonition-title,
+.md-typeset .num-eight-outline > summary,
+.md-typeset .num-nine > .admonition-title,
+.md-typeset .num-nine > summary,
+.md-typeset .num-nine-outline > .admonition-title,
+.md-typeset .num-nine-outline > summary {
+  background-color: var(--md-admonition-icon--num-bg-color);
+  border-color: var(--md-admonition-icon--num-fg-color);
+}
+
+.md-typeset .num-zero > .admonition-title::before,
+.md-typeset .num-zero > summary::before,
+.md-typeset .num-zero-outline > .admonition-title::before,
+.md-typeset .num-zero-outline > summary::before,
+.md-typeset .num-one > .admonition-title::before,
+.md-typeset .num-one > summary::before,
+.md-typeset .num-one-outline > .admonition-title::before,
+.md-typeset .num-one-outline > summary::before,
+.md-typeset .num-two > .admonition-title::before,
+.md-typeset .num-two > summary::before,
+.md-typeset .num-two-outline > .admonition-title::before,
+.md-typeset .num-two-outline > summary::before,
+.md-typeset .num-three > .admonition-title::before,
+.md-typeset .num-three > summary::before,
+.md-typeset .num-three-outline > .admonition-title::before,
+.md-typeset .num-three-outline > summary::before,
+.md-typeset .num-four > .admonition-title::before,
+.md-typeset .num-four > summary::before,
+.md-typeset .num-four-outline > .admonition-title::before,
+.md-typeset .num-four-outline > summary::before,
+.md-typeset .num-five > .admonition-title::before,
+.md-typeset .num-five > summary::before,
+.md-typeset .num-five-outline > .admonition-title::before,
+.md-typeset .num-five-outline > summary::before,
+.md-typeset .num-six > .admonition-title::before,
+.md-typeset .num-six > summary::before,
+.md-typeset .num-six-outline > .admonition-title::before,
+.md-typeset .num-six-outline > summary::before,
+.md-typeset .num-seven > .admonition-title::before,
+.md-typeset .num-seven > summary::before,
+.md-typeset .num-seven-outline > .admonition-title::before,
+.md-typeset .num-seven-outline > summary::before,
+.md-typeset .num-eight > .admonition-title::before,
+.md-typeset .num-eight > summary::before,
+.md-typeset .num-eight-outline > .admonition-title::before,
+.md-typeset .num-eight-outline > summary::before,
+.md-typeset .num-nine > .admonition-title::before,
+.md-typeset .num-nine > summary::before,
+.md-typeset .num-nine-outline > .admonition-title::before,
+.md-typeset .num-nine-outline > summary::before {
+  background-color: var(--md-admonition-icon--num-fg-color);
+}
+
+.md-typeset .num-zero > .admonition-title::before,
+.md-typeset .num-zero > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-zero);
+          mask-image: var(--md-admonition-icon--num-zero);
+}
+.md-typeset .num-zero-outline > .admonition-title::before,
+.md-typeset .num-zero-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-zero-outline);
+          mask-image: var(--md-admonition-icon--num-zero-outline);
+}
+.md-typeset .num-one > .admonition-title::before,
+.md-typeset .num-one > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-one);
+          mask-image: var(--md-admonition-icon--num-one);
+}
+.md-typeset .num-one-outline > .admonition-title::before,
+.md-typeset .num-one-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-one-outline);
+          mask-image: var(--md-admonition-icon--num-one-outline);
+}
+.md-typeset .num-two > .admonition-title::before,
+.md-typeset .num-two > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-two);
+          mask-image: var(--md-admonition-icon--num-two);
+}
+.md-typeset .num-two-outline > .admonition-title::before,
+.md-typeset .num-two-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-two-outline);
+          mask-image: var(--md-admonition-icon--num-two-outline);
+}
+.md-typeset .num-three > .admonition-title::before,
+.md-typeset .num-three > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-three);
+          mask-image: var(--md-admonition-icon--num-three);
+}
+.md-typeset .num-three-outline > .admonition-title::before,
+.md-typeset .num-three-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-three-outline);
+          mask-image: var(--md-admonition-icon--num-three-outline);
+}
+.md-typeset .num-four > .admonition-title::before,
+.md-typeset .num-four > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-four);
+          mask-image: var(--md-admonition-icon--num-four);
+}
+.md-typeset .num-four-outline > .admonition-title::before,
+.md-typeset .num-four-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-four-outline);
+          mask-image: var(--md-admonition-icon--num-four-outline);
+}
+.md-typeset .num-five > .admonition-title::before,
+.md-typeset .num-five > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-five);
+          mask-image: var(--md-admonition-icon--num-five);
+}
+.md-typeset .num-five-outline > .admonition-title::before,
+.md-typeset .num-five-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-five-outline);
+          mask-image: var(--md-admonition-icon--num-five-outline);
+}
+.md-typeset .num-six > .admonition-title::before,
+.md-typeset .num-six > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-six);
+          mask-image: var(--md-admonition-icon--num-six);
+}
+.md-typeset .num-six-outline > .admonition-title::before,
+.md-typeset .num-six-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-six-outline);
+          mask-image: var(--md-admonition-icon--num-six-outline);
+}
+.md-typeset .num-seven > .admonition-title::before,
+.md-typeset .num-seven > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-seven);
+          mask-image: var(--md-admonition-icon--num-seven);
+}
+.md-typeset .num-seven-outline > .admonition-title::before,
+.md-typeset .num-seven-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-seven-outline);
+          mask-image: var(--md-admonition-icon--num-seven-outline);
+}
+.md-typeset .num-eight > .admonition-title::before,
+.md-typeset .num-eight > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-eight);
+          mask-image: var(--md-admonition-icon--num-eight);
+}
+.md-typeset .num-eight-outline > .admonition-title::before,
+.md-typeset .num-eight-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-eight-outline);
+          mask-image: var(--md-admonition-icon--num-eight-outline);
+}
+.md-typeset .num-nine > .admonition-title::before,
+.md-typeset .num-nine > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-nine);
+          mask-image: var(--md-admonition-icon--num-nine);
+}
+.md-typeset .num-nine-outline > .admonition-title::before,
+.md-typeset .num-nine-outline > summary::before {
+  -webkit-mask-image: var(--md-admonition-icon--num-nine-outline);
+          mask-image: var(--md-admonition-icon--num-nine-outline);
+}
+
