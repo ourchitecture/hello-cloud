@@ -22,7 +22,7 @@ Is your favorite language and/or framework to build a website or web service mis
 
 ### A working program
 
-???+ example "1. The 'Hello World' program"
+???+ num-one "1. The 'Hello World' program"
 
     1. Check if the idea is already on [the roadmap](./roadmap.md) or has already been submitted as [an issue](https://github.com/ourchitecture/hello-cloud/issues).
     2. [Submit an issue](https://github.com/ourchitecture/hello-cloud/issues) that describes your idea to start a discussion.
@@ -63,7 +63,7 @@ Is your favorite language and/or framework to build a website or web service mis
 <figcaption>Hello World</figcaption>
 </figure>
 
-???+ example "2. Containers"
+???+ num-two "2. Containers"
 
     Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.
 
@@ -91,7 +91,7 @@ Is your favorite language and/or framework to build a website or web service mis
 <figcaption>Containers</figcaption>
 </figure>
 
-???+ example "3. Writing documentation"
+???+ num-three "3. Writing documentation"
 
     Once you have a working container, it's time to start documenting your project.
 
@@ -121,7 +121,7 @@ Is your favorite language and/or framework to build a website or web service mis
 <figcaption>Documentation</figcaption>
 </figure>
 
-???+ example "4. Integrating a DevOps pipeline"
+???+ num-four "4. Integrating a DevOps pipeline"
 
     Documentation for all projects will be automatically built through [the "documentation" pipeline](./devops.md#documentation). However, we need to build and publish your project's docker container.
 
@@ -148,7 +148,7 @@ Is your favorite language and/or framework to build a website or web service mis
 <figcaption>Container DevOps</figcaption>
 </figure>
 
-???+ example "5. Finalize PR"
+???+ num-five "5. Finalize PR"
 
     Although your project has not even been deployed to a major cloud provider yet, the basic foundation now exists to integrate cloud automation tasks. If your PR is finalized and has been approved, we will merge your PR to the "main" branch, your project container will be built and published, and your project will be added to the public documentation. This now provides others with a chance to build on top of your project too.
 
@@ -185,7 +185,7 @@ Is your favorite language and/or framework to build a website or web service mis
 
 Once we have a working, containerized program, we can begin cloud deployment automation tasks.
 
-???+ example "1. Pick just one cloud"
+???+ num-one "1. Pick just one cloud"
 
     1. Pick one of the major cloud providers that you will target a deployment for (e.g. AWS, Azure, GCP, or Heroku). If your cloud provider is not in this list, please first propose a new one by [submitting an issue](https://github.com/ourchitecture/hello-cloud/issues) and we can discuss the proposal. Please understand that your request could be denied. You will need an account that may incur costs when testing your cloud deployment. Most "hello world" implementations are free or very cheap on major cloud providers, especially if you focus on automating destruction of cloud resources and destroy them immediately after creating them and testing for success.
     2. Review an existing project's cloud deployment documentation.
@@ -198,11 +198,11 @@ Once we have a working, containerized program, we can begin cloud deployment aut
     9. Commit your changes.
     10. Submit another "draft pull request" back to this project to start the discussion on your cloud deployment tasks. Please be open to making any suggested changes.
 
-???+ example "2. Finalize PR"
+???+ num-two "2. Finalize PR"
 
     We will work to test the cloud deployment. If your PR is finalized and has been approved, we will merge your PR to the "main" branch and your project's cloud deployment documentation will be updated in the public documentation.
 
-???+ example "3. Enhance, enhance, enhance"
+???+ num-three "3. Enhance, enhance, enhance"
 
     As you did in the first step, you and even others may continue to enhance this great project!
 
