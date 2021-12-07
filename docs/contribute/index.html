@@ -703,7 +703,7 @@
 <h2 id="adding-a-new-project">Adding a new project</h2>
 <p>Is your favorite language and/or framework to build a website or web service missing from this project? What great ideas to you have to demonstrate getting systems to the cloud?</p>
 <h3 id="a-working-program">A working program</h3>
-<details class="example" open="open"><summary>1. The 'Hello World' program</summary><ol>
+<details class="num-one" open="open"><summary>1. The 'Hello World' program</summary><ol>
 <li>Check if the idea is already on <a href="../roadmap/">the roadmap</a> or has already been submitted as <a href="https://github.com/ourchitecture/hello-cloud/issues">an issue</a>.</li>
 <li><a href="https://github.com/ourchitecture/hello-cloud/issues">Submit an issue</a> that describes your idea to start a discussion.</li>
 <li><a href="https://github.com/ourchitecture/hello-cloud/fork">Fork this project</a> and clone it to your local system.</li>
@@ -743,7 +743,7 @@
 <figcaption>Hello World</figcaption>
 </figure>
 
-<details class="example" open="open"><summary>2. Containers</summary><p>Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.</p>
+<details class="num-two" open="open"><summary>2. Containers</summary><p>Once you have a basic "hello world" example working, it's time to containerize your build and test workflow as well as the system deployment, so that it can be executed by any Open Container Initiative-compatible runtime across machines including locally by developers and DevOps pipeline automation.</p>
 <ol>
 <li>Review an existing "./makefile" from another project and customize your project's commands to work with <code>docker</code>, <code>docker-compose</code> and <code>podman</code>.</li>
 <li>Hopefully, a base docker image will already exist to mount and execute your application (e.g. <a href="https://hub.docker.com/_/node">node</a>). If so, use this as your base. If not, consider choosing <a href="https://hub.docker.com/_/alpine">Alpine Linux</a>, <a href="https://hub.docker.com/_/debian">Debian</a>, or <a href="https://hub.docker.com/_/ubuntu">Ubuntu</a> for your base image.</li>
@@ -770,7 +770,7 @@
 <figcaption>Containers</figcaption>
 </figure>
 
-<details class="example" open="open"><summary>3. Writing documentation</summary><p>Once you have a working container, it's time to start documenting your project.</p>
+<details class="num-three" open="open"><summary>3. Writing documentation</summary><p>Once you have a working container, it's time to start documenting your project.</p>
 <ol>
 <li>Copy and paste an existing project's markdown file from "./src/docs/" (e.g. ./src/docs/services/nodejs-expressjs.md).</li>
 <li>Review and edit the sections to match, customizing links and commands to match your project's needs.</li>
@@ -799,7 +799,7 @@
 <figcaption>Documentation</figcaption>
 </figure>
 
-<details class="example" open="open"><summary>4. Integrating a DevOps pipeline</summary><p>Documentation for all projects will be automatically built through <a href="../devops/#documentation">the "documentation" pipeline</a>. However, we need to build and publish your project's docker container.</p>
+<details class="num-four" open="open"><summary>4. Integrating a DevOps pipeline</summary><p>Documentation for all projects will be automatically built through <a href="../devops/#documentation">the "documentation" pipeline</a>. However, we need to build and publish your project's docker container.</p>
 <ol>
 <li>Copy and paste an existing project's GitHub Actions pipeline workflow ".yml" configuration from "./.github/workflows/".</li>
 <li>Customize the names and paths to match your project. It will not be possible to test this workflow.</li>
@@ -825,7 +825,7 @@
 <figcaption>Container DevOps</figcaption>
 </figure>
 
-<details class="example" open="open"><summary>5. Finalize PR</summary><p>Although your project has not even been deployed to a major cloud provider yet, the basic foundation now exists to integrate cloud automation tasks. If your PR is finalized and has been approved, we will merge your PR to the "main" branch, your project container will be built and published, and your project will be added to the public documentation. This now provides others with a chance to build on top of your project too.</p>
+<details class="num-five" open="open"><summary>5. Finalize PR</summary><p>Although your project has not even been deployed to a major cloud provider yet, the basic foundation now exists to integrate cloud automation tasks. If your PR is finalized and has been approved, we will merge your PR to the "main" branch, your project container will be built and published, and your project will be added to the public documentation. This now provides others with a chance to build on top of your project too.</p>
 </details>
 <figure>
 <div class="mermaid mermaid-sequence">sequenceDiagram
@@ -858,7 +858,7 @@
 
 <h3 id="cloud-deployments">Cloud deployments</h3>
 <p>Once we have a working, containerized program, we can begin cloud deployment automation tasks.</p>
-<details class="example" open="open"><summary>1. Pick just one cloud</summary><ol>
+<details class="num-one" open="open"><summary>1. Pick just one cloud</summary><ol>
 <li>Pick one of the major cloud providers that you will target a deployment for (e.g. AWS, Azure, GCP, or Heroku). If your cloud provider is not in this list, please first propose a new one by <a href="https://github.com/ourchitecture/hello-cloud/issues">submitting an issue</a> and we can discuss the proposal. Please understand that your request could be denied. You will need an account that may incur costs when testing your cloud deployment. Most "hello world" implementations are free or very cheap on major cloud providers, especially if you focus on automating destruction of cloud resources and destroy them immediately after creating them and testing for success.</li>
 <li>Review an existing project's cloud deployment documentation.</li>
 <li>Review an existing project's "./makefile" cloud deployment command targets.</li>
@@ -871,9 +871,9 @@
 <li>Submit another "draft pull request" back to this project to start the discussion on your cloud deployment tasks. Please be open to making any suggested changes.</li>
 </ol>
 </details>
-<details class="example" open="open"><summary>2. Finalize PR</summary><p>We will work to test the cloud deployment. If your PR is finalized and has been approved, we will merge your PR to the "main" branch and your project's cloud deployment documentation will be updated in the public documentation.</p>
+<details class="num-two" open="open"><summary>2. Finalize PR</summary><p>We will work to test the cloud deployment. If your PR is finalized and has been approved, we will merge your PR to the "main" branch and your project's cloud deployment documentation will be updated in the public documentation.</p>
 </details>
-<details class="example" open="open"><summary>3. Enhance, enhance, enhance</summary><p>As you did in the first step, you and even others may continue to enhance this great project!</p>
+<details class="num-three" open="open"><summary>3. Enhance, enhance, enhance</summary><p>As you did in the first step, you and even others may continue to enhance this great project!</p>
 </details>
 <h2 id="development">Development</h2>
 <p>This project attempts to support a variety of developer tooling choices while maintaining a standard that everyone can test against.</p>
