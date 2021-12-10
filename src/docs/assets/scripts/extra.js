@@ -11,7 +11,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
   promptAddToHomeScreen = e;
 
   // Update UI to notify the user they can add to home screen
-  btnAddToHomeScreen.style.display = 'block';
+  spanAddToHomeScreen.style.display = 'block';
 
   btnAddToHomeScreen.addEventListener('click', (e) => {
 
