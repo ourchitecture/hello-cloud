@@ -63,6 +63,11 @@ Choosing a cloud abstraction is an architecture decision with significant impact
 <figcaption>Cloud Computing Abstractions</figcaption>
 </figure>
 
+<figure markdown="block">
+[![Cloud Computing Packages diagram](./assets/images/diagrams/computing-abstraction-packages.png)](./assets/images/diagrams/computing-abstraction-packages.png)
+<figcaption>Cloud Computing Packages</figcaption>
+</figure>
+
 ## Cloud Providers
 
 ### Amazon Web Services :fontawesome-brands-aws:
