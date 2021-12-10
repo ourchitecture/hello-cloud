@@ -1,0 +1,20 @@
+{
+  "short_name": "Hello Cloud",
+  "name": "Hello Cloud",
+  "icons": [
+    {
+      "src": "assets/images/hello-cloud_192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/images/hello-cloud_512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#2e303e",
+  "display": "standalone",
+  "theme_color": "#2e303e"
+}
