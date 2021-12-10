@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
+<link rel="manifest" href="{{ base_url }}/manifest.webmanifest">
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 {% endblock %}
 
 {% block announce %}
-  🆕 ✨ Our <a href="https://www.ourchitecture.io/hello-cloud/roadmap/">roadmap</a> shows recent changes!
+  🆕 ✨ Our <a href="{{ base_url }}/roadmap">roadmap</a> shows recent changes! <span id="add-to-home-notification">Also, you can now <a id="add-to-home" href="#">add this project to your home screen</a>.</span>
 {% endblock %}
