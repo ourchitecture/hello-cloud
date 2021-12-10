@@ -62,6 +62,11 @@
 <figcaption>Mapping Cloud Providers to Compute Abstractions</figcaption>
 </figure>
 
+<figure markdown="block">
+[![Computing Abstraction Packages diagram](./assets/images/diagrams/computing-abstraction-packages.png)](./assets/images/diagrams/computing-abstraction-packages.png)
+<figcaption>Each compute abstraction builds on the last</figcaption>
+</figure>
+
 `Functions`
 : For the purposes of this effort, Cloud Functions allows the developer to generally focus on the programming language, libraries and integrations without worrying about an application runtime. The term "Serverless" or the phrase "Functions as a Service" (FaaS) usually refer to this type of deployment.
 
