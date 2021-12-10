@@ -1,5 +1,7 @@
 # Hello Cloud
 
+![Logo](./img/logo.png){: align="left" style="width:20%" }
+
 !!! abstract "Our Mission"
 
     The "Hello Cloud" project seeks to provide an objective, hands-on approach to cloud computing; where observations are made with interactive examples.
