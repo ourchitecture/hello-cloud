@@ -64,7 +64,7 @@
   fill: var(--md-default-fg-color) !important;
   color: var(--md-default-fg-color) !important;
   stroke: var(--md-default-fg-color) !important;
-  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+  font-family: var(--md-text-font-family),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
 }
 
 /* loop label */
@@ -72,7 +72,7 @@
   fill: var(--md-default-fg-color) !important;
   color: var(--md-default-fg-color) !important;
   stroke: var(--md-default-fg-color) !important;
-  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+  font-family: var(--md-text-font-family),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
 }
 
 /* message label */
@@ -81,7 +81,11 @@
   fill: var(--md-default-fg-color) !important;
   color: var(--md-default-fg-color) !important;
   stroke: var(--md-default-fg-color) !important;
-  font-family: var(--md-text-font-family,),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+  font-family: var(--md-text-font-family),-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif !important;
+  font-weight: 200 !important;
+  /* BUG: https://github.com/ourchitecture/hello-cloud/issues/82 */
+  /* see: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/dominant-baseline */
+  dominant-baseline: text-after-edge !important;
 }
 
 /* message */

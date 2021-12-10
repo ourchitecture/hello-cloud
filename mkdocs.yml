@@ -60,7 +60,7 @@ extra:
 extra_css:
   - "assets/stylesheets/extra.css"
 extra_javascript:
-  - "https://unpkg.com/mermaid@8.5.2/dist/mermaid.min.js"
+  - "https://unpkg.com/mermaid@8.13.4/dist/mermaid.min.js"
 markdown_extensions:
   - "admonition"
   - "attr_list"
