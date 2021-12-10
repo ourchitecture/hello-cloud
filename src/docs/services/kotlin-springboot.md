@@ -55,7 +55,7 @@
 
 !!! todo "Prerequisites"
 
-    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
+    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: (_this project worked with fairly cheap or entirely free infrastructure at the time of its creation_)
     - [`eb` CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html) :octicons-link-16:
 
 !!! example "Commands"
@@ -70,7 +70,7 @@
 
 !!! todo "Prerequisites"
 
-    - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: (_this project worked with free infrastructure at the time of its creation_)
+    - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: (_this project worked with fairly cheap or entirely free infrastructure at the time of its creation_)
     - [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16:
     - [`java` 11 OpenJDK](https://openjdk.java.net/install/) :octicons-link-16: (required to execute `./mvnw` commands)
 
@@ -88,7 +88,7 @@
 
 !!! todo "Prerequisites"
 
-    - An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with free infrastructure at the time of its creation_
+    - An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
     - Google Cloud [Billing Account](https://console.cloud.google.com/billing)
 
@@ -118,7 +118,7 @@
 
 !!! todo "Prerequisites"
 
-    - A [Heroku account](https://signup.heroku.com/) _\*this project worked with free infrastructure at the time of its creation_
+    - A [Heroku account](https://signup.heroku.com/) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
 
 !!! example "Commands"

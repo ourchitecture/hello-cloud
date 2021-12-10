@@ -93,9 +93,19 @@ Register for a [free account](https://aws.amazon.com/free/).
     - [Why?](https://aws.amazon.com/application-hosting/benefits/)
     - [What?](https://aws.amazon.com/what-is-aws/)
 
-!!! bug "hello-cloud challenges"
+!!! success "Some hello-cloud highlights"
 
-    - PaaS support for .NET is severely limited, requiring a containerized deployment.
+    - For PaaS deployments, the behind-the-scenes integrations across PaaS with Elastic Beanstalk, Infrastructure as Code with CloudFormation, and Configuration Management with OpsWorks were fairly seamless.
+    - For PaaS deployments, Creating and destroying cloud infrastructure for deployment was straightforward, but takes some time.
+    - For PaaS deployments, deployments of supported programming languages and versions was easy, despite being behind in supporting the most recent LTS versions for a few languages.
+
+!!! bug "Some hello-cloud challenges"
+
+    - Resources were **not free** and kind of expensive for a "hello-cloud" project!
+    - For PaaS deployments, There is a chance creating and destroying "hello-world" deployments repeatedly may result in residual cloud artifacts. More detailed investigation needs to confirm that everything is removed during a cloud uninstall.
+    - CLI errors could benefit from machine-readable names and codes in the output (e.g. "ResourceNotFound").
+    - Separate CLIs for AWS (`aws`), Elastic Beanstalk (`eb`) and a .NET CLI plug-in (`dotnet dotnet-aws`) were required. Generally, the separation seems beneficial, but there is cognitive overlap across `aws elasticbeanstalk` and `eb` as well as `eb deploy` and `dotnet dotnet-aws deploy`.
+    - PaaS support for .NET is limited. The workaround was to create a containerized deployment.
     - PaaS support for Java and Kotlin using Elastic Beanstalk and Corretto 11 complains during `eb deploy` with "Alert: The platform version that your environment is using isn't recommended. There's a recommended version in the same platform branch." This is because specifying `eb init --platform corretto-11 ...` defaults to version "3.2.7", when a newer platform version exists on AWS. [Contributions](./contribute.md) to fix this with a specific platform version are welcomed.
 
 ### Microsoft Azure :material-microsoft-azure:
@@ -121,7 +131,15 @@ Register for a [free account](https://azure.microsoft.com/en-us/free/).
     - [Why?](https://azure.microsoft.com/en-us/overview/why-azure/)
     - [What?](https://azure.microsoft.com/en-us/overview/what-is-azure/)
 
-!!! bug "hello-cloud challenges"
+!!! success "Some hello-cloud highlights"
+
+    - Resources were **free** for this project!
+    - The process to create and destroy cloud infrastructure was fast for this project's needs
+    - PaaS deployments "just worked"
+    - For PaaS, the Java Maven plug-in includes a lot of automation. It would be great to have these capabilities exist outside of Maven and/or Gradle to support developer choice.
+    - The new CLI `az config ...` command is incredibly convenient, but could make the actions of downstream commands less explicit; forcing developers to review command log history to discover earlier contextual defaults.
+
+!!! bug "Some hello-cloud challenges"
 
     - Java and Kotlin PaaS support was challenging as it seems they only support a Maven plug-in, eliminating the ability for projects that target Azure to use Gradle. This is an odd choice, considering Gradle is perhaps equally or more popular than Maven for modern development and the entire Android ecosystem utilizes Gradle.
 
@@ -148,10 +166,17 @@ Register for a [free account](https://cloud.google.com/free).
     - [Why?](https://cloud.google.com/why-google-cloud)
     - [What?](https://cloud.google.com/docs/overview)
 
-!!! bug "hello-cloud challenges"
+!!! success "Some hello-cloud highlights"
 
-    - Automatically setting up and tearing down PaaS infrastructure seems "quirky" and idempotency is challenging.
-    - The command `gcloud app deploy ...` does not properly ignore a "./Dockerfile", even if the "./app.yaml" specifies a standard runtime (not "custom" for docker containers) and the file "./.gcloudignore" explicitly ignores "Dockerfile".
+    - Resources were **free** for this project!
+    - Container deployments "just work"
+
+!!! bug "Some hello-cloud challenges"
+
+    - We could not automate 100% of the cloud infrastructure deployment and configuration. Manual intervention was required to associate a project with billing as well as to enable Cloud Build. [Is it possible to automate this?](https://github.com/ourchitecture/hello-cloud/issues/98)
+    - CLI errors could benefit from machine-readable names and codes in the output (e.g. "ResourceNotFound").
+    - Automatically setting up and tearing down PaaS infrastructure seems slow and idempotency was challenging.
+    - The command `gcloud app deploy ...` does not seem to properly ignore a relative root "./Dockerfile", even if the "./app.yaml" specifies a standard runtime (not "custom" for docker containers), even when the file "./.gcloudignore" explicitly ignores "Dockerfile".
 
 ### Salesforce Heroku :fontawesome-brands-salesforce:
 
@@ -176,10 +201,15 @@ Register for a [free account](https://www.heroku.com/free).
     - [Why?](https://www.heroku.com/about)
     - [What?](https://www.heroku.com/what)
 
+!!! success "Some hello-cloud highlights"
+
+    - Resources were **free** for this project!
+    - For PaaS deployments, supported programming languages and versions "just work"
+
 !!! bug "hello-cloud challenges"
 
     - Does not work out-of-the-box with monorepos, requiring the use of an unsupported [community user buildpack](https://github.com/lstoll/heroku-buildpack-monorepo). Heroku also uses a `git` repository to push code changes. Currently, the entire monorepo must be synchronized with the Heroku repo. As a result, the `heroku` CLI was containerized with just the application code, initializing an empty git repository within (local to) the container and the code files were added and committed. This was sufficient to synchronize the application with Heroku.
-    - Heroku tooling complains when a "shallow clone" is made (e.g. `git clone --depth=1 ...`); history is required. Just like the monorepo problem, containerizing the `heroku` CLI and application code fix this as well.
+    - Heroku tooling complains when a "shallow clone" is made (e.g. `git clone --depth=1 ...`); history is required. Just like the monorepo problem, containerizing the `heroku` CLI and application code avoid this problem.
     - .NET Core is not an officially supported language, requiring the use of an unsupported [community user buildpack](https://github.com/jincod/dotnetcore-buildpack). This is odd, considering C# has been in the top lists of programming languages for professional developers for several years.
 
 ## Technology

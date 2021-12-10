@@ -56,6 +56,6 @@ endif
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
-		./deploy/aws/uninstall.sh
+		./deploy/aws/uninstall
 
 uninstall: clean

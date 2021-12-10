@@ -30,7 +30,10 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
-        if: ${{ github.event_name == 'push' }}
+        # only:
+        # - push, not pr
+        # - main repo, not fork
+        if: ${{ github.event_name == 'push' && github.event.pull_request.head.repo.full_name == github.repository }}
         with:
           title: "docs: auto-generated documentation"
           signoff: true

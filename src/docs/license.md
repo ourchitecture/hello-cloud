@@ -6,6 +6,8 @@
 
 !!! danger "Restrictive Licensing"
 
+    Some content may use external images, contain quotes or linked references to content external to the "hello-world" project. This content retains its original licensing restrictions and copyright.
+
     Everything in the directories "./src/docs/assets/images", "./src/docs/img" and "./src/media/" may contain restrictive licensing.
     Media contained in these directories may have stricter licensing restrictions. Read the unique licensing concerns listed below...
 

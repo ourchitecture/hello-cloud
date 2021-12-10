@@ -56,7 +56,7 @@
 
     See the [contributor guide](../contribute.md#development) for more details.
 
-    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: _\*this project worked with free infrastructure at the time of its creation_
+    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
     - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
     - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
@@ -78,7 +78,7 @@
 
     See the [contributor guide](../contribute.md#development) for more details.
 
-    - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: _\*this project worked with free infrastructure at the time of its creation_
+    - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
     - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
     - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
@@ -100,7 +100,7 @@
 
     See the [contributor guide](../contribute.md#development) for more details.
 
-    - An [Google Cloud account](https://cloud.google.com/free) :octicons-link-16: _\*this project worked with free infrastructure at the time of its creation_
+    - An [Google Cloud account](https://cloud.google.com/free) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - Google Cloud [Billing Account](https://console.cloud.google.com/billing) :octicons-link-16:
     - Once a project is created, you will be prompted to enable [Google Cloud Build](https://cloud.google.com/build) :octicons-link-16:
     - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
@@ -132,7 +132,7 @@
 
     See the [contributor guide](../contribute.md#development) for more details.
 
-    - A [Heroku account](https://signup.heroku.com/) :octicons-link-16: _\*this project worked with free infrastructure at the time of its creation_
+    - A [Heroku account](https://signup.heroku.com/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
     - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
     - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.

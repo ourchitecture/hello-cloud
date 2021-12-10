@@ -53,11 +53,11 @@ azure_appservice_name="$AZURE_APPSERVICE_NAME"
 # login (interactively or automatically with Service Principal)
 source $SCRIPT_DIR/login.sh
 
-resouce_group_exists_output=$(az group show \
+resource_group_exists_output=$(az group show \
   --resource-group "$azure_resource_group" \
   --output json 2>&1 || true)
 
-if contains "$resouce_group_exists_output" "ResourceGroupNotFound"; then
+if contains "$resource_group_exists_output" "ResourceGroupNotFound"; then
 
   echo 'Creating Azure Resource Group...'
 
