@@ -55,7 +55,7 @@ extra:
   disqus: "hello-cloud"
   analytics:
     provider: "google"
-    property: "G-YWLCJCMGFX"
+    property: "G-3L61DB7YP7"
   generator: false
 extra_css:
   - "assets/stylesheets/extra.css"
