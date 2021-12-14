@@ -100,7 +100,8 @@ test_azure_cli_docker() {
   )
 
   echo "${dockerfile_docker_mkdocs_version} ... Dockerfile version."
-  echo "  $dockerfile_path"
+
+  echo "source: $dockerfile_path"
 }
 
 test_azure_cli_docker

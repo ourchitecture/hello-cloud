@@ -66,6 +66,8 @@ check:
 ifeq '$(dev_tool)' 'dotnet'
 	@set -eu \
 	&& dotnet test --nologo
+else
+	@./check.sh
 endif
 
 .PHONY: start
