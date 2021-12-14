@@ -82,3 +82,7 @@ endif
 		--entrypoint="yum" \
 		"$(image_tag_yum_info)" \
 		info $(PACKAGE)
+
+.PHONY: check
+check:
+	@./check.sh
