@@ -1,9 +1,12 @@
 dev_tool:=docker
 
-docker_image_mkdocs_material_version:=7.3.4
+docker_image_mkdocs_material_version:=8.1.1
 docker_image_mkdocs_material_tag:=docker.io/squidfunk/mkdocs-material:$(docker_image_mkdocs_material_version)
 
-project_dirs=./src/services/dotnet/webapi ./src/services/jvm/kotlin/springboot/webapi ./src/services/jvm/java/springboot/webapi ./src/services/nodejs/expressjs/webapi
+project_dirs=./src/services/dotnet/webapi \
+	./src/services/jvm/kotlin/springboot/webapi \
+	./src/services/jvm/java/springboot/webapi \
+	./src/services/nodejs/expressjs/webapi
 
 docs_app_port=8000
 docs_host_port:=8000
@@ -156,3 +159,21 @@ main:
 .PHONY: pr
 pr:
 	@git-town new-pull-request
+
+check_projects=./src/docker/aws-cli \
+	./src/docker/azure-cli \
+	./src/docker/heroku-cli \
+	./src/services/dotnet/webapi \
+	./src/services/jvm/java/springboot/webapi \
+	./src/services/jvm/kotlin/springboot/webapi \
+	./src/services/nodejs/expressjs/webapi
+
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh; \
+	for project_dir in $(check_projects); do \
+		prev_dir=$(shell pwd); \
+		echo ''; \
+		cd $$project_dir && make $@; \
+		cd $$prev_dir; \
+	done

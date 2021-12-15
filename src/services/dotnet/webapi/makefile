@@ -68,6 +68,10 @@ ifeq '$(dev_tool)' 'dotnet'
 	&& dotnet test --nologo
 endif
 
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh
+
 .PHONY: start
 start: install
 ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
