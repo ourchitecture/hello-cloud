@@ -4,7 +4,7 @@ cloud:=
 app_port=3000
 host_port:=3000
 
-base_image_tag:=docker.io/library/node:17.0.1-alpine3.12
+base_image_tag:=docker.io/library/node:16.13.1-alpine3.12
 
 container_name:=our-hello-nodejs-expressjs-webapi
 image_tag:=our-hello-nodejs-expressjs-webapi:latest
@@ -50,8 +50,9 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	&& echo 'Successfully built: $(image_tag)'
 endif
 
-.PHONY: check
-check: install
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh
 
 .PHONY: start
 start: install

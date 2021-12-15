@@ -83,6 +83,6 @@ endif
 		"$(image_tag_yum_info)" \
 		info $(PACKAGE)
 
-.PHONY: check
-check:
-	@./check.sh
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh

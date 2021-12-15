@@ -60,6 +60,6 @@ endif
 		"$(image_tag)" \
 		$(CMD) --version
 
-.PHONY: check
-check:
-	@./check.sh
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh

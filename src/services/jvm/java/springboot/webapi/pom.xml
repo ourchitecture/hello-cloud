@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.6</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>org.ourchitecture.hello.cloud</groupId>
-	<artifactId>hello-cloud</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>hello-cloud</name>
-	<description>Hello cloud web API for Java using Spring Boot</description>
-	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.6</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <groupId>org.ourchitecture.hello.cloud</groupId>
+  <artifactId>hello-cloud</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>hello-cloud</name>
+  <description>Hello cloud web API for Java using Spring Boot</description>
+  <properties>
     <azure-maven-plugin.version>0.2.0</azure-maven-plugin.version>
     <azure-webapp-maven-plugin.version>2.2.1</azure-webapp-maven-plugin.version>
     <azure-webapp-maven-plugin.schema.version>V2</azure-webapp-maven-plugin.schema.version>
     <azure.java.version>java11</azure.java.version>
     <azure.java.container>Java SE</azure.java.container>
-		<java.version>11</java.version>
+    <java.version>11</java.version>
     <azure.auth.type>
       auto
       <!--
@@ -71,32 +70,32 @@
         ./mvnw ... "-Dazure.appservice.plan.pricingtier=enter-value-here"
       -->
     </azure.appservice.plan.pricingtier>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
 
       <!-- https://github.com/microsoft/azure-maven-plugins/blob/develop/azure-webapp-maven-plugin/README.md -->
       <plugin>
@@ -136,8 +135,8 @@
           </deployment>
         </configuration>
       </plugin>
-		</plugins>
-	</build>
+    </plugins>
+  </build>
 
   <!--
     See this issue: https://github.com/microsoft/azure-maven-plugins/issues/1180#issuecomment-719563566

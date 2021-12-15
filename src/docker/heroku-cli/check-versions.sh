@@ -15,22 +15,6 @@ get_docker_hub_most_recent_image_tag_not_latest() {
   echo $docker_tag_latest_version
 }
 
-get_makefile_variable_value() {
-  local makefile_path=$1
-  local variable_name=$2
-  local variable_token="${variable_name}:="
-
-  # sed: replace variable name
-  local variable_value=$(
-    grep \
-      "$variable_token" \
-      "$makefile_path" \
-      | sed 's/.*=//' \
-    )
-
-  echo $variable_value
-}
-
 get_dockerfile_arg_value() {
   local dockerfile_path=$1
   local variable_name=$2

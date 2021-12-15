@@ -9,8 +9,11 @@ get_docker_hub_most_recent_image_tag_not_latest() {
 
   echo "GET $url"
 
-  local docker_tag_latest_version=$(curl -s $url \
-    | jq -r '[.results[] | select(.name != "latest")] | sort_by(.last_updated)[-1] | .name' | cat)
+  local docker_tag_latest_version=$( \
+    curl -s $url \
+    | jq -r '[.results[] | select(.name != "latest")] | sort_by(.last_updated)[-1] | .name' \
+    | cat \
+  )
 
   echo $docker_tag_latest_version
 }

@@ -80,6 +80,10 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","maven" "mvn" "mvnw"))
 	&& ./mvnw test
 endif
 
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh
+
 .PHONY: start
 start: install
 ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))

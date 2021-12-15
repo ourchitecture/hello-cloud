@@ -163,11 +163,14 @@ pr:
 check_projects=./src/docker/aws-cli \
 	./src/docker/azure-cli \
 	./src/docker/heroku-cli \
-	./src/services/dotnet/webapi
+	./src/services/dotnet/webapi \
+	./src/services/jvm/java/springboot/webapi \
+	./src/services/jvm/kotlin/springboot/webapi \
+	./src/services/nodejs/expressjs/webapi
 
-.PHONY: check
-check:
-	@./check.sh; \
+.PHONY: check-versions
+check-versions:
+	@./check-versions.sh; \
 	for project_dir in $(check_projects); do \
 		prev_dir=$(shell pwd); \
 		echo ''; \
