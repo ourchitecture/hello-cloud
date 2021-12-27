@@ -29,7 +29,7 @@ Is your favorite language and/or framework to build a website or web service mis
     3. [Fork this project](https://github.com/ourchitecture/hello-cloud/fork) and clone it to your local system.
     4. Review the "Development" steps below.
     [//]: # "BUG: when the link below used ../index.md#projects, it resulted in /hello-cloud#projects and a 404 error"
-    5. Review one of the [existing projects](../index.html#projects) for similarities to your idea.
+    5. Review one of the [existing projects](./index.md#projects) for similarities to your idea.
     6. Create a new directory for your source code (e.g. "./src/services/[language/framework]" for web services or "./src/apps/[language/framework]" for web applications).
     7. Add a basic "hello world" example using the language and framework of choice.
     8. Commit small, working changes regularly and please use ["conventional commit messages"](https://www.conventionalcommits.org/en/v1.0.0/). You can see [existing examples of commit messages](https://github.com/ourchitecture/hello-cloud/commits/main).

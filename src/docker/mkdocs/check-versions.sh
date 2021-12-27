@@ -9,25 +9,28 @@ get_docker_hub_most_recent_image_tag_not_latest() {
 
   echo "GET $url"
 
-  local docker_tag_latest_version=$(curl -s $url \
-    | jq -r '[.results[] | select(.name != "latest")] | sort_by(.last_updated)[-1] | .name' | cat)
+  local docker_tag_latest_version=$( \
+    curl -s $url \
+    | jq -r '[.results[] | select(.name != "latest")] | sort_by(.last_updated)[-1] | .name' \
+    | cat \
+  )
 
   echo $docker_tag_latest_version
 }
 
-get_makefile_variable_value() {
-  local makefile_path=$1
+get_dockerfile_arg_value() {
+  local dockerfile_path=$1
   local variable_name=$2
-  local variable_token="${variable_name}:="
+  local variable_token="ARG ${variable_name}="
 
-  echo "Searching for $variable_token"
-
-  # sed: replace variable name
+  # sed: replace arg name
+  # sed: replace double quotes
   local variable_value=$(
     grep \
       "$variable_token" \
-      "$makefile_path" \
+      "$dockerfile_path" \
       | sed 's/.*=//' \
+      | sed 's/"//g' \
     )
 
   echo $variable_value
@@ -36,7 +39,7 @@ get_makefile_variable_value() {
 test_mkdocs_docker() {
 
   echo ''
-  echo 'Testing mkdocs docker image version...'
+  echo 'Testing MkDocs docker image version...'
 
   local docker_namespace="squidfunk"
   local docker_repository="mkdocs-material"
@@ -49,18 +52,18 @@ test_mkdocs_docker() {
 
   echo "${docker_latest_version} ... latest tag version on docker hub."
 
-  local makefile_path='./makefile'
-  local makefile_variable_name='docker_image_mkdocs_material_version'
+  local dockerfile_path='./Dockerfile'
+  local dockerfile_variable_name='MKDOCS_MATERIAL_VERSION'
 
-  local makefile_docker_mkdocs_material_version=$(
-    get_makefile_variable_value \
-      $makefile_path \
-      $makefile_variable_name \
+  local dockerfile_docker_mkdocs_material_version=$(
+    get_dockerfile_arg_value \
+      $dockerfile_path \
+      $dockerfile_variable_name \
   )
 
-  echo "${makefile_docker_mkdocs_material_version} ... makefile version."
+  echo "${dockerfile_docker_mkdocs_material_version} ... Dockerfile version."
 
-  echo "source: $makefile_path"
+  echo "source: $dockerfile_path"
 }
 
 test_mkdocs_docker

@@ -1,7 +1,7 @@
 dev_tool:=docker
 
-docker_image_mkdocs_material_version:=8.1.1
-docker_image_mkdocs_material_tag:=docker.io/squidfunk/mkdocs-material:$(docker_image_mkdocs_material_version)
+docker_image_mkdocs_material_version:=8.1.3
+docker_image_mkdocs_material_tag:=our-hello-tasks-mkdocs-material:$(docker_image_mkdocs_material_version)
 
 project_dirs=./src/services/dotnet/webapi \
 	./src/services/jvm/kotlin/springboot/webapi \
@@ -23,7 +23,9 @@ ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	$(error The "$@" command target only supports "dev_tool=docker" or "dev_tool=podman")
 endif
 	@set -eu; \
-	$(dev_tool) pull $(docker_image_mkdocs_material_tag);
+	prev_dir=$(shell pwd); \
+	cd ./src/docker/mkdocs && make install; \
+	cd $$prev_dir; \
 	$(dev_tool) tag $(docker_image_mkdocs_material_tag) mkdocs;
 
 .PHONY: install-docs
@@ -36,8 +38,8 @@ endif
 		--name $(docs_container_name)-$@ \
 		--rm \
 		-i \
-		-v $(shell pwd):/app \
-		-w /app \
+		--volume "$(shell pwd)":/app \
+		--workdir /app \
 		mkdocs \
 		build \
 			--clean \
@@ -54,8 +56,8 @@ endif
 		--name $(docs_container_name)-$@ \
 		--rm \
 		-i \
-		-v $(shell pwd):/app \
-		-w /app \
+		--volume "$(shell pwd)":/app \
+		--workdir /app \
 		--entrypoint "/bin/ash" \
 		mkdocs
 
@@ -68,7 +70,7 @@ endif
 	&& $(dev_tool) run \
 		--name $(docs_container_name) \
 		--detach \
-		--volume $(shell pwd):/app \
+		--volume "$(shell pwd)":/app \
 		--workdir /app \
 		--publish $(docs_app_port):$(docs_host_port) \
 		mkdocs \
@@ -100,6 +102,11 @@ endif
 		--tail 1000 \
 		--follow \
 		$(docs_container_name)
+
+.PHONY: own-docs
+own-docs:
+	@set -eu \
+	&& sudo chown -R $(shell whoami) ./docs
 
 .PHONY: install
 install: install-docs
@@ -163,6 +170,7 @@ pr:
 check_projects=./src/docker/aws-cli \
 	./src/docker/azure-cli \
 	./src/docker/heroku-cli \
+	./src/docker/mkdocs \
 	./src/services/dotnet/webapi \
 	./src/services/jvm/java/springboot/webapi \
 	./src/services/jvm/kotlin/springboot/webapi \

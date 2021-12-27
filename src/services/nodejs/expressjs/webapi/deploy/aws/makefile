@@ -12,7 +12,7 @@ install:
 		--rm \
 		--interactive \
 		--tty \
-		--volume $(shell pwd)/../../:/app \
+		--volume "$(shell pwd)/../../":/app \
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
@@ -24,7 +24,7 @@ status:
 		--rm \
 		--interactive \
 		--tty \
-		--volume $(shell pwd)/../../:/app \
+		--volume "$(shell pwd)/../../":/app \
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
@@ -36,7 +36,7 @@ logs:
 		--rm \
 		--interactive \
 		--tty \
-		--volume $(shell pwd)/../../:/app \
+		--volume "$(shell pwd)/../../":/app \
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
@@ -52,7 +52,7 @@ endif
 		--rm \
 		--interactive \
 		--tty \
-		--volume $(shell pwd)/../../:/app \
+		--volume "$(shell pwd)/../../":/app \
 		--workdir /app \
 		--env-file ./.env \
 		"$(image_tag)" \
