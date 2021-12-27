@@ -313,3 +313,25 @@ This project attempts to support a variety of developer tooling choices while ma
     # (may have project-specific arguments)
     $ dotnet run
     ```
+
+## Maintainers
+
+Project maintainers serve as leading contributors to the project's vision and development and are responsible for developing and supporting the project community as a whole.
+
+- [Monitor and review pull requests](https://github.com/ourchitecture/hello-cloud/pulls) at least weekly
+- [Monitor and review issues](https://github.com/ourchitecture/hello-cloud/issues) at least weekly
+- [Monitor and review pipelines](https://github.com/ourchitecture/hello-cloud/actions) at least weekly
+- [Moderate Disqus comments](https://hello-cloud.disqus.com/admin/moderate/all)
+- Occassionally, run `make check-versions`, review the logs and search for opportunities to upgrade the versions (e.g. docker image versions, OS middleware versions, programming language and framework versions, code package dependency versions, etc.)
+- Occassionally, [review the site](https://www.ourchitecture.io/hello-cloud/)
+- Occassionally, follow the "Contributor guidelines" and tutorials from scratch; delete any previously cloned local repository
+
+### Docker images
+
+New docker images should appear in the [list of "packages"](https://github.com/orgs/ourchitecture/packages?repo_name=hello-cloud). However, the first time a docker package is built, it does not seem to be properly associated with the "hello-cloud" repository, does not have "Write" permissions for GitHub Actions and is not listed as "Public" for others to see.
+
+1. Find the docker package by reviewing the GitHub Actions build output for the docker image URL and visit the URL. e.g. [ghcr.io/ourchitecture/hello-cloud/our-hello-nodejs-expressjs-webapi:latest](ghcr.io/ourchitecture/hello-cloud/our-hello-nodejs-expressjs-webapi:latest)
+2. Ensure the package is associated with the "hello-cloud" repository and that the "./README.md" appears in the package.
+3. Edit the "Package settings" for the package Manage Actions access
+4. Ensure that the "hello-cloud" repository has "Write" permissions under "Manage Actions access"
+5. Check that "Change package visibility" is set to "Public"
