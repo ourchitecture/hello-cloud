@@ -1,11 +1,9 @@
 dev_tool:=docker
 
-image_name:=our-hello-tasks-aws-cli
+image_name:=our-hello-tasks-mkdocs-material
 
-aws_version=2.4.7
-eb_version=3.20.2
-image_tag:=$(image_name):$(aws_version)-eb$(eb_version)
-image_tag_yum_info:=$(image_name)-yum-info:latest
+mkdocs_material_version=8.1.3
+image_tag:=$(image_name):$(mkdocs_material_version)
 
 docker_push_registry:=ghcr.io
 docker_push_organization_or_user:=ourchitecture
@@ -20,8 +18,7 @@ all: install
 install:
 	@$(dev_tool) build \
 		-t "$(image_tag)" \
-		--build-arg AWS_CLI_VERSION=$(aws_version) \
-		--build-arg EB_CLI_VERSION=$(eb_version) \
+		--build-arg MKDOCS_MATERIAL_VERSION=$(mkdocs_material_version) \
 		-f Dockerfile \
 		.
 
@@ -62,26 +59,6 @@ endif
 		-it \
 		"$(image_tag)" \
 		$(CMD) --version
-
-.PHONY: install-yum-info
-install-yum-info:
-	@$(dev_tool) build \
-		--target "yum_info" \
-		-t "$(image_tag_yum_info)" \
-		-f Dockerfile \
-		.
-
-.PHONY: check-package-info
-check-package-info: install-yum-info
-ifndef PACKAGE
-	$(error Missing required argument "PACKAGE=[name]")
-endif
-	@$(dev_tool) run \
-		--rm \
-		-it \
-		--entrypoint="yum" \
-		"$(image_tag_yum_info)" \
-		info $(PACKAGE)
 
 .PHONY: check-versions
 check-versions:
