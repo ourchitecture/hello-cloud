@@ -623,6 +623,26 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#maintainers" class="md-nav__link">
+    Maintainers
+  </a>
+  
+    <nav class="md-nav" aria-label="Maintainers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-images" class="md-nav__link">
+    Docker images
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -996,6 +1016,26 @@ $ ./mvnw spring-boot:run
 $ dotnet run
 </code></pre></div>
 </details>
+<h2 id="maintainers">Maintainers</h2>
+<p>Project maintainers serve as leading contributors to the project's vision and development and are responsible for developing and supporting the project community as a whole.</p>
+<ul>
+<li><a href="https://github.com/ourchitecture/hello-cloud/pulls">Monitor and review pull requests</a> at least weekly</li>
+<li><a href="https://github.com/ourchitecture/hello-cloud/issues">Monitor and review issues</a> at least weekly</li>
+<li><a href="https://github.com/ourchitecture/hello-cloud/actions">Monitor and review pipelines</a> at least weekly</li>
+<li><a href="https://hello-cloud.disqus.com/admin/moderate/all">Moderate Disqus comments</a></li>
+<li>Occassionally, run <code>make check-versions</code>, review the logs and search for opportunities to upgrade the versions (e.g. docker image versions, OS middleware versions, programming language and framework versions, code package dependency versions, etc.)</li>
+<li>Occassionally, <a href="https://www.ourchitecture.io/hello-cloud/">review the site</a></li>
+<li>Occassionally, follow the "Contributor guidelines" and tutorials from scratch; delete any previously cloned local repository</li>
+</ul>
+<h3 id="docker-images">Docker images</h3>
+<p>New docker images should appear in the <a href="https://github.com/orgs/ourchitecture/packages?repo_name=hello-cloud">list of "packages"</a>. However, the first time a docker package is built, it does not seem to be properly associated with the "hello-cloud" repository, does not have "Write" permissions for GitHub Actions and is not listed as "Public" for others to see.</p>
+<ol>
+<li>Find the docker package by reviewing the GitHub Actions build output for the docker image URL and visit the URL. e.g. <a href="ghcr.io/ourchitecture/hello-cloud/our-hello-nodejs-expressjs-webapi:latest">ghcr.io/ourchitecture/hello-cloud/our-hello-nodejs-expressjs-webapi:latest</a></li>
+<li>Ensure the package is associated with the "hello-cloud" repository and that the "./README.md" appears in the package.</li>
+<li>Edit the "Package settings" for the package Manage Actions access</li>
+<li>Ensure that the "hello-cloud" repository has "Write" permissions under "Manage Actions access"</li>
+<li>Check that "Change package visibility" is set to "Public"</li>
+</ol>
 
               
             </article>
