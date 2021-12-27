@@ -37,7 +37,7 @@ Is your favorite language and/or framework to build a website or web service mis
     10. Commit your changes.
     11. Add the path to your project in the root "./makefile" in the space-separated "project_dirs" variable list. This will enable developers to build and run all projects at the same time, including yours.
     12. Commit your changes.
-    13. Submit a ["draft pull request"](https://github.blog/2019-02-14-introducing-draft-pull-requests/) back to this project.
+    13. Submit a PR request back to this project. [Learn more about creating a pull request.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
     14. We will start a discussion on the proposed implementation. Please be open to making any suggested changes.
 
 <figure>
