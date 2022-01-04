@@ -23,7 +23,9 @@ install:
 		--build-arg AWS_CLI_VERSION=$(aws_version) \
 		--build-arg EB_CLI_VERSION=$(eb_version) \
 		-f Dockerfile \
-		.
+		. \
+	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)" \
+	&& echo 'Tagged as: $(docker_push_image_tag)'
 
 .PHONY: deploy
 deploy: install
@@ -37,7 +39,6 @@ ifeq ("${DOCKER_PASSWORD_FILE_PATH}", "")
 	$(error Missing environment variable "DOCKER_PASSWORD_FILE_PATH")
 endif
 	@set -eu \
-	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)" \
 	&& cat "${DOCKER_PASSWORD_FILE_PATH}" \
 		| $(dev_tool) login "$(docker_push_registry)" \
 			--username "${DOCKER_USERNAME}" \

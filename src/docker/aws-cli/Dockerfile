@@ -6,6 +6,7 @@ ARG EB_CLI_VERSION="3.20.2"
 
 ARG YUM_ARCH="x86_64"
 ARG YUM_GROUP_DEV_TOOLS="Development Tools"
+ARG YUM_PACKAGE_YUM_UTILS="yum-utils.1.1.31.46.amzn2.0.1.${YUM_ARCH}"
 ARG YUM_PACKAGE_ZLIB="zlib-devel-1.2.7-18.amzn2.${YUM_ARCH}"
 ARG YUM_PACKAGE_OPENSSL="openssl-devel-1.0.2k-19.amzn2.0.10.${YUM_ARCH}"
 ARG YUM_PACKAGE_NCURSES="ncurses-devel-6.0-8.20170212.amzn2.1.3.${YUM_ARCH}"
@@ -21,6 +22,9 @@ ARG NVM_VERSION="v0.34.0"
 ARG NVM_INSTALL_URL="https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh"
 
 ARG NODE_VERSION="v16.13.1"
+
+ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
+ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
 FROM ${BASE_DOCKER_IMAGE_NAME}:${AWS_CLI_VERSION} as base
 
@@ -43,6 +47,7 @@ RUN yum info zlib
 FROM base as packages
 
 ARG YUM_GROUP_DEV_TOOLS
+ARG YUM_PACKAGE_YUM_UTILS
 ARG YUM_PACKAGE_ZLIB
 ARG YUM_PACKAGE_OPENSSL
 ARG YUM_PACKAGE_NCURSES
@@ -56,6 +61,7 @@ ARG YUM_PACKAGE_WHICH
 
 RUN yum --assumeyes group install "${YUM_GROUP_DEV_TOOLS}" \
     && yum --assumeyes install \
+      ${YUM_PACKAGE_YUM_UTILS} \
       ${YUM_PACKAGE_ZLIB} \
       ${YUM_PACKAGE_OPENSSL} \
       ${YUM_PACKAGE_NCURSES} \
@@ -83,6 +89,13 @@ RUN pip3 install \
 ENV PATH=/root/.local/bin/:${PATH}
 
 FROM eb as production
+
+ARG PUBLISHED_SOURCE_URL
+ARG PUBLISHED_DOCUMENTATION_URL
+
+LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
+LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
+LABEL org.opencontainers.image.description "Tools for deploying applications to Amazon Web Services (AWS)"
 
 WORKDIR /app
 
