@@ -73,23 +73,25 @@
     7. Check the application logs with the command `make logs cloud=aws`
     8. Uninstall and clean up the application deployment with the command `make uninstall cloud=aws`. This command may take several seconds.
 
-### :material-microsoft-azure: Microsoft Azure
-
 !!! todo "Prerequisites"
 
-      - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: (_this project worked with fairly cheap or entirely free infrastructure at the time of its creation_)
-      - [`az` CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16:
-      - [`dotnet` 6 SDK](https://dotnet.microsoft.com/download) :octicons-link-16:
+    See the [contributor guide](../contribute.md#development) for more details.
+
+    - An [Azure account](https://azure.microsoft.com/en-us/free/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
 
 !!! example "Commands"
 
-      1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
-      2. Login to your Azure account with the CLI using the command `az login`
-      3. If you have more than one subscription, first [set the default subscription](https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription)
-      4. Run the command `make azure-init` to create the Azure Resource Group
-      5. Install the application with the command `make azure-install`
-      6. Check the application logs with the command `make azure-logs`
-      7. Uninstall and clean up the application deployment with the command `make azure-uninstall`
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
+    2. Copy the "./deploy/azure/.env.example" file and save it as a new file "./deploy/azure/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
+    3. Edit the file "./deploy/azure/.env" and replace the values according to preferences.
+    4. If required, for the values "AZURE_SP_APPID", "AZURE_SP_PASSWORD", and "AZURE_SP_TENANT", create new service principal credentials with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) :octicons-link-16: and the command `az ad sp create-for-rbac --name "our-hello-sp" --role Contributor`, providing any `--name` as desired.
+    5. *You may encounter an error with multiple subscriptions as this has not been tested. Consider a [contribution](https://github.com/ourchitecture/hello-cloud/issues/94).
+    6. Run the command `make install cloud=azure` to create the Azure Resource Group, Azure AppService Plan, and AppService if they do not exist as well as to deploy the application.
+    7. Check the application logs with the command `make logs cloud=azure`
+    8. Uninstall and clean up the application deployment with the command `make uninstall cloud=azure`
 
 ### :material-google-cloud: Google Cloud
 
