@@ -96,6 +96,7 @@ fi
 echo 'Deploying to Azure AppService...'
 
 az webapp up \
-  --name "$azure_appservice_name"
+  --name "$azure_appservice_name" \
+  --plan "$azure_appservice_plan_name"
 
 echo 'Successfully deployed to Azure AppService.'

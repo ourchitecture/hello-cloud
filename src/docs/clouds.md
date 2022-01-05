@@ -101,11 +101,11 @@ Register for a [free account](https://aws.amazon.com/free/).
 
 !!! bug "Some hello-cloud challenges"
 
-    - Resources were **not free** and kind of expensive for a "hello-cloud" project!
-    - For PaaS deployments, There is a chance creating and destroying "hello-world" deployments repeatedly may result in residual cloud artifacts. More detailed investigation needs to confirm that everything is removed during a cloud uninstall.
+    - Resources were **not free** with a small daily charge for a "hello-cloud" project. But, that daily charge adds up when developing and testing deployments multiple times.
+    - For PaaS deployments, there is a chance creating and destroying "hello-world" deployments repeatedly may result in residual cloud artifacts. More detailed investigation needs to confirm that everything is removed during a cloud uninstall.
     - CLI errors could benefit from machine-readable names and codes in the output (e.g. "ResourceNotFound").
-    - Separate CLIs for AWS (`aws`), Elastic Beanstalk (`eb`) and a .NET CLI plug-in (`dotnet dotnet-aws`) were required. Generally, the separation seems beneficial, but there is cognitive overlap across `aws elasticbeanstalk` and `eb` as well as `eb deploy` and `dotnet dotnet-aws deploy`.
-    - PaaS support for .NET is limited. The workaround was to create a containerized deployment.
+    - Separate CLIs for AWS (`aws`), Elastic Beanstalk (`eb`) and a .NET CLI plug-in (`dotnet aws`) were required. Generally, the separation seems beneficial, but there is cognitive overlap across `aws elasticbeanstalk` and `eb` as well as `eb deploy` and `dotnet aws deploy`. The `dotnet aws deploy` command also has prerequisite dependencies on Node.js and Docker.
+    - PaaS tooling support for .NET internally utilizes a containerized deployment on the local machine rather than deploying the .NET code to the cloud and allowing the PaaS to make the necessary cloud infrastructure (container) steps internally. Running production containers locally could offer some advantages for developers trying to replicate production issues, but containerization seemed to be a short-lived cloud deploy step.
     - PaaS support for Java and Kotlin using Elastic Beanstalk and Corretto 11 complains during `eb deploy` with "Alert: The platform version that your environment is using isn't recommended. There's a recommended version in the same platform branch." This is because specifying `eb init --platform corretto-11 ...` defaults to version "3.2.7", when a newer platform version exists on AWS. [Contributions](./contribute.md) to fix this with a specific platform version are welcomed.
 
 ### Microsoft Azure :material-microsoft-azure:
@@ -141,6 +141,7 @@ Register for a [free account](https://azure.microsoft.com/en-us/free/).
 
 !!! bug "Some hello-cloud challenges"
 
+    - Without the "runtime" command argument (e.g. `az webapp up ... --runtime DOTNET|6.0`), the PaaS tooling failed to deploy a .NET Core 6.0 project (e.g. "<TargetFramework>net6.0</TargetFramework>") with the error "Windows runtime 'aspnet|4.8' is not supported." The error's assumption about .NET 4.8 is odd, when we consider that this is a Microsoft programming language project being deployed to a Microsoft PaaS cloud and the version was not properly discovered.
     - Java and Kotlin PaaS support was challenging as it seems they only support a Maven plug-in, eliminating the ability for projects that target Azure to use Gradle. This is an odd choice, considering Gradle is perhaps equally or more popular than Maven for modern development and the entire Android ecosystem utilizes Gradle.
 
 ### Google Cloud :material-google-cloud:
