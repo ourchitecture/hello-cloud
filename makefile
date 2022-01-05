@@ -166,7 +166,10 @@ main:
 
 .PHONY: pr
 pr:
-	@git-town new-pull-request
+	@git-town sync \
+	&& echo "" \
+	&& echo "Open a new PR at:" \
+	&& echo "$$(git remote get-url origin)/compare/$$(git branch --show-current)?expand=1"
 
 check_projects=./src/docker/aws-cli \
 	./src/docker/aws-cli-dotnet-sdk \

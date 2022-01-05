@@ -73,6 +73,8 @@
     7. Check the application logs with the command `make logs cloud=aws`
     8. Uninstall and clean up the application deployment with the command `make uninstall cloud=aws`. This command may take several seconds.
 
+### :material-microsoft-azure: Microsoft Azure
+
 !!! todo "Prerequisites"
 
     See the [contributor guide](../contribute.md#development) for more details.
