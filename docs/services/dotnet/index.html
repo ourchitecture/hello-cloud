@@ -514,13 +514,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#microsoft-azure" class="md-nav__link">
-     Microsoft Azure
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#google-cloud" class="md-nav__link">
      Google Cloud
   </a>
@@ -766,25 +759,27 @@
 <li>Uninstall and clean up the application deployment with the command <code>make uninstall cloud=aws</code>. This command may take several seconds.</li>
 </ol>
 </div>
-<h3 id="microsoft-azure"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.05 4.24 6.56 18.05 2 18l5.09-8.76 5.96-5m.7 1.09L22 19.76H6.74l9.3-1.66-4.87-5.79 2.58-6.98z"/></svg></span> Microsoft Azure</h3>
 <div class="admonition todo">
 <p class="admonition-title">Prerequisites</p>
+<p>See the <a href="../../contribute/#development">contributor guide</a> for more details.</p>
 <ul>
-<li>An <a href="https://azure.microsoft.com/en-us/free/">Azure account</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> (<em>this project worked with fairly cheap or entirely free infrastructure at the time of its creation</em>)</li>
-<li><a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli"><code>az</code> CLI</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span></li>
-<li><a href="https://dotnet.microsoft.com/download"><code>dotnet</code> 6 SDK</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span></li>
+<li>An <a href="https://azure.microsoft.com/en-us/free/">Azure account</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> <em>*this project worked with fairly cheap or entirely free infrastructure at the time of its creation</em></li>
+<li><a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"><code>git</code></a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> for source control.</li>
+<li><a href="https://www.gnu.org/software/make/">GNU <code>make</code></a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> for standard task execution.</li>
+<li><a href="https://www.docker.com/get-started"><code>docker</code></a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> for containerized task execution.</li>
 </ul>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Commands</p>
 <ol>
 <li>Open a terminal and navigate to the service project directory (e.g. <code>cd ./src/services/dotnet/webapi</code>)</li>
-<li>Login to your Azure account with the CLI using the command <code>az login</code></li>
-<li>If you have more than one subscription, first <a href="https://docs.microsoft.com/en-us/azure/developer/javascript/tutorial/tutorial-vscode-azure-cli-node/tutorial-vscode-azure-cli-node-03#set-your-default-subscription">set the default subscription</a></li>
-<li>Run the command <code>make azure-init</code> to create the Azure Resource Group</li>
-<li>Install the application with the command <code>make azure-install</code></li>
-<li>Check the application logs with the command <code>make azure-logs</code></li>
-<li>Uninstall and clean up the application deployment with the command <code>make azure-uninstall</code></li>
+<li>Copy the "./deploy/azure/.env.example" file and save it as a new file "./deploy/azure/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.</li>
+<li>Edit the file "./deploy/azure/.env" and replace the values according to preferences.</li>
+<li>If required, for the values "AZURE_SP_APPID", "AZURE_SP_PASSWORD", and "AZURE_SP_TENANT", create new service principal credentials with the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli">Azure CLI</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg></span> and the command <code>az ad sp create-for-rbac --name "our-hello-sp" --role Contributor</code>, providing any <code>--name</code> as desired.</li>
+<li>*You may encounter an error with multiple subscriptions as this has not been tested. Consider a <a href="https://github.com/ourchitecture/hello-cloud/issues/94">contribution</a>.</li>
+<li>Run the command <code>make install cloud=azure</code> to create the Azure Resource Group, Azure AppService Plan, and AppService if they do not exist as well as to deploy the application.</li>
+<li>Check the application logs with the command <code>make logs cloud=azure</code></li>
+<li>Uninstall and clean up the application deployment with the command <code>make uninstall cloud=azure</code></li>
 </ol>
 </div>
 <h3 id="google-cloud"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M23 14.75C23 18.2 20.2 21 16.75 21h-9.5C3.8 21 1 18.2 1 14.75c0-2.14 1.08-4.03 2.71-5.15C4.58 5.82 7.96 3 12 3c4.04 0 7.42 2.82 8.29 6.6A6.22 6.22 0 0 1 23 14.75M16.63 17c1.31 0 2.37-1.06 2.37-2.37 0-1.28-1-2.33-2.28-2.38l.03-.5a4.754 4.754 0 0 0-8.32-3.14c1.5.29 2.8 1.11 3.71 2.25L9.5 13.5c-.42-.73-1.21-1.25-2.12-1.25-1.32 0-2.38 1.06-2.38 2.38 0 1.27 1 2.3 2.25 2.37h9.38z"/></svg></span> Google Cloud</h3>
