@@ -1,3 +1,4 @@
+# docker | podman
 dev_tool:=docker
 
 docker_image_mkdocs_material_version:=8.1.3
@@ -168,6 +169,7 @@ pr:
 	@git-town new-pull-request
 
 check_projects=./src/docker/aws-cli \
+	./src/docker/aws-cli-dotnet-sdk \
 	./src/docker/azure-cli \
 	./src/docker/heroku-cli \
 	./src/docker/mkdocs \

@@ -4,9 +4,7 @@
   "tools": {
     "aws.deploy.cli": {
       "version": "0.30.5",
-      "commands": [
-        "dotnet-aws"
-      ]
+      "commands": ["dotnet-aws"]
     }
   }
 }

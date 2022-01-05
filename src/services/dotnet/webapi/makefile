@@ -1,5 +1,6 @@
+# docker | podman
 dev_tool:=docker
-cloud:=azure
+cloud:=
 
 # see: "./Properties/launchSettings.json"
 #      .profiles.webapi.applicationUrl
@@ -40,9 +41,14 @@ heroku_app_name:=our-hellodotnetwebapi
 
 all: install
 
+# TODO: cloud install for "azure" "gcloud" "heroku"
 .PHONY: install
 install:
-ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) build \
 		-t $(image_tag) \
@@ -158,66 +164,38 @@ restart: stop start
 .PHONY: cloud-validator
 cloud-validator:
 ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
-	$(error The "cloud" argument only supports "aws", "azure" "gcloud", or "heroku")
+	$(error The "cloud" argument only supports "azure" "gcloud", or "heroku")
 endif
 
 .PHONY: cloud-init
 cloud-init: cloud-validator
+ifneq ("$(cloud)", "aws")
 	@make $(cloud)-init
+endif
 
 .PHONY: cloud-install
 cloud-install: cloud-validator
+ifeq ("$(cloud)", "aws")
+	@make install cloud=$(cloud)
+else
 	@make $(cloud)-install
+endif
 
 .PHONY: cloud-logs
 cloud-logs: cloud-validator
+ifeq ("$(cloud)", "aws")
+	@make logs cloud=$(cloud)
+else
 	@make $(cloud)-logs
+endif
 
 .PHONY: cloud-uninstall
 cloud-uninstall: cloud-validator
+ifeq ("$(cloud)", "aws")
+	@make clean cloud=$(cloud)
+else
 	@make $(cloud)-uninstall
-
-.PHONY: aws-init
-aws-init:
-	@set -eu \
-	&& echo '' \
-	&& echo 'Version for aws CLI:' \
-	&& aws --version \
-	&& echo '' \
-	&& echo 'Version for dotnet aws.deploy.cli CLI:' \
-	&& dotnet dotnet-aws --version
-
-# FRAGILE: there does not appear to be a named argument
-# for the value "Choose deployment option" provided via
-# an interactive prompt with option to select from.
-# https://github.com/aws/aws-dotnet-deploy/issues/403
-.PHONY: aws-install
-aws-install: install
-	@set -eu \
-	&& echo "2" | dotnet dotnet-aws deploy \
-		--region $(aws_region) \
-		--project-path ./ \
-		--stack-name $(aws_stack_name)
-
-# HELP: need an automation solution
-.PHONY: aws-logs
-aws-logs:
-	@set -eu \
-	&& echo '' \
-	&& echo 'Logs are available in the online console at:' \
-	&& echo 'https://console.aws.amazon.com/apprunner/home' \
-	&& echo 'Select the region and deployed service and then navigate to "Logs" and "Application Logs"' \
-	&& echo '' \
-	&& echo 'Developers wanted! Contribute an automated CLI command option for streaming logs here.'
-
-# FRAGILE: there does not appear to be a "force" argument,
-# so "y" is piped to confirm "are you sure?".
-# https://github.com/aws/aws-dotnet-deploy/issues/404
-.PHONY: aws-uninstall
-aws-uninstall:
-	@set -eu \
-	&& echo "y" | dotnet dotnet-aws delete-deployment \
-		$(aws_stack_name)
+endif
 
 .PHONY: azure-init
 azure-init:

@@ -1,0 +1,46 @@
+#!/bin/sh
+
+set -eu
+
+# contains(string, substring)
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+if ! command -v dotnet >/dev/null 2>&1; then
+    echo "The .NET CLI ('dotnet') could not be found and must be installed." 1>&2
+    exit 1
+fi
+
+if [ -z "$AWS_STACK_NAME" ]; then
+    echo "The environment variable AWS_STACK_NAME is required." 1>&2
+    exit 1
+fi
+
+aws_stack_name="$AWS_STACK_NAME"
+
+# ensure `dotnet aws` is ready
+dotnet tool restore
+
+dotnet_aws_command_exists_output=$(dotnet aws || true)
+
+if ! contains "$dotnet_aws_command_exists_output" "Usage"; then
+  echo "The AWS plug-in for the .NET CLI ('dotnet aws') could not be found and must be installed." 1>&2
+  exit 1
+fi
+
+# FRAGILE: there does not appear to be a named argument for
+# the confirmation value "y" provided via an interactive prompt.
+# https://github.com/aws/aws-dotnet-deploy/issues/404
+echo "y" | dotnet aws delete-deployment \
+  "${aws_stack_name}"

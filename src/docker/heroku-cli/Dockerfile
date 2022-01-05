@@ -5,12 +5,16 @@ ARG DEBIAN_VERSION="${DEBIAN_NAMED_RELEASE}-slim"
 
 # get the version of an installed package with:
 #   apt-cache policy ...
+# https://www.debian.org/distrib/packages#search_packages ("stable" distribution)
 ARG APT_VERSION_TRANSPORT_HTTPS="2.2.4"
 ARG APT_VERSION_CA_CERTIFICATES="20210119"
-ARG APT_VERSION_CURL="7.74.0-1.3+b1"
+ARG APT_VERSION_CURL="7.74.0-1.3+deb11u1"
 ARG APT_VERSION_GIT="1:2.30.2-1"
 
 ARG HEROKU_INSTALL_URL=https://cli-assets.heroku.com/install.sh
+
+ARG PUBLISHED_SOURCE_URL=https://github.com/ourchitecture/hello-cloud
+ARG PUBLISHED_DOCUMENTATION_URL=https://www.ourchitecture.io/hello-cloud/
 
 FROM ${BASE_DOCKER_IMAGE_NAME}:${DEBIAN_VERSION} as base
 
@@ -46,5 +50,12 @@ RUN curl -o- "$HEROKU_INSTALL_URL" | /bin/sh \
     && heroku update
 
 FROM heroku as production
+
+ARG PUBLISHED_SOURCE_URL
+ARG PUBLISHED_DOCUMENTATION_URL
+
+LABEL org.opencontainers.image.documentation ${PUBLISHED_DOCUMENTATION_URL}
+LABEL org.opencontainers.image.source ${PUBLISHED_SOURCE_URL}
+LABEL org.opencontainers.image.description "Tools for deploying applications to Salesforce Heroku"
 
 WORKDIR /app
