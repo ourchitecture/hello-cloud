@@ -21,14 +21,6 @@ docker_push_organization_or_user:=ourchitecture
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
-aws_stack_name:=our-hello
-aws_region:=us-east-1
-
-azure_app_name:=app-our-hello-dotnet-webapi
-azure_rg:=rg-our-hello-cloud-dotnet
-azure_region:=centralus
-azure_app_runtime:=DOTNET|6.0
-
 gcloud_project_name:=ourhellodotnet
 gcloud_project_name_suffix:=001
 gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
@@ -41,10 +33,10 @@ heroku_app_name:=our-hellodotnetwebapi
 
 all: install
 
-# TODO: cloud install for "azure" "gcloud" "heroku"
+# TODO: cloud install for "gcloud" "heroku"
 .PHONY: install
 install:
-ifeq ("$(cloud)",$(filter "$(cloud)","aws"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -115,9 +107,14 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	&& echo 'Successfully removed container: $(container_name)'
 endif
 
+# TODO: cloud=gcloud|heroku
 .PHONY: clean
 clean:
-ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
 	@set -eu \
 	&& $(dev_tool) rmi -f $(image_tag)
 else ifeq '$(dev_tool)' 'docker-compose'
@@ -161,84 +158,55 @@ down: stop
 uninstall: clean
 restart: stop start
 
+# TODO: migrate to `make install cloud=...` and `make uninstall cloud=...`
 .PHONY: cloud-validator
 cloud-validator:
 ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	$(error The "cloud" argument only supports "azure" "gcloud", or "heroku")
 endif
 
+# TODO: migrate to `make install cloud=...`
 .PHONY: cloud-init
 cloud-init: cloud-validator
-ifneq ("$(cloud)", "aws")
+ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@make $(cloud)-init
 endif
 
+# TODO: migrate to `make install cloud=...`
 .PHONY: cloud-install
 cloud-install: cloud-validator
-ifeq ("$(cloud)", "aws")
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
 	@make install cloud=$(cloud)
 else
 	@make $(cloud)-install
 endif
 
+# TODO: migrate to `make logs cloud=...`
 .PHONY: cloud-logs
 cloud-logs: cloud-validator
-ifeq ("$(cloud)", "aws")
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
 	@make logs cloud=$(cloud)
 else
 	@make $(cloud)-logs
 endif
 
+# TODO: migrate to `make uninstall cloud=...`
 .PHONY: cloud-uninstall
 cloud-uninstall: cloud-validator
-ifeq ("$(cloud)", "aws")
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
 	@make clean cloud=$(cloud)
 else
 	@make $(cloud)-uninstall
 endif
 
-.PHONY: azure-init
-azure-init:
-	@set -eu \
-	&& az group create \
-		--name $(azure_rg) \
-		--location $(azure_region) \
-	&& az config set \
-		defaults.group=$(azure_rg) \
-		defaults.location=$(azure_region)
-
-.PHONY: azure-install
-azure-install:
-	@set -eu \
-	&& az config set \
-		defaults.group=$(azure_rg) \
-		defaults.location=$(azure_region) \
-	&& az webapp up \
-		--name $(azure_app_name) \
-		--runtime "$(azure_app_runtime)"
-
-# TODO: how to show recent application log entries?
-.PHONY: azure-logs
-azure-logs:
-	@set -eu \
-	&& az webapp log deployment show \
-		--name $(azure_app_name)
-	&& az webapp log show \
-		--name $(azure_app_name)
-
-.PHONY: azure-uninstall
-azure-uninstall:
-	@set -eu \
-	&& az group delete \
-		--name $(azure_rg) \
-		--yes
-
+# TODO: migrate to `make install cloud=gcloud`
 .PHONY: gcloud-init
 gcloud-init:
 	@GCLOUD_PROJECT_NAME=$(gcloud_project_unique_name) \
 	GCLOUD_REGION=$(gcloud_region) \
 	./gcloud-init.sh
 
+# TODO: migrate to `make install cloud=gcloud`
 .PHONY: gcloud-install
 gcloud-install: install
 	@set -eu \
@@ -251,6 +219,7 @@ gcloud-install: install
 	&& echo '' \
 	&& echo 'Successfully deployed to gcloud!'
 
+# TODO: migrate to `make logs cloud=gcloud`
 .PHONY: gcloud-logs
 gcloud-logs:
 	@set -eu \
@@ -258,6 +227,7 @@ gcloud-logs:
 		--project=$(gcloud_project_unique_name) \
 		--limit=$(gcloud_logs_limit)
 
+# TODO: migrate to `make uninstall cloud=gcloud`
 .PHONY: gcloud-uninstall
 gcloud-uninstall:
 	@set -eu \
@@ -265,6 +235,7 @@ gcloud-uninstall:
 		"$(gcloud_project_unique_name)" \
 		--quiet
 
+# TODO: migrate to `make install cloud=heroku`
 .PHONY: heroku-init
 heroku-init:
 	@set -eu \
@@ -278,16 +249,19 @@ heroku-init:
 		-a $(heroku_app_name) \
 		APP_BASE=src/services/dotnet/webapi/
 
+# TODO: migrate to `make install cloud=heroku`
 .PHONY: heroku-install
 heroku-install:
 	@set -eu \
 	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
 
+# TODO: migrate to `make logs cloud=heroku`
 .PHONY: heroku-logs
 heroku-logs:
 	@set -eu \
 	&& heroku logs -a $(heroku_app_name)
 
+# TODO: migrate to `make uninstall cloud=heroku`
 .PHONY: heroku-uninstall
 heroku-uninstall:
 	@set -eu \

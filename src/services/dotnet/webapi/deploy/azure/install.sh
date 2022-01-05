@@ -44,11 +44,17 @@ if [ -z "$AZURE_APPSERVICE_NAME" ]; then
     exit 1
 fi
 
+if [ -z "$AZURE_APPSERVICE_RUNTIME" ]; then
+    echo "The environment variable AZURE_APPSERVICE_RUNTIME is required." 1>&2
+    exit 1
+fi
+
 azure_resource_group="$AZURE_RESOURCE_GROUP"
 azure_region="$AZURE_REGION"
 azure_appservice_plan_name="$AZURE_APPSERVICE_PLAN_NAME"
 azure_appservice_plan_sku="${AZURE_APPSERVICE_PLAN_SKU:-B1}"
 azure_appservice_name="$AZURE_APPSERVICE_NAME"
+azure_appservice_runtime="$AZURE_APPSERVICE_RUNTIME"
 
 # login (interactively or automatically with Service Principal)
 source $SCRIPT_DIR/login.sh
@@ -96,6 +102,8 @@ fi
 echo 'Deploying to Azure AppService...'
 
 az webapp up \
-  --name "$azure_appservice_name"
+  --name "$azure_appservice_name" \
+  --plan "$azure_appservice_plan_name" \
+  --runtime "$azure_appservice_runtime"
 
 echo 'Successfully deployed to Azure AppService.'

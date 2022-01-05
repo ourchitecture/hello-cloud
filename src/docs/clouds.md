@@ -141,6 +141,7 @@ Register for a [free account](https://azure.microsoft.com/en-us/free/).
 
 !!! bug "Some hello-cloud challenges"
 
+    - Without the "runtime" command argument (e.g. `az webapp up ... --runtime DOTNET|6.0`), the PaaS tooling failed to deploy a .NET Core 6.0 project (e.g. "<TargetFramework>net6.0</TargetFramework>") with the error "Windows runtime 'aspnet|4.8' is not supported." The error's assumption about .NET 4.8 is odd, when we consider that this is a Microsoft programming language project being deployed to a Microsoft PaaS cloud and the version was not properly discovered.
     - Java and Kotlin PaaS support was challenging as it seems they only support a Maven plug-in, eliminating the ability for projects that target Azure to use Gradle. This is an odd choice, considering Gradle is perhaps equally or more popular than Maven for modern development and the entire Android ecosystem utilizes Gradle.
 
 ### Google Cloud :material-google-cloud:

@@ -64,7 +64,7 @@
 
 !!! example "Commands"
 
-      1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`).
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`).
     2. Copy the "./deploy/aws/.env.example" file and save it as a new file "./deploy/aws/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
     3. Edit the file "./deploy/aws/.env" and replace the values according to preferences.
     4. If required, for the values "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY", create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials), expanding "Access keys" and creating a new key.
