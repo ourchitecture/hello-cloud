@@ -55,17 +55,23 @@
 
 !!! todo "Prerequisites"
 
-    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: (_this project worked with fairly cheap or entirely free infrastructure at the time of its creation_)
-    - [`aws` CLI](https://docs.aws.amazon.com/cli/) :octicons-link-16:
-    - `dotnet` ["aws.deploy.cli" tool](https://github.com/aws/aws-dotnet-deploy#getting-started)
+    See the [contributor guide](../contribute.md#development) for more details.
+
+    - An [AWS account](https://aws.amazon.com/free/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
 
 !!! example "Commands"
 
       1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`).
-      2. Run the command `make aws-init` to verify your tool installations.
-      3. Install the application with the command `make aws-install`. This command may take several seconds.
-      4. Check the application logs with the command `make aws-logs`. [Help wanted](../contribute.md) to automate this command.
-      5. Uninstall and clean up the application deployment with the command `make aws-uninstall`. This command may take several seconds.
+    2. Copy the "./deploy/aws/.env.example" file and save it as a new file "./deploy/aws/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
+    3. Edit the file "./deploy/aws/.env" and replace the values according to preferences.
+    4. If required, for the values "AWS_ACCESS_KEY_ID" and "AWS_SECRET_ACCESS_KEY", create a new access key by visiting ["Your Security Credentials"](https://console.aws.amazon.com/iam/home#/security_credentials), expanding "Access keys" and creating a new key.
+    5. Run the command `make install cloud=aws` to create the AWS Elastic Beanstalk Environment and install the application. This command may take a few minutes.
+    6. Update the application with the same command `make install cloud=aws`.
+    7. Check the application logs with the command `make logs cloud=aws`
+    8. Uninstall and clean up the application deployment with the command `make uninstall cloud=aws`. This command may take several seconds.
 
 ### :material-microsoft-azure: Microsoft Azure
 

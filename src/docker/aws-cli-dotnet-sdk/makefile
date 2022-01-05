@@ -1,12 +1,14 @@
 # docker | podman
 dev_tool:=docker
 
-image_name:=our-hello-tasks-aws-cli
+image_name:=our-hello-tasks-aws-cli-dotnet-sdk
 
 aws_version=2.4.7
 eb_version=3.20.2
-image_tag:=$(image_name):$(aws_version)-eb$(eb_version)
-image_tag_base:=$(image_name)-base:latest
+dotnet_version=6.0
+dotnet_aws_deploy_version=0.31.11
+image_tag:=$(image_name):$(aws_version)-eb$(eb_version)-dotnet$(dotnet_version)-awsdeploy$(dotnet_aws_deploy_version)
+image_tag_yum_info:=$(image_name)-yum-info:latest
 
 docker_push_registry:=ghcr.io
 docker_push_organization_or_user:=ourchitecture
@@ -19,14 +21,18 @@ all: install
 
 .PHONY: install
 install:
+ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))
+	$(error The "$@" command target only supports "dev_tool=docker" or "dev_tool=podman")
+endif
 	@$(dev_tool) build \
 		-t "$(image_tag)" \
 		--build-arg AWS_CLI_VERSION=$(aws_version) \
 		--build-arg EB_CLI_VERSION=$(eb_version) \
+		--build-arg DOTNET_VERSION=$(dotnet_version) \
+		--build-arg DOTNET_AWS_DEPLOY_CLI_VERSION=$(dotnet_aws_deploy_version) \
 		-f Dockerfile \
 		. \
-	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)" \
-	&& echo 'Tagged as: $(docker_push_image_tag)'
+	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)"
 
 .PHONY: deploy
 deploy: install
@@ -46,13 +52,27 @@ endif
 			--password-stdin \
 	&& $(dev_tool) push "$(docker_push_image_tag)"
 
+# NOTE: "entrypoint" is not used, because
+# it would override the docker init script
 .PHONY: debug
 debug: install
 	@$(dev_tool) run \
 		--rm \
+		--privileged \
 		-it \
-		--entrypoint=/bin/bash \
-		"$(image_tag)"
+		"$(image_tag)" \
+		/bin/bash
+
+# Run a non-privileged (i.e. no `--privileged`) container.
+# NOTE: "entrypoint" is not used, because
+# it would override the docker init script
+.PHONY: debug-basic
+debug-basic: install
+	@$(dev_tool) run \
+		--rm \
+		-it \
+		"$(image_tag)" \
+		/bin/bash
 
 .PHONY: check-version
 check-version: install
@@ -65,48 +85,26 @@ endif
 		"$(image_tag)" \
 		$(CMD) --version
 
-.PHONY: install-base
-install-base:
+.PHONY: install-yum-info
+install-yum-info:
 	@$(dev_tool) build \
-		--target "base" \
-		-t "$(image_tag_base)" \
+		--target "yum_info" \
+		-t "$(image_tag_yum_info)" \
 		-f Dockerfile \
 		.
 
-.PHONY: debug-base
-debug-base: install-base
-	@$(dev_tool) run \
-		--rm \
-		-it \
-		--entrypoint=/bin/bash \
-		"$(image_tag_base)"
-
-# NOTE: this is useful to check commands in the base image
-#   e.g. Which packages are already installed?
-#        `make debug-base-command yum list installed`
-#   e.g. Info about a package, like version, release and architecture?
-#        `make debug-base-command yum info yum-utils`
-.PHONY: debug-base-command
-debug-base-command: install-base
-ifndef CMD
-	$(error Missing required argument "CMD=[command]")
+.PHONY: check-package-info
+check-package-info: install-yum-info
+ifndef PACKAGE
+	$(error Missing required argument "PACKAGE=[name]")
 endif
 	@$(dev_tool) run \
 		--rm \
 		-it \
-		"$(image_tag_base)" \
-		$(CMD)
-
-.PHONY: debug-command
-debug-command: install
-ifndef CMD
-	$(error Missing required argument "CMD=[command]")
-endif
-	@$(dev_tool) run \
-		--rm \
-		-it \
-		"$(image_tag)" \
-		$(CMD)
+		--entrypoint="yum" \
+		"$(image_tag_yum_info)" \
+		list installed $(PACKAGE)
+# info $(PACKAGE)
 
 .PHONY: check-versions
 check-versions:

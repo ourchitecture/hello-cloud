@@ -1,0 +1,63 @@
+#!/bin/bash
+
+set -eu
+
+SCRIPT_DIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# contains(string, substring)
+#
+# Returns 0 if the specified string contains the specified substring,
+# otherwise returns 1.
+contains() {
+    string="$1"
+    substring="$2"
+    if test "${string#*$substring}" != "$string"
+    then
+        return 0    # $substring is in $string
+    else
+        return 1    # $substring is not in $string
+    fi
+}
+
+if ! command -v gcloud >/dev/null 2>&1; then
+    echo "The Google Cloud CLI ('gcloud') could not be found and must be installed." 1>&2
+    exit 1
+fi
+
+if [ -z "$GCLOUD_PROJECT_ID" ]; then
+    echo "The environment variable GCLOUD_PROJECT_ID is required." 1>&2
+    exit 1
+fi
+
+project_id="$GCLOUD_PROJECT_ID"
+
+# login (interactively or automatically with Service Principal)
+source $SCRIPT_DIR/login.sh
+
+project_exists_output=$(gcloud projects describe "$project_id" 2>&1 || true)
+
+project_may_not_exist=0
+
+if contains "$project_exists_output" "may not exist"; then
+  project_may_not_exist=1
+fi
+
+project_delete_requested=0
+
+if contains "$project_exists_output" "DELETE_REQUESTED"; then
+  project_delete_requested=1
+fi
+
+if [ "$project_may_not_exist" = 1 ]; then
+  echo 'The Google Project does not exist or you do not have permissions to access it.'
+elif [ "$project_delete_requested" = 1 ]; then
+  echo 'The Google Project has already been deleted.'
+else
+	echo 'Deleting Google Project, including child resources...'
+
+  gcloud projects delete \
+    "$project_id" \
+    --quiet
+
+  echo 'Successfully deleted the Google Project.'
+fi
