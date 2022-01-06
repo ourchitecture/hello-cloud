@@ -923,9 +923,9 @@
 <div class="admonition bug">
 <p class="admonition-title">hello-cloud challenges</p>
 <ul>
-<li>Does not work out-of-the-box with monorepos, requiring the use of an unsupported <a href="https://github.com/lstoll/heroku-buildpack-monorepo">community user buildpack</a>. Heroku also uses a <code>git</code> repository to push code changes. Currently, the entire monorepo must be synchronized with the Heroku repo. As a result, the <code>heroku</code> CLI was containerized with just the application code, initializing an empty git repository within (local to) the container and the code files were added and committed. This was sufficient to synchronize the application with Heroku.</li>
+<li>Does not work out-of-the-box with monorepos, requiring the use of an unsupported <a href="https://github.com/lstoll/heroku-buildpack-monorepo">community user buildpack</a>. Heroku also uses a <code>git</code> repository to push code changes. The entire monorepo would have to be synchronized with the Heroku repo. As a result, the <code>heroku</code> CLI was containerized with just the application code, initializing an empty git repository within (local to) the container and the code files were added and committed. This was sufficient to synchronize only the application's code with Heroku.</li>
 <li>Heroku tooling complains when a "shallow clone" is made (e.g. <code>git clone --depth=1 ...</code>); history is required. Just like the monorepo problem, containerizing the <code>heroku</code> CLI and application code avoid this problem.</li>
-<li>.NET Core is not an officially supported language, requiring the use of an unsupported <a href="https://github.com/jincod/dotnetcore-buildpack">community user buildpack</a>. This is odd, considering C# has been in the top lists of programming languages for professional developers for several years.</li>
+<li>.NET Core is not an officially supported language, requiring the use of an unsupported <a href="https://github.com/jincod/dotnetcore-buildpack">community user buildpack</a> (<em>*<a href="https://github.com/ourchitecture/dotnetcore-buildpack">forked to ourchitecture</a></em>). This is odd, considering C# has been in the top lists of programming languages for professional developers for several years.</li>
 </ul>
 </div>
 <h2 id="technology">Technology</h2>
