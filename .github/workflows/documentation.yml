@@ -28,12 +28,26 @@ jobs:
           make install-docs
           sudo chown -R $(whoami) ./docs
 
+      - name: Debug Pull Request
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          echo "EVENT: ${{ github.event_name }}"
+          echo "SOURCE: ${{ github.event.pull_request.head.repo.full_name }}"
+          echo "REPO: ${{ github.repository }}"
+
+      - name: Debug Push
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          echo "EVENT: ${{ github.event_name }}"
+          echo "SOURCE: ${{ github.event.push.head.repo.full_name }}"
+          echo "REPO: ${{ github.repository }}"
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # only:
         # - push, not pr
         # - primary repo, not forks
-        if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           title: "docs: auto-generated documentation"
           signoff: true
