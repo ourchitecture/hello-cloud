@@ -33,10 +33,9 @@ heroku_app_name:=our-hellodotnetwebapi
 
 all: install
 
-# TODO: cloud install for "heroku"
 .PHONY: install
 install:
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -107,20 +106,18 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	&& echo 'Successfully removed container: $(container_name)'
 endif
 
-# TODO: cloud=heroku
 .PHONY: logs
 logs:
 # TODO: docker container logs
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
 endif
 
-# TODO: cloud=heroku
 .PHONY: clean
 clean:
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -167,78 +164,3 @@ serve: start
 down: stop
 uninstall: clean
 restart: stop start
-
-# TODO: migrate to `make install cloud=...` and `make uninstall cloud=...`
-.PHONY: cloud-validator
-cloud-validator:
-ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
-	$(error The "cloud" argument only supports "azure" "gcloud", or "heroku")
-endif
-
-# TODO: migrate to `make install cloud=...`
-.PHONY: cloud-init
-cloud-init: cloud-validator
-ifeq '$(cloud)' 'heroku'
-	@make $(cloud)-init
-endif
-
-# TODO: migrate to `make install cloud=...`
-.PHONY: cloud-install
-cloud-install: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
-	@make install cloud=$(cloud)
-else
-	@make $(cloud)-install
-endif
-
-# TODO: migrate to `make logs cloud=...`
-.PHONY: cloud-logs
-cloud-logs: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
-	@make logs cloud=$(cloud)
-else
-	@make $(cloud)-logs
-endif
-
-# TODO: migrate to `make uninstall cloud=...`
-.PHONY: cloud-uninstall
-cloud-uninstall: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
-	@make clean cloud=$(cloud)
-else
-	@make $(cloud)-uninstall
-endif
-
-# TODO: migrate to `make install cloud=heroku`
-.PHONY: heroku-init
-heroku-init:
-	@set -eu \
-	&& heroku create \
-		$(heroku_app_name) \
-		--buildpack=https://github.com/lstoll/heroku-buildpack-monorepo \
-	&& heroku buildpacks:add \
-		-a $(heroku_app_name) \
-		https://github.com/jincod/dotnetcore-buildpack \
-	&& heroku config:set \
-		-a $(heroku_app_name) \
-		APP_BASE=src/services/dotnet/webapi/
-
-# TODO: migrate to `make install cloud=heroku`
-.PHONY: heroku-install
-heroku-install:
-	@set -eu \
-	&& git push https://git.heroku.com/$(heroku_app_name).git HEAD:main
-
-# TODO: migrate to `make logs cloud=heroku`
-.PHONY: heroku-logs
-heroku-logs:
-	@set -eu \
-	&& heroku logs -a $(heroku_app_name)
-
-# TODO: migrate to `make uninstall cloud=heroku`
-.PHONY: heroku-uninstall
-heroku-uninstall:
-	@set -eu \
-	&& heroku apps:destroy \
-		-a $(heroku_app_name) \
-		--confirm $(heroku_app_name)
