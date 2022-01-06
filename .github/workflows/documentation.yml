@@ -50,7 +50,7 @@ jobs:
         # examples of the issue can be seen here:
         # - "Debug push": https://github.com/ourchitecture/hello-cloud/runs/4733230834?check_suite_focus=true
         # - Forked "Debug push": https://github.com/ericis/hello-cloud/runs/4733253190?check_suite_focus=true
-        if: ${{ github.event_name == 'push' && github.repository == '${{ env.OUR_REPO }}' }}
+        if: ${{ github.event_name == 'push' && github.repository == env.OUR_REPO }}
         with:
           title: ${{ env.OUR_AUTODOC_COMMIT }}
           signoff: true
