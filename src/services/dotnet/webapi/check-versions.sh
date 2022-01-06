@@ -80,3 +80,6 @@ test_dockerfile() {
 test_dotnet_project
 
 test_dockerfile
+
+echo ''
+echo 'Also, check "./.config/dotnet-tools.json" for versions.'

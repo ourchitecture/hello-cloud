@@ -54,7 +54,7 @@ fi
 
 if [ "$project_may_not_exist" = 1 ]; then
 
-  echo 'Creating a new project...'
+  echo "Creating a new project \"${project_id}\"..."
 
   gcloud projects create \
 		"$project_id" \

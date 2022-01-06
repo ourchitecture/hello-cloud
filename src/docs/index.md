@@ -52,8 +52,11 @@
     azure --o|"Azure Kubernetes Service (AKS)"| orchestration
 
     gcloud --o|Google Cloud Functions| function
+    gcloud --o|Google Cloud Run| function
     gcloud --o|Google AppEngine| application
+    gcloud --o|Google Cloud Run| application
     gcloud --o|Google AppEngine| container
+    gcloud --o|Google Cloud Run| container
     gcloud --o|"Google Kubernetes Engine (GKE)"| orchestration
 
     heroku --o|Heroku Dynos| application

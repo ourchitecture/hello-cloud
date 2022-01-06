@@ -8,7 +8,7 @@ cloud:=
 # TODO: https
 # read: https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
 # read: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
-app_http_port=80
+app_http_port=8080
 host_http_port:=5124
 # app_https_port=443
 # host_https_port:=7032
@@ -33,10 +33,10 @@ heroku_app_name:=our-hellodotnetwebapi
 
 all: install
 
-# TODO: cloud install for "gcloud" "heroku"
+# TODO: cloud install for "heroku"
 .PHONY: install
 install:
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -107,10 +107,20 @@ else ifeq ("$(dev_tool)",$(filter "$(dev_tool)","podman" "docker"))
 	&& echo 'Successfully removed container: $(container_name)'
 endif
 
-# TODO: cloud=gcloud|heroku
+# TODO: cloud=heroku
+.PHONY: logs
+logs:
+# TODO: docker container logs
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
+	@prev_dir=$(shell pwd); \
+	cd ./deploy/$(cloud) && make $@; \
+	cd $$prev_dir;
+endif
+
+# TODO: cloud=heroku
 .PHONY: clean
 clean:
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@prev_dir=$(shell pwd); \
 	cd ./deploy/$(cloud) && make $@; \
 	cd $$prev_dir;
@@ -168,14 +178,14 @@ endif
 # TODO: migrate to `make install cloud=...`
 .PHONY: cloud-init
 cloud-init: cloud-validator
-ifneq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud" "heroku"))
+ifeq '$(cloud)' 'heroku'
 	@make $(cloud)-init
 endif
 
 # TODO: migrate to `make install cloud=...`
 .PHONY: cloud-install
 cloud-install: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@make install cloud=$(cloud)
 else
 	@make $(cloud)-install
@@ -184,7 +194,7 @@ endif
 # TODO: migrate to `make logs cloud=...`
 .PHONY: cloud-logs
 cloud-logs: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@make logs cloud=$(cloud)
 else
 	@make $(cloud)-logs
@@ -193,47 +203,11 @@ endif
 # TODO: migrate to `make uninstall cloud=...`
 .PHONY: cloud-uninstall
 cloud-uninstall: cloud-validator
-ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure"))
+ifeq ("$(cloud)",$(filter "$(cloud)","aws" "azure" "gcloud"))
 	@make clean cloud=$(cloud)
 else
 	@make $(cloud)-uninstall
 endif
-
-# TODO: migrate to `make install cloud=gcloud`
-.PHONY: gcloud-init
-gcloud-init:
-	@GCLOUD_PROJECT_NAME=$(gcloud_project_unique_name) \
-	GCLOUD_REGION=$(gcloud_region) \
-	./gcloud-init.sh
-
-# TODO: migrate to `make install cloud=gcloud`
-.PHONY: gcloud-install
-gcloud-install: install
-	@set -eu \
-	&& echo 'Deploying the application...' \
-	&& gcloud app deploy \
-		./app.yaml \
-		--stop-previous-version \
-		--promote \
-		--quiet \
-	&& echo '' \
-	&& echo 'Successfully deployed to gcloud!'
-
-# TODO: migrate to `make logs cloud=gcloud`
-.PHONY: gcloud-logs
-gcloud-logs:
-	@set -eu \
-	&& gcloud logging read default \
-		--project=$(gcloud_project_unique_name) \
-		--limit=$(gcloud_logs_limit)
-
-# TODO: migrate to `make uninstall cloud=gcloud`
-.PHONY: gcloud-uninstall
-gcloud-uninstall:
-	@set -eu \
-	&& gcloud projects delete \
-		"$(gcloud_project_unique_name)" \
-		--quiet
 
 # TODO: migrate to `make install cloud=heroku`
 .PHONY: heroku-init

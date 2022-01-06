@@ -88,7 +88,7 @@
 
 !!! todo "Prerequisites"
 
-    - An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - A [Google Cloud account](https://cloud.google.com/free) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
     - Google Cloud [Billing Account](https://console.cloud.google.com/billing)
 

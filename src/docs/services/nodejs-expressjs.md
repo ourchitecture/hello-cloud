@@ -100,7 +100,7 @@
 
     See the [contributor guide](../contribute.md#development) for more details.
 
-    - An [Google Cloud account](https://cloud.google.com/free) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - A [Google Cloud account](https://cloud.google.com/free) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
     - Google Cloud [Billing Account](https://console.cloud.google.com/billing) :octicons-link-16:
     - Once a project is created, you will be prompted to enable [Google Cloud Build](https://cloud.google.com/build) :octicons-link-16:
     - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
@@ -109,7 +109,7 @@
 
 !!! attention "Known issues"
 
-      Every attempt has been made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](https://github.com/ourchitecture/hello-cloud/issues/98)
+      Every attempt has been made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Cloud Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](https://github.com/ourchitecture/hello-cloud/issues/98)
 
 !!! example "Commands"
 

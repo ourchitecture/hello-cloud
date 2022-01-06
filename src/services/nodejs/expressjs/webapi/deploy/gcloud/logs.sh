@@ -22,4 +22,5 @@ source $SCRIPT_DIR/login.sh
 
 gcloud logging read \
 	--project="$project_id" \
-	--limit=$logs_limit
+	--limit=$logs_limit \
+  --no-user-output-enabled

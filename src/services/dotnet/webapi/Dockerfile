@@ -5,7 +5,7 @@ ARG ALPINE_VERSION=3.14
 
 ARG APK_VERSION_CURL=7.79.1-r0
 
-ARG HTTP_PORT=80
+ARG HTTP_PORT=8080
 # TODO: https
 # read: https://docs.microsoft.com/en-us/aspnet/core/security/docker-https?view=aspnetcore-6.0
 # read: https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-6.0
@@ -18,7 +18,7 @@ FROM ${BASE_BUILDER_DOCKER_IMAGE_NAME}:${DOTNET_VERSION}-alpine${ALPINE_VERSION}
 
 WORKDIR /app
 
-COPY ["webapi.csproj", ""]
+COPY ./webapi.csproj /app/
 
 RUN dotnet restore "webapi.csproj"
 
@@ -47,6 +47,7 @@ COPY --from=builder /app/publish/ /app/
 
 WORKDIR /app
 
+ENV PORT=${HTTP_PORT}
 ENV HTTP_PORT=${HTTP_PORT}
 
 EXPOSE ${HTTP_PORT}

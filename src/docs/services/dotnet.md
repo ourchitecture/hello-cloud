@@ -99,27 +99,33 @@
 
 !!! todo "Prerequisites"
 
-      - An [Google Cloud account](https://cloud.google.com/free) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
-      - [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstart)
-      - Google Cloud [Billing Account](https://console.cloud.google.com/billing)
+    See the [contributor guide](../contribute.md#development) for more details.
+
+    - A [Google Cloud account](https://cloud.google.com/free) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - Google Cloud [Billing Account](https://console.cloud.google.com/billing) :octicons-link-16:
+    - Once a project is created, you may be prompted to enable [Google Cloud Build](https://cloud.google.com/build) :octicons-link-16:
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
 
 !!! attention "Known issues"
 
-      Every attempt has been made to automate the deployment. However, some timing issues have been observed as well as having to manually enable "Code Build" and manually associating dynamically created projects with a billing account. [Contributions are welcome!](../contribute.md)
+      Every attempt has been made to automate the deployment. However, some timing issues have been observed as well as with manually associating dynamically created projects with a billing account and enabling services like "Cloud Build",  "Cloud Run", and "Artifact Registry". [Contributions are welcome!](https://github.com/ourchitecture/hello-cloud/issues/98)
 
 !!! example "Commands"
 
-      1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`).
-      2. Login to your Google Cloud account with the CLI using the command `gcloud auth login`.
-      3. Run the command `make gcloud-init gcloud_project_name_suffix=001` to create the Google Cloud project.
-      4. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources). Once the project is associated with a billing account, re-run the "gcloud-init" command above.
-      5. Install the application with the command `make gcloud-install`.
-      6. Check the application logs with the command `make gcloud-logs`.
-      7. Uninstall and clean up the application deployment with the command `make gcloud-uninstall gcloud_project_name_suffix=001`.
+    1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
+    2. Copy the "./deploy/gcloud/.env.example" file and save it as a new file "./deploy/gcloud/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
+    3. Edit the file "./deploy/gcloud/.env" and replace the values according to preferences.
+    4. Run the command `make install cloud=gcloud` to create a new Google Cloud project, application, and deploy the code.
+    5. If the output indicates that billing must be enabled, login to the [projects list](https://console.cloud.google.com/billing/projects) and associate the newly created project with the appropriate billing account (even if you are using free resources)
+    6. If the output indicates that any of the services including "Cloud Build", "Cloud Run", or "Artifact Registry" must be enabled, login to the [projects list](https://cloud.google.com/build) and enable the missing API
+    7. Check the application logs with the command `make logs cloud=gcloud`
+    8. Uninstall and clean up the application deployment with the command `make uninstall cloud=gcloud`
 
 !!! tip "Tip: Project Naming"
 
-      Update the "gcloud_project_name_suffix" argument value for `gcloud-init` and `gcloud-uninstall` by incrementing the number to ensure a unique project name, or specify a custom unique name by using the argument "gcloud_project_unique_name" instead. By default, Google Cloud retains deleted projects for several days, so it is not possible to recreate the same project multiple times within a short period. A future [contribution to this project](../contribute.md) could simply restore a deleted project if it was recently deleted and use the same name.
+      Google Cloud retains deleted projects for a time. If the value for "GCLOUD_PROJECT_ID" in "./deploy/gcloud/.env" already exists as an active project, nothing will be done. If the project has been deleted, the project will be restored. If the project does not exist, it will be created.
 
 ### :fontawesome-brands-salesforce: SalesForce Heroku
 
