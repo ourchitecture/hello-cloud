@@ -28,26 +28,17 @@ jobs:
           make install-docs
           sudo chown -R $(whoami) ./docs
 
-      - name: Debug Pull Request
-        if: ${{ github.event_name == 'pull_request' }}
-        run: |
-          echo "EVENT: ${{ github.event_name }}"
-          echo "SOURCE: ${{ github.event.pull_request.head.repo.full_name }}"
-          echo "REPO: ${{ github.repository }}"
-
-      - name: Debug Push
-        if: ${{ github.event_name == 'push' }}
-        run: |
-          echo "EVENT: ${{ github.event_name }}"
-          echo "SOURCE: ${{ github.event.push.head.repo.full_name }}"
-          echo "REPO: ${{ github.repository }}"
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
-        # only:
-        # - push, not pr
+        # Avoid creating another PR to the forked repo when
+        # merging auto-docs back into forks can trigger a
+        # "push" build action from the fork's "main" branch.
+        # - push, not pull_request
         # - primary repo, not forks
-        if: ${{ github.event_name == 'push' }}
+        # examples of the issue can be seen here:
+        # - "Debug push": https://github.com/ourchitecture/hello-cloud/runs/4733230834?check_suite_focus=true
+        # - Forked "Debug push": https://github.com/ericis/hello-cloud/runs/4733253190?check_suite_focus=true
+        if: ${{ github.event_name == 'push' && github.repository == 'ourchitecture/hello-cloud' }}
         with:
           title: "docs: auto-generated documentation"
           signoff: true
