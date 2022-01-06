@@ -47,7 +47,7 @@ jobs:
         # only:
         # - push, not pr
         # - primary repo, not forks
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ github.event_name == 'push' }}
         with:
           title: "docs: auto-generated documentation"
           signoff: true
