@@ -1,5 +1,17 @@
 name: documentation
 
+# place "magic strings" used in the workflow here for convenient maintenance
+env:
+  # this variable is used to compare against forked repositories
+  OUR_REPO: "ourchitecture/hello-cloud"
+  OUR_AUTODOC_COMMIT: "docs: auto-generated documentation"
+  OUR_AUTODOC_DESC: "Automatically generated documentation that requires a PR, because the main branch is protected."
+  OUR_AUTODOC_LABELS: "documentation"
+  # TODO: replace with an "ourchitecture" GitHub team
+  OUR_AUTODOC_REVIEWERS: "ericis"
+  OUR_AUTODOC_ASSIGNEES: "ericis"
+  OUR_SKIP_CI: "[skip ci]"
+
 on:
   push:
     branches: [main]
@@ -38,12 +50,12 @@ jobs:
         # examples of the issue can be seen here:
         # - "Debug push": https://github.com/ourchitecture/hello-cloud/runs/4733230834?check_suite_focus=true
         # - Forked "Debug push": https://github.com/ericis/hello-cloud/runs/4733253190?check_suite_focus=true
-        if: ${{ github.event_name == 'push' && github.repository == 'ourchitecture/hello-cloud' }}
+        if: ${{ github.event_name == 'push' && github.repository == '${{ env.OUR_REPO }}' }}
         with:
-          title: "docs: auto-generated documentation"
+          title: ${{ env.OUR_AUTODOC_COMMIT }}
           signoff: true
-          commit-message: "docs: auto-generated documentation [skip ci]"
-          body: "Automatically generated documentation that requires a PR, because the main branch is protected."
-          labels: "documentation"
-          reviewers: "ericis"
-          assignees: "ericis"
+          commit-message: "${{ env.OUR_AUTODOC_COMMIT }} ${{ env.OUR_SKIP_CI }}"
+          body: ${{ env.OUR_AUTODOC_DESC }}
+          labels: ${{ env.OUR_AUTODOC_LABELS }}
+          reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}
+          assignees: ${{ env.OUR_AUTODOC_ASSIGNEES }}
