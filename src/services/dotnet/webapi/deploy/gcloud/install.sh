@@ -29,8 +29,14 @@ if [ -z "$GCLOUD_PROJECT_ID" ]; then
     exit 1
 fi
 
-project_id="$GCLOUD_PROJECT_ID"
+if [ -z "$GCLOUD_SERVICE_NAME" ]; then
+    echo "The environment variable GCLOUD_SERVICE_NAME is required." 1>&2
+    exit 1
+fi
+
+project_id="${GCLOUD_PROJECT_ID}"
 region="${GCLOUD_REGION:-us-east1}"
+service_name="${GCLOUD_SERVICE_NAME}"
 service_account_name="${GCLOUD_SERVICE_ACCOUNT_NAME:-sp-our-hello-cloud}"
 service_account_title="${GCLOUD_SERVICE_ACCOUNT_TITLE:-Our Hello Cloud Service Account}"
 service_account_description="${GCLOUD_SERVICE_ACCOUNT_DESCRIPTION:-See: https://www.ourchitecture.io/hello-cloud/}"
@@ -54,7 +60,7 @@ fi
 
 if [ "$project_may_not_exist" = 1 ]; then
 
-  echo 'Creating a new project...'
+  echo "Creating a new project \"${project_id}\"..."
 
   gcloud projects create \
 		"$project_id" \
@@ -103,20 +109,20 @@ else
   echo 'Service account already exists.'
 fi
 
-app_exists_output=$(gcloud app instances list 2>&1 || true)
+# app_exists_output=$(gcloud app instances list 2>&1 || true)
 
-if contains "$app_exists_output" "not found"; then
+# if contains "$app_exists_output" "not found"; then
 
-  echo 'Creating a new application...'
+#   echo 'Creating a new application...'
 
-  gcloud app create \
-    --region="$region" \
-    --quiet
+#   gcloud app create \
+#     --region="$region" \
+#     --quiet
 
-  echo 'Successfully created a new application.'
-else
-  echo 'Application already exists.'
-fi
+#   echo 'Successfully created a new application.'
+# else
+#   echo 'Application already exists.'
+# fi
 
 # TODO: figure out how to automatically associate Billing and Cloud Build with
 #       the project. Currently, it prompts for manual intervention.
@@ -124,15 +130,64 @@ fi
 # project, so it currently doesn't work.
 # gcloud services enable cloudbuild.googleapis.com
 
+enabled_services_output=$(gcloud services list --enabled)
+
+if ! contains "$enabled_services_output" "run.googleapis.com"; then
+
+  echo 'Enabling Cloud Run service...'
+
+  gcloud services enable \
+    run.googleapis.com \
+    --async
+
+  echo 'Successfully enabled Cloud Run service.'
+  echo ''
+  echo 'IMPORTANT: enabling Cloud Run can sometimes take several minutes. Simply retry deployment on failure.'
+else
+  echo 'Cloud Run service is already enabled.'
+fi
+
+if ! contains "$enabled_services_output" "artifactregistry.googleapis.com"; then
+
+  echo 'Enabling Artifact Registry service...'
+
+  gcloud services enable \
+    artifactregistry.googleapis.com \
+    --async
+
+  echo 'Successfully enabled Artifact Registry service.'
+  echo ''
+  echo 'IMPORTANT: enabling Artifact Registry can sometimes take several minutes. Simply retry deployment on failure.'
+else
+  echo 'Artifact Registry service is already enabled.'
+fi
+
+if ! contains "$enabled_services_output" "cloudbuild.googleapis.com"; then
+
+  echo 'Enabling Cloud Build service...'
+
+  gcloud services enable \
+    cloudbuild.googleapis.com \
+    --async
+
+  echo 'Successfully enabled Cloud Build service.'
+  echo ''
+  echo 'IMPORTANT: enabling Cloud Build can sometimes take several minutes. Simply retry deployment on failure.'
+else
+  echo 'Cloud Build service is already enabled.'
+fi
+
 echo 'Deploying the application...'
 
 # assumes that the context is running in a container
 # where the current directory (`pwd`) is "/app"
 # and relative to the root of this project
-gcloud app deploy \
-  ./gcloud-app.yaml \
-  --stop-previous-version \
-  --promote \
+gcloud run deploy \
+  "$service_name" \
+  --source=. \
+  --platform=managed \
+  --region="$region" \
+  --allow-unauthenticated \
   --quiet
 
 echo 'Successfully deployed the application.'

@@ -1,5 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
 
+var port = Environment.GetEnvironmentVariable("PORT");
+
+if (!String.IsNullOrEmpty(port))
+{
+  var portNumber = int.Parse(port);
+
+  builder.WebHost.ConfigureKestrel(options =>
+  {
+    // options.ListenLocalhost(portNumber);
+    options.Configure().AnyIPEndpoint(portNumber);
+  });
+}
+
 // Add services to the container.
 
 builder.Services.AddControllers();

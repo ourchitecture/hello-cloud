@@ -1,5 +1,6 @@
 # docker | podman
 dev_tool:=docker
+cloud:=
 
 docker_image_mkdocs_material_version:=8.1.3
 docker_image_mkdocs_material_tag:=our-hello-tasks-mkdocs-material:$(docker_image_mkdocs_material_version)
@@ -146,6 +147,19 @@ clean:
 		cd $$prev_dir; \
 	done
 
+.PHONY: console
+console:
+	@echo "Open your cloud console at:"
+ifeq '$(cloud)' 'aws'
+	@echo "https://console.aws.amazon.com/"
+else ifeq '$(cloud)' 'azure'
+	@echo "https://portal.azure.com/"
+else ifeq '$(cloud)' 'gcloud'
+	@echo "https://console.cloud.google.com/"
+else ifeq '$(cloud)' 'heroku'
+	@echo "https://dashboard.heroku.com/"
+endif
+
 # convenience aliases
 build: install
 up: start
@@ -153,6 +167,8 @@ run: start
 serve: start
 down: stop
 uninstall: clean
+portal: console
+dashboard: console
 
 .PHONY: sync
 sync:
