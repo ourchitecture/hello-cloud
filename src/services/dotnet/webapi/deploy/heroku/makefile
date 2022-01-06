@@ -33,7 +33,7 @@ logs:
 .PHONY: clean
 clean:
 ifneq '$(confirm)' '1'
-	$(warning Warning: you are about to completely delete this Google Project.)
+	$(warning Warning: you are about to completely delete this Heroku application.)
 	$(error If you wish to continue, append ` confirm=1` to the end of the command.)
 endif
 	@docker run \

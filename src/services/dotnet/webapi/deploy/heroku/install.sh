@@ -50,7 +50,10 @@ if [ -z "$HEROKU_APP_NAME" ]; then
 fi
 
 app_name="$HEROKU_APP_NAME"
-app_buildpack="${HEROKU_APP_BUILDPACK:-heroku/nodejs}"
+
+# Heroku does not offer an officially supported .NET Core buildpack
+# Ourchitecture has forked this individual's buildpack: https://github.com/jincod/dotnetcore-buildpack
+app_buildpack="${HEROKU_APP_BUILDPACK:-https://github.com/ourchitecture/dotnetcore-buildpack}"
 
 # login (interactively or automatically with Service Principal)
 source $SCRIPT_DIR/login.sh
@@ -82,6 +85,7 @@ echo ''
 echo 'Initializing empty git repository for Heroku deployment.'
 echo 'See notes for why this is necessary.'
 echo ''
+git config --global init.defaultBranch main
 git config --global user.email "$GIT_EMAIL"
 git config --global user.name "$GIT_NAME"
 git init

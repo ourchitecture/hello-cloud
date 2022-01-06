@@ -131,17 +131,21 @@
 
 !!! todo "Prerequisites"
 
-    - A [Heroku account](https://signup.heroku.com/) _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
-    - [`heroku` CLI](https://devcenter.heroku.com/articles/heroku-cli#uninstalling-the-heroku-cli)
+    See the [contributor guide](../contribute.md#development) for more details.
+
+    - A [Heroku account](https://signup.heroku.com/) :octicons-link-16: _\*this project worked with fairly cheap or entirely free infrastructure at the time of its creation_
+    - [`git`](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) :octicons-link-16: for source control.
+    - [GNU `make`](https://www.gnu.org/software/make/) :octicons-link-16: for standard task execution.
+    - [`docker`](https://www.docker.com/get-started) :octicons-link-16: for containerized task execution.
 
 !!! example "Commands"
 
     1. Open a terminal and navigate to the service project directory (e.g. `cd ./src/services/dotnet/webapi`)
-    2. Login to your Heroku account with the CLI using the command `heroku login`
-    3. Run the command `make heroku-init` to create and configure the cloud app including assigning the [community monorepo buildpack](https://github.com/lstoll/heroku-buildpack-monorepo#readme) as well as a community [dotnet buildpack](https://github.com/jincod/dotnetcore-buildpack)
-    4. Install the application with the command `make heroku-install`
-    5. Check the application logs with the command `make heroku-logs`
-    6. Uninstall and clean up the application deployment with the command `make heroku-uninstall`
+    2. Copy the "./deploy/heroku/.env.example" file and save it as a new file "./deploy/heroku/.env". *This new file will not be committed back to source control as it contains personal and sensitive data.
+    3. Edit the file "./deploy/heroku/.env" and replace the values according to preferences.
+    4. Run the command `make install cloud=heroku` to create a new Heroku application and deploy the code.
+    5. Check the application logs with the command `make logs cloud=heroku`
+    6. Uninstall and clean up the application deployment with the command `make uninstall cloud=heroku`
 
 ## Roadmap
 
@@ -171,10 +175,10 @@
     - Deploy container to GitHub Container Registry as GitHub Package
     - GitHub Action workflow to build and deploy container to GitHub Container Registry as GitHub Package
     - Deploy to cloud Platform-as-a-Service (PaaS)
-        - :material-heart-broken: "aws" requires a container
+        - "aws" requires a container
         - "azure"
-        - :material-heart-broken: "gcloud" requires a container
-        - "heroku"
+        - "gcloud" quirky. AppEngine had some challenges, but got Cloud Run working.
+        - "heroku" requires a community buildpack
     - Deploy to cloud Managed Containers (_refers to a "run as container" deployment over full-blown Managed Kubernetes deployment_)
         - "aws"
         - "gcloud"
