@@ -65,7 +65,6 @@ fi
 $dev_tool run \
   --rm \
   --interactive \
-  --tty \
   --network $network_name \
   --volume "$app_path":/app \
   --volume "$app_path"/screenshots:/screenshots \
