@@ -5,6 +5,20 @@ const docsHostName = process.env.DOCS_HOSTNAME || "our-hello-docs";
 const docsPortNumber = process.env.DOCS_PORT || 8000;
 const screenshotsPath = process.env.SCREENSHOTS_PATH || "/screenshots";
 
+const captureScreenshot = async (url, screenshotImageFileName) => {
+  console.log(`GET: ${url}`);
+
+  await page.goto(url);
+
+  console.log("Capturing a screenshot...");
+
+  await page.screenshot({
+    path: `${screenshotsPath}/${screenshotImageFileName}`,
+  });
+
+  console.log("Successfully captured a screenshot.");
+};
+
 (async () => {
   console.log("Launching puppeteer browser...");
 
@@ -26,17 +40,19 @@ const screenshotsPath = process.env.SCREENSHOTS_PATH || "/screenshots";
 
   console.log("Successfully created a new page.");
 
-  const url = `http://${docsHostName}:${docsPortNumber}/hello-cloud/contribute/`;
+  const baseUrl = `http://${docsHostName}:${docsPortNumber}/hello-cloud`;
 
-  console.log(`GET: ${url}`);
+  const screenshotConfigurations = [
+    { url: baseUrl, image: "hello-cloud.png" },
+    { url: `${baseUrl}/contribute/`, image: "contribute.png" },
+  ];
 
-  await page.goto(url);
-
-  console.log("Capturing a screenshot...");
-
-  await page.screenshot({ path: `${screenshotsPath}/hello-cloud.png` });
-
-  console.log("Successfully captured a screenshot.");
+  screenshotConfigurations.forEach((screenshotConfiguration) => {
+    await captureScreenshot(
+      screenshotConfiguration.url,
+      screenshotConfiguration.image
+    );
+  });
 
   console.log("Closing the browser...");
 
