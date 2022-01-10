@@ -45,6 +45,11 @@ jobs:
           make check-docs
           ls -la ./src/puppeteer/screenshots
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screenshots
+          path: ./src/puppeteer/screenshots/
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # Avoid creating another PR to the forked repo when
