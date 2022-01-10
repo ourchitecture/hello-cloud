@@ -47,7 +47,7 @@ const captureScreenshot = async (url, screenshotImageFileName) => {
     { url: `${baseUrl}/contribute/`, image: "contribute.png" },
   ];
 
-  screenshotConfigurations.forEach((screenshotConfiguration) => {
+  screenshotConfigurations.forEach(async (screenshotConfiguration) => {
     await captureScreenshot(
       screenshotConfiguration.url,
       screenshotConfiguration.image
