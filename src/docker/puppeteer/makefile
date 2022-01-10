@@ -1,11 +1,10 @@
 # docker | podman
 dev_tool:=docker
 
-image_name:=our-hello-tasks-heroku-cli
+image_name:=our-hello-tasks-puppeteer
 
-# NOTE: it seems impossible to install a specific version of the cli
-# So, this docker image will always be considered "latest".
-image_tag:=$(image_name):latest
+puppeteer_version=latest
+image_tag:=$(image_name):$(puppeteer_version)
 
 docker_push_registry:=ghcr.io
 docker_push_organization_or_user:=ourchitecture
@@ -20,6 +19,7 @@ all: install
 install:
 	@$(dev_tool) build \
 		-t "$(image_tag)" \
+		--build-arg MKDOCS_MATERIAL_VERSION=$(puppeteer_version) \
 		-f Dockerfile \
 		.
 
@@ -66,3 +66,15 @@ endif
 .PHONY: check-versions
 check-versions:
 	@./check-versions.sh
+
+.PHONY: check
+check: install
+	@$(dev_tool) run \
+		--rm \
+		--interactive \
+		--tty \
+		--volume "$(shell pwd)":/app \
+		--workdir /app \
+		"$(image_tag)" \
+		node ./test.js \
+	&& sudo chown -R $$(whoami) .

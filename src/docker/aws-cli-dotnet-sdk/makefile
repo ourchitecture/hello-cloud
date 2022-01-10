@@ -59,7 +59,8 @@ debug: install
 	@$(dev_tool) run \
 		--rm \
 		--privileged \
-		-it \
+		--interactive \
+		--tty \
 		"$(image_tag)" \
 		/bin/bash
 
@@ -70,7 +71,8 @@ debug: install
 debug-basic: install
 	@$(dev_tool) run \
 		--rm \
-		-it \
+		--interactive \
+		--tty \
 		"$(image_tag)" \
 		/bin/bash
 
@@ -81,7 +83,8 @@ ifndef CMD
 endif
 	@$(dev_tool) run \
 		--rm \
-		-it \
+		--interactive \
+		--tty \
 		"$(image_tag)" \
 		$(CMD) --version
 
@@ -100,7 +103,8 @@ ifndef PACKAGE
 endif
 	@$(dev_tool) run \
 		--rm \
-		-it \
+		--interactive \
+		--tty \
 		--entrypoint="yum" \
 		"$(image_tag_yum_info)" \
 		list installed $(PACKAGE)

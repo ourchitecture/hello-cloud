@@ -46,7 +46,8 @@ endif
 debug: install
 	@$(dev_tool) run \
 		--rm \
-		-it \
+		--interactive \
+		--tty \
 		--entrypoint=/bin/bash \
 		"$(image_tag)"
 
@@ -57,7 +58,8 @@ ifndef CMD
 endif
 	@$(dev_tool) run \
 		--rm \
-		-it \
+		--interactive \
+		--tty \
 		"$(image_tag)" \
 		$(CMD) --version
 
