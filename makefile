@@ -83,6 +83,16 @@ endif
 			--config-file ./mkdocs.yml
 	@echo 'Successfully started: http://localhost:$(docs_host_port)'
 
+.PHONY: check-docs
+check-docs:
+	@set -eu; \
+	make start-docs; \
+	sleep 5; \
+	prev_dir=$(shell pwd); \
+	cd ./src/puppeteer && make check; \
+	cd $$prev_dir; \
+	make stop-docs;
+
 .PHONY: stop-docs
 stop-docs:
 ifneq ("$(dev_tool)",$(filter "$(dev_tool)","docker" "podman"))

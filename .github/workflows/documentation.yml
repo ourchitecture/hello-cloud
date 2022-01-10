@@ -40,6 +40,11 @@ jobs:
           make install-docs
           sudo chown -R $(whoami) ./docs
 
+      - name: screenshots
+        run: |
+          make check-docs
+          ls -la ./src/puppeteer/screenshots
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # Avoid creating another PR to the forked repo when

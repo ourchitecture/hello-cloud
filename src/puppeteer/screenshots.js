@@ -1,6 +1,8 @@
 const fs = require("fs").promises;
 const puppeteer = require("puppeteer");
 
+const docsHostName = process.env.DOCS_HOSTNAME || "our-hello-docs";
+const docsPortNumber = process.env.DOCS_PORT || 8000;
 const screenshotsPath = process.env.SCREENSHOTS_PATH || "/screenshots";
 
 (async () => {
@@ -24,11 +26,11 @@ const screenshotsPath = process.env.SCREENSHOTS_PATH || "/screenshots";
 
   console.log("Successfully created a new page.");
 
-  console.log("Visiting the hello-cloud project website...");
+  const url = `http://${docsHostName}:${docsPortNumber}/hello-cloud/contribute/`;
 
-  await page.goto("https://www.ourchitecture.io/hello-cloud/");
+  console.log(`GET: ${url}`);
 
-  console.log("Successfully visited the website.");
+  await page.goto(url);
 
   console.log("Capturing a screenshot...");
 

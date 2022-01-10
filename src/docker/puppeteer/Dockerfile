@@ -15,8 +15,7 @@ RUN apk add --no-cache \
       ttf-freefont \
       nodejs \
       yarn \
-      bash \
-      util-linux
+      bash
 
 FROM packages as puppeteer
 
@@ -30,11 +29,14 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 RUN yarn add puppeteer@${PUPPETEER_VERSION}
 
 # Add user so we don't need --no-sandbox.
-RUN addgroup -S pptruser \
-    && adduser -S -g pptruser pptruser \
-    && mkdir -p /home/pptruser/Downloads /app \
-    && chown -R pptruser:pptruser /home/pptruser \
-    && chown -R pptruser:pptruser /app
+RUN addgroup --system pptruser \
+    && adduser --system --shell /bin/bash --gecos pptruser pptruser \
+    && mkdir --parents /home/pptruser/Downloads /app /screenshots \
+    && chown --recursive pptruser:pptruser /home/pptruser \
+    && chown --recursive pptruser:pptruser /app \
+    && chown --recursive pptruser:pptruser /screenshots
+
+ENV SCREENSHOTS_PATH=/screenshots
 
 # Run everything after as non-privileged user.
 USER pptruser
@@ -47,6 +49,6 @@ COPY entrypoint.sh /entrypoint.sh
 
 USER root
 
-ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 
 CMD ["node"]
