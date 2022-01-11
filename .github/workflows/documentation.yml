@@ -40,6 +40,16 @@ jobs:
           make install-docs
           sudo chown -R $(whoami) ./docs
 
+      - name: screenshots
+        run: make check-docs
+
+      # https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts#uploading-build-and-test-artifacts
+      - uses: actions/upload-artifact@v2
+        if: ${{ github.event_name == 'pull_request' }}
+        with:
+          name: screenshots
+          path: ./src/puppeteer/screenshots/*.png
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # Avoid creating another PR to the forked repo when

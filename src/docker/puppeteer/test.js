@@ -1,9 +1,9 @@
 const fs = require("fs").promises;
 const puppeteer = require("puppeteer");
 
-(async () => {
-  await fs.mkdir("./tests/");
+const screenshotsPath = process.env.SCREENSHOTS_PATH || "/screenshots";
 
+(async () => {
   console.log("Launching puppeteer browser...");
 
   const browser = await puppeteer.launch({
@@ -32,7 +32,7 @@ const puppeteer = require("puppeteer");
 
   console.log("Capturing a screenshot...");
 
-  await page.screenshot({ path: "./tests/hello-cloud.png" });
+  await page.screenshot({ path: `${screenshotsPath}/hello-cloud.png` });
 
   console.log("Successfully captured a screenshot.");
 

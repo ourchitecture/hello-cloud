@@ -21,7 +21,8 @@ install:
 		-t "$(image_tag)" \
 		--build-arg MKDOCS_MATERIAL_VERSION=$(puppeteer_version) \
 		-f Dockerfile \
-		.
+		. \
+	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)"
 
 .PHONY: deploy
 deploy: install
@@ -35,7 +36,6 @@ ifeq ("${DOCKER_PASSWORD_FILE_PATH}", "")
 	$(error Missing environment variable "DOCKER_PASSWORD_FILE_PATH")
 endif
 	@set -eu \
-	&& $(dev_tool) tag "$(image_tag)" "$(docker_push_image_tag)" \
 	&& cat "${DOCKER_PASSWORD_FILE_PATH}" \
 		| $(dev_tool) login "$(docker_push_registry)" \
 			--username "${DOCKER_USERNAME}" \
@@ -48,6 +48,8 @@ debug: install
 		--rm \
 		--interactive \
 		--tty \
+		--volume "$(shell pwd)":/app \
+		--volume "$(shell pwd)"/screenshots:/screenshots \
 		--entrypoint=/bin/bash \
 		"$(image_tag)"
 
@@ -74,7 +76,13 @@ check: install
 		--interactive \
 		--tty \
 		--volume "$(shell pwd)":/app \
+		--volume "$(shell pwd)"/screenshots:/screenshots \
 		--workdir /app \
 		"$(image_tag)" \
 		node ./test.js \
-	&& sudo chown -R $$(whoami) .
+	&& echo 'WARNING: sudo is required to change ownership of the generated screenshot files from within the container to the host system' \
+	&& sudo chown -R $$(whoami) ./screenshots
+
+.PHONY: clean
+clean:
+	rm -rf ./screenshots
