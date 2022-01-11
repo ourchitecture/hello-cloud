@@ -6,6 +6,13 @@
 [![kotlin_springboot_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/kotlin_springboot_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/kotlin_springboot_webapi.yml)
 [![nodejs_expressjs_webapi](https://github.com/ourchitecture/hello-cloud/actions/workflows/nodejs_expressjs_webapi.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/nodejs_expressjs_webapi.yml)
 
+[![docker_aws-cli](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_aws-cli.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_aws-cli.yml)
+[![docker_aws-cli-dotnet-sdk](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_aws-cli-dotnet-sdk.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_aws-cli-dotnet-sdk.yml)
+[![docker_azure-cli](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_azure-cli.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_azure-cli.yml)
+[![docker_heroku-cli](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_heroku-cli.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_heroku-cli.yml)
+[![docker_mkdocs](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_mkdocs.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_mkdocs.yml)
+[![docker_puppeteer](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_puppeteer.yml/badge.svg)](https://github.com/ourchitecture/hello-cloud/actions/workflows/docker_puppeteer.yml)
+
 ## Local development
 
 :eyes: See the [contributor guide](./contribute.md#development) for local development.
