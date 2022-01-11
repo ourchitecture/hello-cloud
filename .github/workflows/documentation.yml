@@ -41,9 +41,7 @@ jobs:
           sudo chown -R $(whoami) ./docs
 
       - name: screenshots
-        run: |
-          make check-docs
-          ls -la ./src/puppeteer/screenshots
+        run: make check-docs
 
       # https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts#uploading-build-and-test-artifacts
       - uses: actions/upload-artifact@v2
@@ -58,15 +56,16 @@ jobs:
         env:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         with:
+          github-token: ${{ secrets.GH_TOKEN_PACKAGES }}
           script: |
             const creator = context.payload.sender.login
-            const runUrl = process.env.RUN_URL
+            const { RUN_URL } = process.env
 
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `Welcome, ${creator} and thank you for your contribution!\n\nA [documentation build](${runUrl}) was initiated by your changes.`
+              body: `Welcome, ${creator} and thank you for your contribution!\n\nA [documentation build](${RUN_URL}) was initiated by your changes.`
             })
 
       - name: Create Pull Request

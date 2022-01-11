@@ -83,6 +83,8 @@ endif
 			--config-file ./mkdocs.yml
 	@echo 'Successfully started: http://localhost:$(docs_host_port)'
 
+# NOTE: sleep command ensures the container has successfully started
+#       Ideally, this would script a container status check and URL ping instead.
 .PHONY: check-docs
 check-docs:
 	@set -eu; \
