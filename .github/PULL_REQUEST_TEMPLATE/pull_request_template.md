@@ -23,5 +23,6 @@
 
 #### Notes
 
+-   The @ourchitecture/hello-cloud-maintainers team will review this request at their earliest convenience
 -   For documentation changes, a build will automatically check your changes and generate screenshots (see the "Artifacts" section under the build's "Summary")
 -   The [contributor guide](https://www.ourchitecture.io/hello-cloud/contribute/) was designed to help you proceed

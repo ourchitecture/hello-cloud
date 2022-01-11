@@ -1,2 +1,6 @@
-# Project Admins
-* @ericis
+# Project Maintainers
+* @ourchitecture/hello-cloud-maintainers
+
+# Licensing changes require admin review
+./LICENSE @ourchitecture/hello-cloud-admins
+./src/docs/license.md @ourchitecture/hello-cloud-admins
