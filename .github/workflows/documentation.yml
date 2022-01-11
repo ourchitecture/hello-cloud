@@ -66,4 +66,4 @@ jobs:
           commit-message: "${{ env.OUR_AUTODOC_COMMIT }} ${{ env.OUR_SKIP_CI }}"
           body: ${{ env.OUR_AUTODOC_DESC }}
           labels: ${{ env.OUR_AUTODOC_LABELS }}
-          reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}
+          reviewers: ourchitecture/hello-cloud-maintainers
