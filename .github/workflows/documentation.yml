@@ -8,7 +8,7 @@ env:
   OUR_AUTODOC_DESC: "Automatically generated documentation that requires a PR, because the main branch is protected."
   OUR_AUTODOC_LABELS: "documentation"
   # TODO: replace with an "ourchitecture" GitHub team
-  OUR_AUTODOC_REVIEWERS: "@ourchitecture/hello-cloud-maintainers"
+  OUR_AUTODOC_REVIEWERS: "hello-cloud-maintainers"
   OUR_SKIP_CI: "[skip ci]"
 
 on:
