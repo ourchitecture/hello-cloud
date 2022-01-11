@@ -21,14 +21,6 @@ docker_push_organization_or_user:=ourchitecture
 docker_push_repository:=hello-cloud
 docker_push_image_tag:=$(docker_push_registry)/$(docker_push_organization_or_user)/$(docker_push_repository)/$(image_tag)
 
-gcloud_project_name:=ourhellodotnet
-gcloud_project_name_suffix:=001
-gcloud_project_unique_name:=$(gcloud_project_name)$(gcloud_project_name_suffix)
-gcloud_region:=us-east1
-gcloud_logs_limit:=20
-
-heroku_app_name:=our-hellodotnetwebapi
-
 .DEFAULT_GOAL:=install
 
 all: install
