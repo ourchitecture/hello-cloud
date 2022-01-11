@@ -50,24 +50,6 @@ jobs:
           name: screenshots
           path: ./src/puppeteer/screenshots/*.png
 
-      # https://github.com/actions/github-script
-      - uses: actions/github-script@v5
-        if: ${{ github.event_name == 'pull_request' }}
-        env:
-          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        with:
-          github-token: ${{ secrets.GH_TOKEN_PACKAGES }}
-          script: |
-            const creator = context.payload.sender.login
-            const { RUN_URL } = process.env
-
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `Welcome, ${creator} and thank you for your contribution!\n\nA [documentation build](${RUN_URL}) was initiated by your changes.`
-            })
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         # Avoid creating another PR to the forked repo when
