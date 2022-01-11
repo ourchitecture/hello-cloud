@@ -5,10 +5,11 @@ env:
   # this variable is used to compare against forked repositories
   OUR_REPO: "ourchitecture/hello-cloud"
   OUR_AUTODOC_COMMIT: "docs: auto-generated documentation"
-  OUR_AUTODOC_DESC: "Automatically generated documentation that requires a PR, because the main branch is protected."
+  OUR_AUTODOC_DESC: "Automatically generated documentation that requires a PR, because the main branch is protected. The @ourchitecture/hello-cloud-maintainers team will review."
   OUR_AUTODOC_LABELS: "documentation"
-  # TODO: replace with an "ourchitecture" GitHub team
-  OUR_AUTODOC_REVIEWERS: "hello-cloud-maintainers"
+  # this variable uses a system account since there are permission issues when assigning teams
+  # see: https://github.com/peter-evans/create-pull-request/issues/155#issuecomment-611904487
+  OUR_AUTODOC_REVIEWERS: "ourchitectureio"
   OUR_SKIP_CI: "[skip ci]"
 
 on:
@@ -66,4 +67,4 @@ jobs:
           commit-message: "${{ env.OUR_AUTODOC_COMMIT }} ${{ env.OUR_SKIP_CI }}"
           body: ${{ env.OUR_AUTODOC_DESC }}
           labels: ${{ env.OUR_AUTODOC_LABELS }}
-          reviewers: ourchitecture/hello-cloud-maintainers
+          reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}
