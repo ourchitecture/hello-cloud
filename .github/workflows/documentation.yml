@@ -63,10 +63,13 @@ jobs:
         # - Forked "Debug push": https://github.com/ericis/hello-cloud/runs/4733253190?check_suite_focus=true
         if: ${{ github.event_name == 'push' && github.repository == env.OUR_REPO }}
         with:
+          token: ${{ secrets.GH_TOKEN_AUTO_PR }}
           title: ${{ env.OUR_AUTODOC_COMMIT }}
           signoff: true
           commit-message: "${{ env.OUR_AUTODOC_COMMIT }} ${{ env.OUR_SKIP_CI }}"
           body: ${{ env.OUR_AUTODOC_DESC }}
           labels: ${{ env.OUR_AUTODOC_LABELS }}
-          reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}
           assignees: ${{ env.OUR_AUTODOC_ASSIGNEES }}
+          # a PAT was generated to suppor this field
+          # see: https://github.com/peter-evans/create-pull-request/issues/155
+          team-reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}
