@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/clouds/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/comments/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/contribute/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/devops/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/license/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/roadmap/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/services/dotnet/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/services/java-springboot/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/services/kotlin-springboot/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://www.ourchitecture.io/hello-cloud/services/nodejs-expressjs/</loc>
-         <lastmod>2022-01-11</lastmod>
+         <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
