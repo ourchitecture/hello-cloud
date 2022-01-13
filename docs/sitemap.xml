@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://www.ourchitecture.io/hello-cloud/compare/</loc>
+         <lastmod>2022-01-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://www.ourchitecture.io/hello-cloud/contribute/</loc>
          <lastmod>2022-01-13</lastmod>
          <changefreq>daily</changefreq>
