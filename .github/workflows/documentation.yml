@@ -42,6 +42,7 @@ jobs:
           sudo chown -R $(whoami) ./docs
 
       - name: screenshots
+        if: ${{ github.event_name == 'pull_request' }}
         run: make check-docs
 
       # https://docs.github.com/en/actions/advanced-guides/storing-workflow-data-as-artifacts#uploading-build-and-test-artifacts
