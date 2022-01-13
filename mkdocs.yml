@@ -37,6 +37,7 @@ theme:
 nav:
   - "Home": "index.md"
   - "Clouds": "clouds.md"
+  - "Comparisons": "compare.md"
   - "Projects":
       - ".NET": "./services/dotnet.md"
       - "Java with SpringBoot": "./services/java-springboot.md"
@@ -84,3 +85,4 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
   - "pymdownx.tasklist":
       custom_checkbox: true
+  - "tables"

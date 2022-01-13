@@ -71,6 +71,6 @@ jobs:
           body: ${{ env.OUR_AUTODOC_DESC }}
           labels: ${{ env.OUR_AUTODOC_LABELS }}
           assignees: ${{ env.OUR_AUTODOC_ASSIGNEES }}
-          # a PAT was generated to suppor this field
+          # a PAT was generated to support this field
           # see: https://github.com/peter-evans/create-pull-request/issues/155
           team-reviewers: ${{ env.OUR_AUTODOC_REVIEWERS }}

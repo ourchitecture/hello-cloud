@@ -97,6 +97,8 @@
 
     [:fontawesome-brands-salesforce: Salesforce Heroku](./clouds.md#salesforce-heroku)
 
+    _\*See the ["Cloud Comparisons"](./compare.md) for more general comparisons of each cloud's service offerings._
+
 ## Projects
 
 <a name="projects"></a>

@@ -54,6 +54,10 @@ const captureScreenshot = async (page, url, screenshotImageFileName) => {
       image: "clouds.png",
     },
     {
+      url: `${baseUrl}/compare/`,
+      image: "compare.png",
+    },
+    {
       url: `${baseUrl}/devops/`,
       image: "devops.png",
     },
