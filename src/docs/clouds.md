@@ -70,6 +70,8 @@ Choosing a cloud abstraction is an architecture decision with significant impact
 
 ## Cloud Providers
 
+Below is a summary of each cloud provider and the "hello-cloud" experience. Check out the [cloud comparisons](./compare.md) to see how their more general offerings stack up.
+
 ### Amazon Web Services :fontawesome-brands-aws:
 
 Register for a [free account](https://aws.amazon.com/free/).
