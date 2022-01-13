@@ -68,6 +68,22 @@ Choosing a cloud abstraction is an architecture decision with significant impact
 <figcaption>Cloud Computing Packages</figcaption>
 </figure>
 
+## Multiple Clouds
+
+Most organizations, especially large enterprises, currently rely on multiple clouds directly or indirectly and each company's cloud strategy is going to depend on a unique set of factors influenced by their customer base, market, business strategy, relationships, skills and experience, and technology portfolio.
+
+`Multiple Cloud Accounts`
+: Multiple cloud provider accounts within an organization, leveraging the best of what each cloud has to offer for any given value delivery team.
+
+`Cloud Agnostic`
+: The ability of a single system to support single cloud deployment across multiple cloud providers (cloud agnostic).
+
+`Polycloud`
+: A system designed to run unique capabilities across multiple cloud providers. See [Thoughtworks "polycloud"](https://www.thoughtworks.com/en-us/radar/techniques/polycloud).
+
+`Failsafe`
+: A business continuity plan, disaster recovery plan, or "exit strategy" from one cloud to another.
+
 ## Cloud Providers
 
 Below is a summary of each cloud provider and the "hello-cloud" experience. Check out the [cloud comparisons](./compare.md) to see how their more general offerings stack up.
