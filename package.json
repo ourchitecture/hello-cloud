@@ -1,0 +1,14 @@
+{
+  "name": "@ourchitectureio/hello-cloud",
+  "version": "1.0.0",
+  "homepage": "https://github.com/ourchitecture/hello-world",
+  "repository": "https://github.com/ourchitecture/hello-world",
+  "bugs": {
+    "url": "https://github.com/ourchitecture/hello-world/issues"
+  },
+  "author": "Ourchitecture @ourchitectureio",
+  "license": "CC0-1.0",
+  "scripts": {
+    "our": "./src/cli/ourc/bin/dev"
+  }
+}
