@@ -192,12 +192,17 @@ main:
 	&& git-town sync \
 	&& git-town prune-branches
 
+.PHONY: init-cli
+init-cli:
+	@yarn; \
+	prev_dir=$(shell pwd); \
+	echo ''; \
+	cd ./src/cli/ourc && yarn; \
+	cd $$prev_dir;
+
 .PHONY: pr
-pr:
-	@git-town sync \
-	&& echo "" \
-	&& echo "Open a new PR at:" \
-	&& echo "$$(git remote get-url origin)/compare/$$(git branch --show-current)?expand=1"
+pr: init-cli
+	@yarn our git pr;
 
 check_projects=./src/docker/aws-cli \
 	./src/docker/aws-cli-dotnet-sdk \
