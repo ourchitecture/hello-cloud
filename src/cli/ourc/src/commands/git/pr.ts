@@ -3,9 +3,6 @@ import { Command } from "@oclif/core";
 import * as which from "which";
 import spawn = require("cross-spawn");
 
-import { SpawnSyncOptionsWithBufferEncoding } from "child_process";
-import { appendFileSync } from "fs";
-
 const GIT_REMOTE_ORIGIN_NAME = "origin";
 
 export default class GitPullRequest extends Command {
@@ -40,7 +37,7 @@ export default class GitPullRequest extends Command {
     }
 
     if (hasGitTown) {
-      this.log("Syncronizing local repository with remote...");
+      this.log("[cli] git-town sync");
       const gitTownSyncResult = spawn.sync(
         "git-town",
         ["sync"],

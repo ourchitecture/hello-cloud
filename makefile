@@ -182,10 +182,6 @@ uninstall: clean
 portal: console
 dashboard: console
 
-.PHONY: sync
-sync:
-	@git-town sync
-
 .PHONY: main
 main:
 	@git checkout main \
@@ -202,7 +198,11 @@ init-cli:
 
 .PHONY: pr
 pr: init-cli
-	@yarn our git pr;
+	@yarn our git pr
+
+.PHONY: sync
+sync: init-cli
+	@yarn our git sync
 
 check_projects=./src/docker/aws-cli \
 	./src/docker/aws-cli-dotnet-sdk \
